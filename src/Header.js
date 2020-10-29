@@ -1,13 +1,14 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 function Header() {
     return(
         <div>
-            <span>Foodies Road</span>
+            <NavLink to='/'>Foodies Road</NavLink>
             <ul>
-                <li>Log in</li>
-                <li>Register</li>
-                <li>Cart</li>
+                <NavLink to='/login'>Log in</NavLink>
+                <NavLink to='/register'>Register</NavLink>
+                <NavLink to='/cart'>Cart</NavLink>
             </ul>
         </div>
     )
