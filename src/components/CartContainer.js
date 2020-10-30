@@ -5,30 +5,51 @@ class CartContainer extends React.Component {
 
    
 
-    // -----------Delete Functionality ------------------------
+// -----------Delete Functionality ------------------------
     deleteHandler = (evt) => {
             // evt.preventDefault()
 
         // console.log(evt.target.id)
-        fetch(`http://localhost:3000/orders/${evt.target.id}`, {
+        fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
             .then((deletedObj) => {
                 this.props.deleteOrderFromState(deletedObj.id)
             })
-
     }
 
 
     // Update Functionality -------------------------
 
     decreaseQuantityHandler = (evt) => {
-        console.log(evt.target.id)
 
+        if (this.props.order.quantity > 1) {
+
+            fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
+                method: 'PATCH',
+                headers: {
+                    "content-type": "Application/json"
+                },
+                body: JSON.stringify({
+                    quantity: this.props.order.quantity - 1
+                })
+            })
+            .then(res => res.json())
+            .then(updatedOrder => {
+                this.props.updateOrderFromState(updatedOrder)
+            })
+
+            } else {
+                fetch(`http://localhost:3000/orders/${evt.target.id}`, {
+                    method: "DELETE"
+                })
+                .then(res => res.json())
+                .then((deletedObj) => {
+                    this.props.deleteOrderFromState(deletedObj.id)
+                })
+        }
     }
-
-
 
     increaseQuantityHandler = (evt) => {
         // console.log(this.props.order.quantity)
