@@ -15,7 +15,7 @@ class App extends React.Component {
 
   state = {
     restaurants: [],
-    orders: []
+    // orders: []
     
   }
 
@@ -31,15 +31,15 @@ class App extends React.Component {
     })
     })
 
-    fetch("http://localhost:3000/users")
-    .then(res => res.json())
-    .then((response) => {
-      response.map((arrayOfObjects) =>{
-        this.setState({
-          orders: arrayOfObjects.orders
-        })
-      })
-    })
+    // fetch("http://localhost:3000/users")
+    // .then(res => res.json())
+    // .then((response) => {
+    //   response.map((arrayOfObjects) =>{
+    //     this.setState({
+    //       orders: arrayOfObjects.orders
+    //     })
+    //   })
+    // })
 
   }
 
@@ -74,52 +74,29 @@ class App extends React.Component {
     if (selectedRestaurant) {
       return <SelectedRestaurant
               restaurant = {selectedRestaurant}
-              addOrderToState = {this.addOrderToState} />
+              // addOrderToState = {this.addOrderToState} 
+              />
       
     }else {
       return <NotFound />
     }
   }
 
-  // renderCart = () => {
-  //   let productOnCart = this.state.orders.find(orderPojo => {
-  //     return orderPojo.product_id
-  //   })
-  //   let foundProduct = this.state.products.filter((restPojo) => {
-  //     return restPojo.id === parseInt(productOnCart)
-  //   })
-   
-   
-  //   if (foundProduct) {
-  //     return <CartContainer product = {foundProduct} />
-  //   } else {
-  //     return <NotFound />
-  //   }
   
+  
+  // addOrderToState = (newCreatedOrder) => {
+  //   let copyOfOrders = [...this.state.orders, newCreatedOrder]
+  //   this.setState( {
+  //     orders: copyOfOrders
+  //   })
   // }
-
-  
-  addOrderToState = (newCreatedOrder) => {
-    let copyOfOrders = [...this.state.orders, newCreatedOrder]
-    this.setState( {
-      orders: copyOfOrders
-    })
-  }
 
 
   
 
   render() {
     
-    // this.state.orders.map(orderPojo => {
-    //   console.log(orderPojo.product_id)
-    // })
-    // this.state.restaurants.map(restPojo => {
-    //   restPojo.products.map(orderPojo => {
-    //     console.log(orderPojo.id)
-    //   })
-    // })
-    console.log(this.state.orders.length)
+    // console.log(this.state.orders.length)
 
     return (
       <div className="App">
