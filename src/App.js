@@ -6,8 +6,10 @@ import Home from './Home'
 import Restaurant from './Restaurant'
 import NotFound from './NotFound'
 import SelectedRestaurant from './components/SelectedRestaurant'
+import allOrders from './components/AllOrders'
 import CartContainer from './components/CartContainer'
 import {Route, Switch, Link} from 'react-router-dom'
+import AllOrders from './components/AllOrders';
 
 
 
@@ -67,9 +69,11 @@ class App extends React.Component {
 
   renderAllOrders = () =>{
     let allOrders = this.state.orders
-    return <CartContainer 
+    return <AllOrders 
     allOrders = {allOrders} 
-    deleteOrderFromState = {this.deleteOrderFromState}/>
+    deleteOrderFromState = {this.deleteOrderFromState}
+    updateOrderFromState = {this.updateOrderFromState} 
+    />
   }
 
 
@@ -90,7 +94,7 @@ class App extends React.Component {
     }
   }
 
-  
+  //  ----- UPDATE STATE WHEN ADDING A NEW ORDER ----------
   
   addOrderToState = (newCreatedOrder) => {
     let copyOfOrders = [...this.state.orders, newCreatedOrder]
@@ -99,6 +103,9 @@ class App extends React.Component {
     })
   }
 
+
+    //  ----- UPDATE STATE WHEN DELETING AN ORDER ----------
+
   deleteOrderFromState = (deletedID) => {
     let copyOfOrders = this.state.orders.filter(orderObj => {
       return orderObj.id !== deletedID
@@ -106,14 +113,45 @@ class App extends React.Component {
     this.setState({
       orders: copyOfOrders
     })
-
   }
 
   
 
+    //  ----- UPDATE STATE WHEN UPDATING AN ORDER ----------
+
+    updateOrderFromState = (updatedObj) => {
+      let copyOfOrders = this.state.orders.map((order) => {
+        if(order.id === updatedObj.id){
+          return updatedObj
+        } else {
+          return order
+        }
+      })
+      this.setState({
+        orders: copyOfOrders
+      })
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   render() {
     
-    console.log(this.state.orders)
+    // console.log(this.state.orders)
 
     return (
       <div className="App">
@@ -125,8 +163,9 @@ class App extends React.Component {
               <Route path ='/' exact component={Home} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
-              {/* <Route path = '/cart' exact component={CartContainer} /> */}
               <Route path = '/cart' exact render={this.renderAllOrders} />
+              {/* <Route path = '/orders' exact component={this.renderAllOrders} /> */}
+
 
 
             </Switch>

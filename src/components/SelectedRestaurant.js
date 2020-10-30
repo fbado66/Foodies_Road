@@ -5,6 +5,7 @@ import Product from './Product'
 
 
 const SelectedRestaurant = (props) => {
+    // console.log(props.renderAllOrders.props.allOrders)
 
     let {products} = props.restaurant
     console.log(products)
@@ -17,6 +18,12 @@ const SelectedRestaurant = (props) => {
                     order = {productPojo}
                     addOrderToState = {props.addOrderToState} /> 
     })
+
+    // let arrayOfOrders = props.renderAllOrders.props.allOrders.map(orderPojo => {
+    //     console.log(orderPojo)
+    //     return <CartContainer 
+    //             order = {orderPojo} />
+    // })
 
     return (
         <div>

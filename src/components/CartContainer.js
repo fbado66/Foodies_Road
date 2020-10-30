@@ -31,51 +31,48 @@ class CartContainer extends React.Component {
 
 
     increaseQuantityHandler = (evt) => {
-        console.log(this)
+        // console.log(this.props.order.quantity)
 
-        fetch(`http://localhost:3000/orders/${evt.target.id}`, {
+        fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
             method: 'PATCH',
             headers: {
                 "content-type": "Application/json"
             },
             body: JSON.stringify({
-                quantity: this.state.orders.quantity + 1
+                quantity: this.props.order.quantity + 1
             })
+        })
+        .then(res => res.json())
+        .then(updatedOrder => {
+            this.props.updateOrderFromState(updatedOrder)
         })
 
     }
 
 
     render () {
-        console.log(this.props)
-
-        let arrayOfOrders = this.props.allOrders.map(orderPojo => {
-            let {name, image_url, price} = orderPojo.product
+        // console.log(this.props.order)
+        let {id, product, quantity} = this.props.order
+        let {name, image_url, price} = product
+  
             return <div 
-                        key = {orderPojo.id}>
+                        key = {id}>
                         <p>{name}</p>
                         <img className ='product-image' src={image_url} alt ={name} />
                         <p>$ {price}</p>
                         <p>quantity:
                             <button
-                            id = {orderPojo.id}
+                            id = {id}
                             onClick = {this.decreaseQuantityHandler}> - </button>
-                            {orderPojo.quantity}
+                            {quantity}
                             <button
-                            id = {orderPojo.id}
+                            id = {id}
                             onClick = {this.increaseQuantityHandler}> + </button></p>
                         <button
-                        id = {orderPojo.id}
+                        id = {id}
                         onClick = {this.deleteHandler}> Delete</button>
 
                     </div>
-        })
-
-        return (
-            <div>
-                {arrayOfOrders}
-            </div>
-        )
 
     }
 }
