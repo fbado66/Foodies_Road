@@ -39,6 +39,7 @@ class Product extends React.Component {
     // }
 
     render() {
+        console.log(this.props.order.category)
         let {id, name, image_url, price} = this.props.order
         return(
             <div>

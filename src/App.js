@@ -62,6 +62,7 @@ class App extends React.Component {
     return (
       <Restaurant 
         restaurants={arrayOfRestaurants}
+    
       />
     )
   }

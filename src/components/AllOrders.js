@@ -6,15 +6,15 @@ class AllOrders extends React.Component {
 
     render () {
         let arrayOfOrders = this.props.allOrders.map(orderPojo => {
-            return <CartContainer 
-                    key = {orderPojo.id}
-                    order = {orderPojo} 
-                    deleteOrderFromState = {this.props.deleteOrderFromState}
-                    updateOrderFromState = {this.props.updateOrderFromState}
+            return <div key = {orderPojo.id}>
+                    <CartContainer 
+                        order = {orderPojo} 
+                        deleteOrderFromState = {this.props.deleteOrderFromState}
+                        updateOrderFromState = {this.props.updateOrderFromState}
                     />
+                    </div>
         })
 
-    // console.log(this.props.allOrders)
         return (
             <div>
                 {arrayOfOrders}

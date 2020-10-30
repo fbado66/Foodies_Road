@@ -1,29 +1,25 @@
 import React from 'react'
 import { withRouter} from 'react-router-dom'
-import CartContainer from './CartContainer'
 import Product from './Product'
 
 
 const SelectedRestaurant = (props) => {
-    // console.log(props.renderAllOrders.props.allOrders)
+    console.log(props)
 
     let {products} = props.restaurant
     console.log(products)
 
     let arrayOfProducts = products.map((productPojo) => {
-        console.log(productPojo.price)
+        console.log(productPojo)
         
-        return<Product
-                    key = {productPojo.id}
+        return <div key = {productPojo.id}>
+                    <p>{productPojo.category}</p>
+                    <Product
                     order = {productPojo}
                     addOrderToState = {props.addOrderToState} /> 
+                    
+                </div>
     })
-
-    // let arrayOfOrders = props.renderAllOrders.props.allOrders.map(orderPojo => {
-    //     console.log(orderPojo)
-    //     return <CartContainer 
-    //             order = {orderPojo} />
-    // })
 
     return (
         <div>
