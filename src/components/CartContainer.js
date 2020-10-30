@@ -3,76 +3,80 @@ import OrderForm from './OrderForm'
 
 class CartContainer extends React.Component {
 
-    state = {
-        orders: []
-    }
-
-    componentDidMount(){
-
-        fetch("http://localhost:3000/users")
-        .then(res => res.json())
-        .then((userInformation) => {
-            userInformation.map(arrayOfOrders => {
-                this.setState({
-                    orders: arrayOfOrders.orders
-                })
-            })
-        })
-    }
-
-
+   
 
     // -----------Delete Functionality ------------------------
-    deleteOrderFromState = (deletedID) => {
-        let copyOfOrders = this.state.orders.filter(orderObj => {
-          return orderObj.id !== deletedID
-        })
-        this.setState({
-          orders: copyOfOrders
-        })
-    
-      }
-
-
-
-
     deleteHandler = (evt) => {
-        console.log(evt.target.id)
-        // evt.preventDefault()
+            // evt.preventDefault()
+
+        // console.log(evt.target.id)
         fetch(`http://localhost:3000/orders/${evt.target.id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
             .then((deletedObj) => {
-                this.deleteOrderFromState(deletedObj.id)
+                this.props.deleteOrderFromState(deletedObj.id)
             })
 
     }
 
 
-    render () {
-        
-    let arrayOfOrders = this.state.orders.map(orderPojo => {
-        let {name, image_url, price} = orderPojo.product
-        return <div 
-                    key = {orderPojo.id}>
-                    <p>{name}</p>
-                    <img className ='product-image' src={image_url} alt ={name} />
-                    <p>$ {price}</p>
-                    <button
-                    id = {orderPojo.id}
-                    onClick = {this.deleteHandler}> Delete</button>
+    // Update Functionality -------------------------
 
-                </div>
-    })
+    decreaseQuantityHandler = (evt) => {
+        console.log(evt.target.id)
+
+    }
+
+
+
+    increaseQuantityHandler = (evt) => {
+        console.log(this)
+
+        fetch(`http://localhost:3000/orders/${evt.target.id}`, {
+            method: 'PATCH',
+            headers: {
+                "content-type": "Application/json"
+            },
+            body: JSON.stringify({
+                quantity: this.state.orders.quantity + 1
+            })
+        })
+
+    }
+
+
+    render () {
+        console.log(this.props)
+
+        let arrayOfOrders = this.props.allOrders.map(orderPojo => {
+            let {name, image_url, price} = orderPojo.product
+            return <div 
+                        key = {orderPojo.id}>
+                        <p>{name}</p>
+                        <img className ='product-image' src={image_url} alt ={name} />
+                        <p>$ {price}</p>
+                        <p>quantity:
+                            <button
+                            id = {orderPojo.id}
+                            onClick = {this.decreaseQuantityHandler}> - </button>
+                            {orderPojo.quantity}
+                            <button
+                            id = {orderPojo.id}
+                            onClick = {this.increaseQuantityHandler}> + </button></p>
+                        <button
+                        id = {orderPojo.id}
+                        onClick = {this.deleteHandler}> Delete</button>
+
+                    </div>
+        })
 
         return (
             <div>
                 {arrayOfOrders}
-
-                <p> Your total is: </p>
             </div>
         )
+
     }
 }
 

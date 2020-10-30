@@ -12,11 +12,10 @@ const SelectedRestaurant = (props) => {
     let arrayOfProducts = products.map((productPojo) => {
         console.log(productPojo.price)
         
-        return <Product
+        return<Product
                     key = {productPojo.id}
                     order = {productPojo}
-                    addOrderToState = {props.addOrderToState} />
-        
+                    addOrderToState = {props.addOrderToState} /> 
     })
 
     return (

@@ -15,7 +15,7 @@ class App extends React.Component {
 
   state = {
     restaurants: [],
-    // orders: []
+    orders: []
     
   }
 
@@ -31,15 +31,15 @@ class App extends React.Component {
     })
     })
 
-    // fetch("http://localhost:3000/users")
-    // .then(res => res.json())
-    // .then((response) => {
-    //   response.map((arrayOfObjects) =>{
-    //     this.setState({
-    //       orders: arrayOfObjects.orders
-    //     })
-    //   })
-    // })
+    fetch("http://localhost:3000/users")
+    .then(res => res.json())
+    .then((response) => {
+      response.map((arrayOfObjects) =>{
+        this.setState({
+          orders: arrayOfObjects.orders
+        })
+      })
+    })
 
   }
 
@@ -65,6 +65,14 @@ class App extends React.Component {
   }
 
 
+  renderAllOrders = () =>{
+    let allOrders = this.state.orders
+    return <CartContainer 
+    allOrders = {allOrders} 
+    deleteOrderFromState = {this.deleteOrderFromState}/>
+  }
+
+
   renderSpecificRestaurant = (routerProps) => {
     let searchedRestaurant = routerProps.match.params.id
     let selectedRestaurant = this.state.restaurants.find((restaurantPojo) => {
@@ -74,7 +82,7 @@ class App extends React.Component {
     if (selectedRestaurant) {
       return <SelectedRestaurant
               restaurant = {selectedRestaurant}
-              // addOrderToState = {this.addOrderToState} 
+              addOrderToState = {this.addOrderToState} 
               />
       
     }else {
@@ -84,19 +92,28 @@ class App extends React.Component {
 
   
   
-  // addOrderToState = (newCreatedOrder) => {
-  //   let copyOfOrders = [...this.state.orders, newCreatedOrder]
-  //   this.setState( {
-  //     orders: copyOfOrders
-  //   })
-  // }
+  addOrderToState = (newCreatedOrder) => {
+    let copyOfOrders = [...this.state.orders, newCreatedOrder]
+    this.setState( {
+      orders: copyOfOrders
+    })
+  }
 
+  deleteOrderFromState = (deletedID) => {
+    let copyOfOrders = this.state.orders.filter(orderObj => {
+      return orderObj.id !== deletedID
+    })
+    this.setState({
+      orders: copyOfOrders
+    })
+
+  }
 
   
 
   render() {
     
-    // console.log(this.state.orders.length)
+    console.log(this.state.orders)
 
     return (
       <div className="App">
@@ -108,7 +125,9 @@ class App extends React.Component {
               <Route path ='/' exact component={Home} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
-              <Route path = '/cart' exact component={CartContainer} />
+              {/* <Route path = '/cart' exact component={CartContainer} /> */}
+              <Route path = '/cart' exact render={this.renderAllOrders} />
+
 
             </Switch>
           </main>

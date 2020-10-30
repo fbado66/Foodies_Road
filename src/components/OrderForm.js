@@ -8,12 +8,12 @@ class OrderForm extends React.Component {
 
 
 
-    addOrderToState = (newCreatedOrder) => {
-        let copyOfOrders = [...this.state.orders, newCreatedOrder]
-        this.setState( {
-          orders: copyOfOrders
-        })
-      }
+    // addOrderToState = (newCreatedOrder) => {
+    //     let copyOfOrders = [...this.state.orders, newCreatedOrder]
+    //     this.setState( {
+    //       orders: copyOfOrders
+    //     })
+    //   }
 
     handleClick = (evt) => {
         evt.preventDefault()
@@ -34,7 +34,7 @@ class OrderForm extends React.Component {
         .then(res => res.json())
         .then((createdOrder) => {
             // console.log(createdOrder)
-            this.addOrderToState(createdOrder)
+            this.props.addOrderToState(createdOrder)
         })
 
     }
