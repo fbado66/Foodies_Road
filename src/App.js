@@ -8,7 +8,7 @@ import NotFound from './NotFound'
 import SelectedRestaurant from './components/SelectedRestaurant'
 import allOrders from './components/AllOrders'
 import CartContainer from './components/CartContainer'
-import {Route, Switch, Link} from 'react-router-dom'
+import {Route, Switch, Link, withRouter} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
@@ -19,6 +19,7 @@ import CartForm from './components/CartForm';
 class App extends React.Component {
 
   state = {
+    id: 0,
     restaurants: [],
     orders: [],
     token: '',
@@ -33,11 +34,9 @@ class App extends React.Component {
     fetch("http://localhost:3000/restaurants")
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
-     
       this.setState({
         restaurants: arrayOfRestaurants,
-      
-    })
+      })
     })
 
     // Order Information -------
@@ -52,9 +51,6 @@ class App extends React.Component {
     })
 
     
-
-
-
     if(localStorage.token){
       // Any time that you want to CRUD user information, send the token to the backend
 
@@ -68,22 +64,8 @@ class App extends React.Component {
       })
         .then(res => res.json())
         .then(this.helpHandleResponse)
-
-
     }
-
-
-
-
-
   }
-
-
-
-
-
-
-
 
 
 
@@ -101,18 +83,6 @@ class App extends React.Component {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   handleLoginSubmit = (userInfo) => {
     console.log("Login form has been submitted")
 
@@ -127,16 +97,9 @@ class App extends React.Component {
       })
     })
       .then(res => res.json())
-      .then(this.helpHandleResponse)
-
+      .then(this.helpHandleLogInResponse)
 
   }
-
-
-
-
-
-
 
 
   handleRegisterSubmit = (userInfo) => {
@@ -157,21 +120,7 @@ class App extends React.Component {
     })
     .then(res => res.json())
     .then(this.helpHandleResponse)
-    
 
-    fetch('http://localhost:3000/carts', {
-      method: "POST",
-      headers: {
-        "Content-Type": "Application/json",
-        "authorization": this.props.token
-
-      },
-      body: JSON.stringify({
-        method_order: 'delivery',
-        history: false
-      })
-
-    })
   
   }
 
@@ -199,9 +148,52 @@ class App extends React.Component {
         orders: resp.user.orders,
         token: resp.token
       })
+
+      fetch('http://localhost:3000/carts', {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json",
+        "authorization": this.state.token
+
+      },
+      body: JSON.stringify({
+        method_order: 'delivery',
+        history: false
+      })
+
+    })
       // this.props.history.push("/profile")
     }
   }
+
+
+  helpHandleLogInResponse = (resp) => {
+    if(resp.error){
+      console.error(resp.error)
+    } else {
+      localStorage.token = resp.token
+      this.setState({
+        id: resp.user.id,
+        name: resp.user.name,
+        orders: resp.user.orders,
+        token: resp.token
+      })
+
+      // this.props.history.push("/profile")
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -383,4 +375,4 @@ class App extends React.Component {
 
 
 }
-export default App;
+export default withRouter(App);
