@@ -10,6 +10,8 @@ import allOrders from './components/AllOrders'
 import CartContainer from './components/CartContainer'
 import {Route, Switch, Link} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
+import LogInForm from './LogInForm'
+import RegisterForm from "./RegisterForm"
 
 
 
@@ -17,11 +19,15 @@ class App extends React.Component {
 
   state = {
     restaurants: [],
-    orders: []
+    orders: [],
+    token: '',
+    name: ''
     
   }
 
   componentDidMount(){
+
+    // Restaurants information -------------
 
     fetch("http://localhost:3000/restaurants")
     .then(res => res.json())
@@ -33,6 +39,7 @@ class App extends React.Component {
     })
     })
 
+    // Order Information -------
     fetch("http://localhost:3000/users")
     .then(res => res.json())
     .then((response) => {
@@ -43,7 +50,157 @@ class App extends React.Component {
       })
     })
 
+    
+
+
+
+    if(localStorage.token){
+      // Any time that you want to CRUD user information, send the token to the backend
+
+      // Any time that you send the token to the backend, the controller action needs a:
+        // before_action :authorized
+      fetch("http://localhost:3000/users/keep_logged_in", {
+        method: "GET",
+        headers: {
+          "Authorization": localStorage.token
+        }
+      })
+        .then(res => res.json())
+        .then(this.helpHandleResponse)
+
+
+    }
+
+
+
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+  handleLogOut = () => {
+    this.setState({
+      id: 0,
+      name: "",
+      orders: [],
+      token: ""
+    })
+    localStorage.clear()
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  handleLoginSubmit = (userInfo) => {
+    console.log("Login form has been submitted")
+
+    fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        name: userInfo.name,
+        password: userInfo.password
+      })
+    })
+      .then(res => res.json())
+      .then(this.helpHandleResponse)
+
+
+  }
+
+
+
+
+
+
+
+
+  handleRegisterSubmit = (userInfo) => {
+    console.log("Register form has been submitted")
+
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        name: userInfo.name,
+        password: userInfo.password,
+        email: userInfo.email,
+        phone_number: userInfo.phone_number,
+        address: userInfo.address
+      })
+    })
+    .then(res => res.json())
+    .then(this.helpHandleResponse)
+  
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  helpHandleResponse = (resp) => {
+    if(resp.error){
+      console.error(resp.error)
+    } else {
+      localStorage.token = resp.token
+      this.setState({
+        id: resp.user.id,
+        name: resp.user.name,
+        orders: resp.user.orders,
+        token: resp.token
+      })
+      // this.props.history.push("/profile")
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   renderRestaurants = () => {
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
@@ -137,8 +294,26 @@ class App extends React.Component {
 
 
 
+    // LOGIN / REGISTER FORM ------------------
 
-
+    renderForm = (routerProps) => {
+      if(this.state.token){
+        return <button className='logout' onClick={this.handleLogOut}>Logged in as {this.state.name}</button>
+      }
+      if(routerProps.location.pathname === "/login"){
+        return <LogInForm
+          formName="Login Form"
+          handleSubmit={this.handleLoginSubmit}
+              />
+        
+      } else if (routerProps.location.pathname === "/register") {
+        return <RegisterForm
+          formName="Register Form"
+          handleSubmit={this.handleRegisterSubmit}
+              />
+      } 
+    
+    }
 
 
 
@@ -160,6 +335,8 @@ class App extends React.Component {
 
           <main>
             <Switch>
+              <Route path="/login" render={ this.renderForm } />
+              <Route path="/register" render={ this.renderForm } />
 
               <Route path ='/' exact component={Home} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
