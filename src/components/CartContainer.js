@@ -67,15 +67,12 @@ class CartContainer extends React.Component {
         .then(updatedOrder => {
             this.props.updateOrderFromState(updatedOrder)
         })
-
     }
-
 
     render () {
         console.log(this.props)
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product
-  
             return <div
                         key = {id}>
                         <p>{name}</p>
@@ -92,7 +89,6 @@ class CartContainer extends React.Component {
                         <button
                         id = {id}
                         onClick = {this.deleteHandler}> Delete</button>
-
                     </div>
 
     }

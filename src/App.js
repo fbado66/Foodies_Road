@@ -53,10 +53,7 @@ class App extends React.Component {
 
     
     if(localStorage.token){
-      // Any time that you want to CRUD user information, send the token to the backend
-
-      // Any time that you send the token to the backend, the controller action needs a:
-        // before_action :authorized
+   
       fetch("http://localhost:3000/users/keep_logged_in", {
         method: "GET",
         headers: {
@@ -67,9 +64,6 @@ class App extends React.Component {
         .then(this.helpHandleResponse)
     }
   }
-
-
-
 
 
 
@@ -129,15 +123,6 @@ class App extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
-
   helpHandleResponse = (resp) => {
     if(resp.error){
       console.error(resp.error)
@@ -192,30 +177,6 @@ class App extends React.Component {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   renderRestaurants = () => {
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
       return (
@@ -233,7 +194,6 @@ class App extends React.Component {
     return (
       <Restaurant 
         restaurants={arrayOfRestaurants}
-    
       />
     )
   }
@@ -306,9 +266,6 @@ class App extends React.Component {
     }
   
 
-
-
-
     // LOGIN / REGISTER FORM ------------------
 
     renderForm = (routerProps) => {
@@ -332,28 +289,11 @@ class App extends React.Component {
 
 
 
-
-        // MY CART ---------------
-
-        // myCart = () =>{
-          
-        //   return <CartForm
-        //   token = {this.state.token}
-        //   />
-        // }
-
-
-
-
-
-
   render() {
     
-    console.log(this.state)
-
     return (
       <div className="App">
-        <Header />
+        <Header orderNum = {this.state.orders.length}/>
 
           <main>
             <Switch>
@@ -367,12 +307,8 @@ class App extends React.Component {
               {/* <Route path = '/orders' exact component={this.renderAllOrders} /> */}
               <Route path = '/mycart' exact render={this.myCart} />
 
-
-
             </Switch>
           </main>
-
-
         <Footer />
       </div>
 

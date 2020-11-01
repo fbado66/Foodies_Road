@@ -3,18 +3,8 @@ import React from 'react';
 class OrderForm extends React.Component {
 
     state = {
-        orders: [],
-        
+        orders: []      
     }
-
-
-
-    // addOrderToState = (newCreatedOrder) => {
-    //     let copyOfOrders = [...this.state.orders, newCreatedOrder]
-    //     this.setState( {
-    //       orders: copyOfOrders
-    //     })
-    //   }
 
     handleClick = (evt) => {
         evt.preventDefault()
@@ -37,9 +27,7 @@ class OrderForm extends React.Component {
             // console.log(createdOrder)
             this.props.addOrderToState(createdOrder)
         })
-
     }
-
 
     render () {
         console.log(this.props)
@@ -48,7 +36,7 @@ class OrderForm extends React.Component {
             <div>
                 <button
                     onClick = {this.handleClick}>
-                        Add to Cart</button>
+                    Add to Cart</button>
             </div>
         )
     }
