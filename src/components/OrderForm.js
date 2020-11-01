@@ -1,4 +1,7 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
+
+
 
 class OrderForm extends React.Component {
 
@@ -8,9 +11,8 @@ class OrderForm extends React.Component {
 
     handleClick = (evt) => {
         evt.preventDefault()
-        // console.log(this.props.order_id)
-
-        fetch('http://localhost:3000/orders', {
+        if (this.props.token) {
+            fetch('http://localhost:3000/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json'
@@ -27,6 +29,13 @@ class OrderForm extends React.Component {
             // console.log(createdOrder)
             this.props.addOrderToState(createdOrder)
         })
+            
+        } else {
+            this.props.history.push("/login")
+        }
+        // console.log(this.props.order_id)
+
+        
     }
 
     render () {
@@ -42,4 +51,4 @@ class OrderForm extends React.Component {
     }
 }
 
-export default OrderForm
+export default withRouter(OrderForm)

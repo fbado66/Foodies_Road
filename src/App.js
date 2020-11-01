@@ -13,6 +13,7 @@ import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
 import CartForm from './components/CartForm';
+import CategoryNavBar from './components/CategoryNavBar';
 
 
 
@@ -217,10 +218,10 @@ class App extends React.Component {
 
     if (selectedRestaurant) {
       return <SelectedRestaurant
-              restaurant = {selectedRestaurant}
-              addOrderToState = {this.addOrderToState} 
-              cart_id={this.state.cart_id}
-              />
+                restaurant = {selectedRestaurant}
+                addOrderToState = {this.addOrderToState} 
+                cart_id={this.state.cart_id}
+                token = {this.state.token}/>        
       
     }else {
       return <NotFound />

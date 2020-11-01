@@ -5,7 +5,7 @@ import OrderForm from './OrderForm'
 class Product extends React.Component {
 
     render() {
-        console.log(this.props.order.category)
+        console.log(this.props)
         let {id, name, image_url, price} = this.props.order
         return(
             <div>
@@ -15,9 +15,9 @@ class Product extends React.Component {
             <OrderForm 
             addOrderToState = {this.props.addOrderToState}
             product_id = {id}
-            cart_id = {this.props.cart_id}/>
-            {/* <CartContainer 
-            addOrderToState = {this.props.addOrderToState} /> */}
+            cart_id = {this.props.cart_id}
+            token = {this.props.token} />
+            
             </div>
         )
     }
