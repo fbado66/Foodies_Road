@@ -3,7 +3,8 @@ import React from 'react';
 class OrderForm extends React.Component {
 
     state = {
-        orders: []
+        orders: [],
+        
     }
 
 
@@ -25,7 +26,7 @@ class OrderForm extends React.Component {
                 'Content-Type': 'Application/json'
             },
             body: JSON.stringify({
-                cart_id: 1,
+                cart_id: this.props.cart_id,
                 product_id: this.props.product_id,
                 quantity: 1
             })

@@ -48,7 +48,8 @@ class Product extends React.Component {
             <p>{price}</p>
             <OrderForm 
             addOrderToState = {this.props.addOrderToState}
-            product_id = {id}/>
+            product_id = {id}
+            cart_id = {this.props.cart_id}/>
             {/* <CartContainer 
             addOrderToState = {this.props.addOrderToState} /> */}
             </div>

@@ -16,7 +16,8 @@ const SelectedRestaurant = (props) => {
                     <p>{productPojo.category}</p>
                     <Product
                     order = {productPojo}
-                    addOrderToState = {props.addOrderToState} /> 
+                    addOrderToState = {props.addOrderToState} 
+                    cart_id={props.cart_id} /> 
                     
                 </div>
     })

@@ -23,7 +23,8 @@ class App extends React.Component {
     restaurants: [],
     orders: [],
     token: '',
-    name: ''
+    name: '',
+    cart_id: ''
     
   }
 
@@ -160,7 +161,12 @@ class App extends React.Component {
         method_order: 'delivery',
         history: false
       })
-
+    })
+    .then(res => res.json())
+    .then((cartPojo) => {
+      this.setState({
+        cart_id: cartPojo.id
+      })
     })
       // this.props.history.push("/profile")
     }
@@ -253,6 +259,7 @@ class App extends React.Component {
       return <SelectedRestaurant
               restaurant = {selectedRestaurant}
               addOrderToState = {this.addOrderToState} 
+              cart_id={this.state.cart_id}
               />
       
     }else {
@@ -328,12 +335,12 @@ class App extends React.Component {
 
         // MY CART ---------------
 
-        myCart = () =>{
+        // myCart = () =>{
           
-          return <CartForm
-          token = {this.state.token}
-          />
-        }
+        //   return <CartForm
+        //   token = {this.state.token}
+        //   />
+        // }
 
 
 
@@ -342,7 +349,7 @@ class App extends React.Component {
 
   render() {
     
-    // console.log(this.state.orders)
+    console.log(this.state)
 
     return (
       <div className="App">
