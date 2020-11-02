@@ -11,3 +11,220 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* MAIN NAVBAR --------------------------- */
+a {
+  text-decoration: none!important;
+  color: black!important
+}
+
+.nav_header {
+  display: flex;
+}
+
+.nav_rightSided  {
+  display: flex;
+  right: 0;
+  position: absolute;
+  top: 15px;
+  width: 250px;
+}
+
+.nav_rightSided a {
+  display: flex; 
+  margin: 0 4%;
+}
+
+.logo {
+  padding: 15px
+}
+
+.count {
+  background: red;
+  width: 15px;
+  height: 15px;
+  border-radius: 99px;
+  font-weight: bold;
+  color: white;
+  font-size: 10px;
+}
+
+/* HOME CONTAINER ---------------------------------- */
+
+.text-header {
+  padding: 1% 4%;
+  font-size: 40px;
+}
+
+.hero-section {
+  display: flex;
+}
+
+.hero-text {
+  position: relative;
+  top: 250px
+}
+.order_now {
+  background: #fdd129;
+  width: 120px;
+  padding: 2% 1%;
+  left: 40%;
+  margin-top: 30px;
+  font-weight: 600;
+  text-shadow: 1px 1px white;
+  border-radius: 20px;
+  position: relative;
+}
+
+.home-image {
+  height: 700px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 80%;
+}
+
+
+/* RESTAURANT CONTAINER ------------------------------------ */
+
+.all_restaurant_text {
+  padding: 3%;
+}
+
+.restaurants-holder {
+  width: 100%;
+  column-count: 4;
+}
+
+.restaurant-card {
+  height: 400px;
+  width: 100%;
+  /* justify-items: center; */
+}
+
+.restaurant-image {
+  width: 65%;
+  height: 250px;
+  border-radius: 20px;
+}
+
+.restaurant-title {
+  font-size: 20px;
+  padding: 3% 0%;
+
+}
+
+
+
+
+/* PRODUCT CONTAINER -------------------------------------- */
+
+.product-card {
+  width: 60%;
+  background: #F5F5F5;
+  border-radius: 20px;
+  margin-bottom: 50px;
+  
+}
+
+.product-image {
+  margin-top: 1%;
+  width: 98%;
+  height: 400px;
+  border-radius: 20px 20px 0px 0px ;
+}
+.products_holder {
+  width: 100%;
+  column-count: 2;
+  padding-top: 10%;
+  margin-left: 10%;
+}
+
+.product-name {
+  padding-top: 2%;
+  font-weight: bold;
+}
+
+.product-price {
+  font-style: italic;
+}
+
+
+/* ORDER FORM ----------------------------------------- */
+
+.add_to_cart {
+  background: #4285F4;
+  color: white;
+  font-weight: bold;
+  padding: 1% 2%;
+  border-radius: 8px;
+  margin-bottom: 30px;
+
+}
+
+
+/* CARTCONTAINER ---------------------------------------------------- */
+
+.cart-holder {
+  width: 80%;
+  margin-left: 10%;
+}
+
+
+.order_in_cart {
+display: flex;
+margin-bottom: 5%;
+}
+
+.product_cart_image {
+  width: 320px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.product_name_price {
+  position: relative;
+  bottom: -150px;
+  padding: 0% 5%;
+}
+
+.product_cart_name {
+  font-weight: bold;
+}
+
+.product_cart_price {
+  font-style: italic;
+  font-size: 12px;
+}
+
+.product_cart_quantity {
+  position: relative;
+  bottom: -150px;
+  padding: 0% 1%;
+  display: flex;
+}
+
+.arrowdown {
+  padding-right: 1%;
+  color: blue
+}
+
+.arrowup {
+  padding-left: 1%;
+  color: blue
+}
+
+.delete {
+  position: relative;
+  top: 150px;
+  /* margin-bottom: 215px; */
+  color: red;
+  
+
+
+
+}
+
+

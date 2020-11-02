@@ -16,7 +16,8 @@ class AllOrders extends React.Component {
         })
 
         return (
-            <div>
+            <div className ='cart-holder'>
+                <h2 className ='my-cart_text'> My Cart</h2>
                 {arrayOfOrders}
             </div>
         )

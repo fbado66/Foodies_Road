@@ -5,8 +5,8 @@ class Restaurant extends React.Component {
         
         return (
             <div>
-                {this.props.restaurants}
-                
+                <h2 className ='all_restaurant_text'>All Restaurants</h2>
+                <div className='restaurants-holder'>{this.props.restaurants}</div>
             </div>
         )
     }

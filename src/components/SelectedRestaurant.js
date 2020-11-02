@@ -22,7 +22,7 @@ const SelectedRestaurant = (props) => {
     })
 
     return (
-        <div>
+        <div className ='products_holder'>
             {arrayOfProducts}
         </div>
     )

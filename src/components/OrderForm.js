@@ -43,7 +43,7 @@ class OrderForm extends React.Component {
 
         return (
             <div>
-                <button
+                <button className='add_to_cart'
                     onClick = {this.handleClick}>
                     Add to Cart</button>
             </div>

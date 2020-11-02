@@ -16,7 +16,6 @@ import CartForm from './components/CartForm';
 import CategoryNavBar from './components/CategoryNavBar';
 
 
-
 class App extends React.Component {
 
   state = {
@@ -181,15 +180,14 @@ class App extends React.Component {
   renderRestaurants = () => {
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
       return (
-        <Link
-        key =  {restaurantPojo.id}
-        to = {`/restaurants/${restaurantPojo.id}`}>
-            {<div>
-              <img className ='restaurant-image' src ={restaurantPojo.image_url} alt={restaurantPojo.name} />
-              <h2> {restaurantPojo.name}</h2>
-              <p> {restaurantPojo.address}</p>
-            </div>}
-        </Link>
+            <div className ='restaurant-card'
+                key={restaurantPojo.id}>
+              <Link to={`/restaurants/${restaurantPojo.id}`}>
+                <img className ='restaurant-image' src ={restaurantPojo.image_url} alt={restaurantPojo.name} />
+                <h2 className= 'restaurant-title'> {restaurantPojo.name}</h2>
+                <p> {restaurantPojo.address}</p>
+              </Link>
+            </div>
       ) 
     })
     return (
