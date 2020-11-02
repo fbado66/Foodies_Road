@@ -1,5 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Header(props) {
    
@@ -9,7 +10,7 @@ function Header(props) {
                 <ul className='nav_rightSided'>
                     <NavLink to='/login'>Log in</NavLink>
                     <NavLink to='/register'>Register</NavLink>
-                    <NavLink to='/cart'>Cart </NavLink>
+                    <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
                 </ul>
             </div>
     
@@ -20,7 +21,7 @@ function Header(props) {
             <ul className='nav_rightSided'>
                 <NavLink to='/login'>Log in</NavLink>
                 <NavLink to='/register'>Register</NavLink>
-                <NavLink to='/cart'>Cart <div className='count'>{props.orderNum} </div></NavLink>
+                <NavLink to='/cart'><ShoppingCartIcon /> <div className='count'>{props.orderNum} </div></NavLink>
             </ul>
         </div>
     )
