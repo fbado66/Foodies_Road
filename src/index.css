@@ -116,7 +116,18 @@ a {
 
 }
 
+ /* SELECTED RESTAURANT --------------------------------- */
+ .category-subNav {
+   display: flex;
+   width: 80%;
+   margin-left: 10%
+ }
 
+.category-subNav > option {
+  list-style: none;
+  padding: 0 7%;
+  margin-top: 5%;
+}
 
 
 /* PRODUCT CONTAINER -------------------------------------- */

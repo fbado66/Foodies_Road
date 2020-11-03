@@ -4,28 +4,42 @@ import CategoryNavBar from './CategoryNavBar'
 import Product from './Product'
 
 
-const SelectedRestaurant = (props) => {
+class SelectedRestaurant extends React.Component {
+    
+    handleClick = (evt) => {
+        this.props.changeSelectedCategory(evt.target.value)
+    }
 
-    let {products} = props.restaurant
-    console.log(props)
+    render () {
+   
+        let arrayOfProducts = this.props.productsFiltered.map(productPojo => {
 
-    let arrayOfProducts = products.map((productPojo) => {
-        console.log(productPojo.category)
-        
-        return <div key = {productPojo.id}>            
-                    <Product
-                    order = {productPojo}
-                    addOrderToState = {props.addOrderToState} 
-                    cart_id={props.cart_id}
-                    token = {props.token} />   
+            return <div key = {productPojo.id}>            
+                        <Product
+                        order = {productPojo}
+                        // productsFiltered = {this.props.productsFiltered}
+                        addOrderToState = {this.props.addOrderToState} 
+                        cart_id={this.props.cart_id}
+                        token = {this.props.token} />   
+                    </div>
+        })
+
+        return (
+            <div>
+                <ul className ='category-subNav' value={this.selectedCategory} onClick = {this.handleClick} >
+                    <option value='All'> All</option>
+                    <option value='Steak'> Steak</option>
+                    <option value='Chicken'> Chicken</option>
+                    <option value='Soup'> Soup</option>
+                    <option value='Salad'> Salad</option>
+                    
+                </ul>
+                <div className ='products_holder'>
+                    {arrayOfProducts}
                 </div>
-    })
-
-    return (
-        <div className ='products_holder'>
-            {arrayOfProducts}
-        </div>
-    )
+            </div>
+        )
+    }
 }
 
 export default withRouter(SelectedRestaurant)

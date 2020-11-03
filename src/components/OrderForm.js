@@ -33,14 +33,10 @@ class OrderForm extends React.Component {
         } else {
             this.props.history.push("/login")
         }
-        // console.log(this.props.order_id)
-
         
     }
 
     render () {
-        console.log(this.props)
-
         return (
             <div>
                 <button className='add_to_cart'

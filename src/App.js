@@ -22,10 +22,12 @@ class App extends React.Component {
     id: 0,
     restaurants: [],
     orders: [],
+    reviews: [],
     token: '',
     name: '',
-    cart_id: ''
-    
+    cart_id: '',
+    products: [],
+    selectedCategory: 'All'
   }
 
   componentDidMount(){
@@ -35,6 +37,12 @@ class App extends React.Component {
     fetch("http://localhost:3000/restaurants")
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
+      arrayOfRestaurants.map(restauranPojo => {
+        this.setState({
+          reviews: restauranPojo.reviews,
+          products: restauranPojo.products
+        })
+      })
       this.setState({
         restaurants: arrayOfRestaurants,
       })
@@ -116,11 +124,7 @@ class App extends React.Component {
     .then(res => res.json())
     .then(this.helpHandleResponse)
 
-  
   }
-
-
-
 
 
   helpHandleResponse = (resp) => {
@@ -175,8 +179,6 @@ class App extends React.Component {
   }
 
 
-
-
   renderRestaurants = () => {
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
       return (
@@ -215,8 +217,18 @@ class App extends React.Component {
     })
 
     if (selectedRestaurant) {
+      // console.log(selectedRestaurant.products)
+      let productsFiltered = selectedRestaurant.products.filter(product => {
+        
+        if (this.state.selectedCategory != 'All') {
+          return (product.category === this.state.selectedCategory)
+        } return (selectedRestaurant.products)})
+      console.log(productsFiltered)
+     
       return <SelectedRestaurant
                 restaurant = {selectedRestaurant}
+                productsFiltered = {productsFiltered}
+                changeSelectedCategory = {this.changeSelectedCategory}
                 addOrderToState = {this.addOrderToState} 
                 cart_id={this.state.cart_id}
                 token = {this.state.token}/>        
@@ -225,6 +237,15 @@ class App extends React.Component {
       return <NotFound />
     }
   }
+
+  // RENDER PRODUCTS BASED ON CATEGORY FOR SELECTED RESTAURANT HELPER --------
+
+  changeSelectedCategory = (chosenCategory) => {
+    this.setState({
+      selectedCategory: chosenCategory
+    })
+  }
+
 
   //  ----- UPDATE STATE WHEN ADDING A NEW ORDER ----------
   
@@ -248,7 +269,6 @@ class App extends React.Component {
   }
 
   
-
     //  ----- UPDATE STATE WHEN UPDATING AN ORDER ----------
 
     updateOrderFromState = (updatedObj) => {
@@ -283,13 +303,11 @@ class App extends React.Component {
           handleSubmit={this.handleRegisterSubmit}
               />
       } 
-    
+  
     }
 
-
-
   render() {
-    
+    console.log(this.state.selectedCategory)
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>

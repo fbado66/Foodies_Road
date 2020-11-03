@@ -7,8 +7,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 class CartContainer extends React.Component {
 
-   
-
 // -----------Delete Functionality ------------------------
     deleteHandler = (evt) => {
             // evt.preventDefault()
@@ -22,7 +20,6 @@ class CartContainer extends React.Component {
                 this.props.deleteOrderFromState(deletedObj.id)
             })
     }
-
 
     // Update Functionality -------------------------
 
@@ -74,7 +71,7 @@ class CartContainer extends React.Component {
     }
 
     render () {
-        console.log(this.props)
+        // console.log(this.props)
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product
             return <div className='order_in_cart'
