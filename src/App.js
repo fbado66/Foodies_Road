@@ -31,7 +31,6 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-
     // Restaurants information -------------
 
     fetch("http://localhost:3000/restaurants")
@@ -223,7 +222,7 @@ class App extends React.Component {
         if (this.state.selectedCategory != 'All') {
           return (product.category === this.state.selectedCategory)
         } return (selectedRestaurant.products)})
-      console.log(productsFiltered)
+      // console.log(productsFiltered)
      
       return <SelectedRestaurant
                 restaurant = {selectedRestaurant}
@@ -307,7 +306,6 @@ class App extends React.Component {
     }
 
   render() {
-    console.log(this.state.selectedCategory)
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>

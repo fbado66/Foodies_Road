@@ -71,10 +71,11 @@ class CartContainer extends React.Component {
     }
 
     render () {
-        // console.log(this.props)
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product
-            return <div className='order_in_cart'
+        
+                // console.log(this.props.order.product.price)
+                return <div className='order_in_cart'
                         key = {id}>
                         <img className ='product_cart_image' src={image_url} alt ={name} />
                         <div className = 'product_name_price'>
@@ -99,6 +100,7 @@ class CartContainer extends React.Component {
                             onClick = {this.deleteHandler}>
                                 <DeleteIcon />
                         </div>
+                        
                     </div>
 
     }
