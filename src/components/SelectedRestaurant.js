@@ -2,6 +2,8 @@ import React from 'react'
 import { withRouter} from 'react-router-dom'
 import CategoryNavBar from './CategoryNavBar'
 import Product from './Product'
+import ReviewForm from './ReviewForm'
+import ReviewsOnRestaurant from './ReviewsOnRestaurant'
 
 
 class SelectedRestaurant extends React.Component {
@@ -11,6 +13,9 @@ class SelectedRestaurant extends React.Component {
     }
 
     render () {
+        let allReviews = this.props.reviews.map(reviewPojo => {
+            return <ReviewsOnRestaurant key = {reviewPojo.id} review ={reviewPojo} />
+        })
    
         let arrayOfProducts = this.props.productsFiltered.map(productPojo => {
 
@@ -20,10 +25,12 @@ class SelectedRestaurant extends React.Component {
                         // productsFiltered = {this.props.productsFiltered}
                         addOrderToState = {this.props.addOrderToState} 
                         cart_id={this.props.cart_id}
-                        token = {this.props.token} />   
+                        token = {this.props.token} />  
+                        {/* <ReviewsOnRestaurant 
+                        review = {this.props.reviews} /> */}
                     </div>
         })
-
+        // console.log(this.props.reviews)
         return (
             <div>
                 <ul className ='category-subNav' value={this.selectedCategory} onClick = {this.handleClick} >
@@ -36,7 +43,14 @@ class SelectedRestaurant extends React.Component {
                 </ul>
                 <div className ='products_holder'>
                     {arrayOfProducts}
+                    
                 </div>
+                <ReviewForm 
+                restaurant = {this.props.restaurant}
+                token = {this.props.token} 
+                addReviewToState = {this.props.addReviewToState}/>
+
+                {allReviews}
             </div>
         )
     }

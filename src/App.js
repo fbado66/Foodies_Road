@@ -14,6 +14,7 @@ import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
 import CartForm from './components/CartForm';
 import CategoryNavBar from './components/CategoryNavBar';
+import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 
 
 class App extends React.Component {
@@ -37,8 +38,9 @@ class App extends React.Component {
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
       arrayOfRestaurants.map(restauranPojo => {
+        // console.log(restauranPojo)
         this.setState({
-          reviews: restauranPojo.reviews,
+          // reviews: restauranPojo.reviews,
           products: restauranPojo.products
         })
       })
@@ -46,6 +48,20 @@ class App extends React.Component {
         restaurants: arrayOfRestaurants,
       })
     })
+
+    // // Review Information -------
+    // fetch("http://localhost:3000/reviews")
+    // .then(res => res.json())
+    // .then((reviewsArray) => {
+    //   // console.log(response)
+    //   this.setState({
+    //     reviews: reviewsArray
+    //   })
+    //   // response.map((reviewsArray) =>{
+    //   //   // console.log(arrayOfObjects)
+        
+    //   // })
+    // })
 
     // Order Information -------
     // fetch("http://localhost:3000/users")
@@ -164,7 +180,6 @@ class App extends React.Component {
 
 
   helpHandleLogInResponse = (resp) => {
-    // console.log(resp)
     if(resp.error){
       console.error(resp.error)
     } else {
@@ -184,7 +199,6 @@ class App extends React.Component {
         token: resp.token,
 
       })
-
       // this.props.history.push("/profile")
     }
   }
@@ -230,22 +244,20 @@ class App extends React.Component {
     })
 
     if (selectedRestaurant) {
-      // console.log(selectedRestaurant.products)
       let productsFiltered = selectedRestaurant.products.filter(product => {
-        
         if (this.state.selectedCategory != 'All') {
           return (product.category === this.state.selectedCategory)
-        } return (selectedRestaurant.products)})
-      // console.log(productsFiltered)
-     
+        } return (selectedRestaurant.products)})     
       return <SelectedRestaurant
                 restaurant = {selectedRestaurant}
                 productsFiltered = {productsFiltered}
                 changeSelectedCategory = {this.changeSelectedCategory}
                 addOrderToState = {this.addOrderToState} 
                 cart_id={this.state.cart_id}
-                token = {this.state.token}/>        
-      
+                token = {this.state.token}
+                addReviewToState = {this.addReviewToState}
+                reviews = {this.state.reviews}
+              />         
     }else {
       return <NotFound />
     }
@@ -261,7 +273,6 @@ class App extends React.Component {
 
 
   //  ----- UPDATE STATE WHEN ADDING A NEW ORDER ----------
-  
   addOrderToState = (newCreatedOrder) => {
     let copyOfOrders = [...this.state.orders, newCreatedOrder]
     this.setState( {
@@ -271,7 +282,6 @@ class App extends React.Component {
 
 
     //  ----- UPDATE STATE WHEN DELETING AN ORDER ----------
-
   deleteOrderFromState = (deletedID) => {
     let copyOfOrders = this.state.orders.filter(orderObj => {
       return orderObj.id !== deletedID
@@ -283,7 +293,6 @@ class App extends React.Component {
 
   
     //  ----- UPDATE STATE WHEN UPDATING AN ORDER ----------
-
     updateOrderFromState = (updatedObj) => {
       let copyOfOrders = this.state.orders.map((order) => {
         if(order.id === updatedObj.id){
@@ -297,6 +306,25 @@ class App extends React.Component {
       })
     }
   
+
+
+  //  ----- UPDATE STATE WHEN ADDING A NEW REVIEW ----------
+    addReviewToState = (newlyReview) => {
+      let copyOfReviews = [...this.state.reviews, newlyReview]
+      this.setState({
+        reviews: copyOfReviews
+      })
+    }
+
+
+  //   renderReviews = () =>{
+  //     if (localStorage.token) {
+  //     let reviewsOnRestaurant = this.state.reviews
+  //     return <ReviewsOnRestaurant
+  //     reviews = {reviewsOnRestaurant} 
+  //     />
+  //   }
+  // }
 
     // LOGIN / REGISTER FORM ------------------
 
@@ -320,6 +348,8 @@ class App extends React.Component {
     }
 
   render() {
+
+    // console.log(this.state.reviews)
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>
