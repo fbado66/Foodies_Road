@@ -5,9 +5,9 @@ import {withRouter} from 'react-router-dom'
 
 class OrderForm extends React.Component {
 
-    state = {
-        orders: []      
-    }
+    // state = {
+    //     orders: []      
+    // }
 
     handleClick = (evt) => {
         evt.preventDefault()
@@ -15,7 +15,8 @@ class OrderForm extends React.Component {
             fetch('http://localhost:3000/orders', {
             method: 'POST',
             headers: {
-                'Content-Type': 'Application/json'
+                'Content-Type': 'Application/json',
+                // "authorization": this.props.token
             },
             body: JSON.stringify({
                 cart_id: this.props.cart_id,

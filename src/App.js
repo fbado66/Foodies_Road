@@ -48,15 +48,15 @@ class App extends React.Component {
     })
 
     // Order Information -------
-    fetch("http://localhost:3000/users")
-    .then(res => res.json())
-    .then((response) => {
-      response.map((arrayOfObjects) =>{
-        this.setState({
-          orders: arrayOfObjects.orders
-        })
-      })
-    })
+    // fetch("http://localhost:3000/users")
+    // .then(res => res.json())
+    // .then((response) => {
+    //   response.map((arrayOfObjects) =>{
+    //     this.setState({
+    //       orders: arrayOfObjects.orders
+    //     })
+    //   })
+    // })
 
     
     if(localStorage.token){
@@ -68,7 +68,9 @@ class App extends React.Component {
         }
       })
         .then(res => res.json())
-        .then(this.helpHandleResponse)
+        // .then(this.helpHandleResponse)
+        .then(this.helpHandleLogInResponse)
+
     }
   }
 
@@ -135,7 +137,7 @@ class App extends React.Component {
         id: resp.user.id,
         name: resp.user.name,
         orders: resp.user.orders,
-        token: resp.token
+        token: resp.token,
       })
 
       fetch('http://localhost:3000/carts', {
@@ -162,15 +164,25 @@ class App extends React.Component {
 
 
   helpHandleLogInResponse = (resp) => {
+    // console.log(resp)
     if(resp.error){
       console.error(resp.error)
     } else {
+      resp.user.carts.map( cartObject => {
+        this.setState({
+          cart_id: cartObject.id
+        })
+      })
+      // resp.user.carts.map( cart => {
+      //   console.log(cart.id)
+      // })
       localStorage.token = resp.token
       this.setState({
         id: resp.user.id,
         name: resp.user.name,
         orders: resp.user.orders,
-        token: resp.token
+        token: resp.token,
+
       })
 
       // this.props.history.push("/profile")
@@ -200,6 +212,7 @@ class App extends React.Component {
 
 
   renderAllOrders = () =>{
+    if (localStorage.token) {
     let allOrders = this.state.orders
     return <AllOrders 
     allOrders = {allOrders} 
@@ -207,6 +220,7 @@ class App extends React.Component {
     updateOrderFromState = {this.updateOrderFromState} 
     />
   }
+}
 
 
   renderSpecificRestaurant = (routerProps) => {
