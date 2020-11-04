@@ -23,60 +23,28 @@ class App extends React.Component {
     id: 0,
     restaurants: [],
     orders: [],
-    reviews: [],
+    // reviews: [],
     token: '',
     name: '',
     cart_id: '',
     products: [],
-    selectedCategory: 'All'
+    selectedCategory: 'All',
+    restaurant_id: 1
   }
 
   componentDidMount(){
-    // Restaurants information -------------
 
+    // Restaurants information -------------
     fetch("http://localhost:3000/restaurants")
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
-      arrayOfRestaurants.map(restauranPojo => {
-        // console.log(restauranPojo)
-        this.setState({
-          // reviews: restauranPojo.reviews,
-          products: restauranPojo.products
-        })
-      })
       this.setState({
         restaurants: arrayOfRestaurants,
       })
     })
 
-    // // Review Information -------
-    // fetch("http://localhost:3000/reviews")
-    // .then(res => res.json())
-    // .then((reviewsArray) => {
-    //   // console.log(response)
-    //   this.setState({
-    //     reviews: reviewsArray
-    //   })
-    //   // response.map((reviewsArray) =>{
-    //   //   // console.log(arrayOfObjects)
         
-    //   // })
-    // })
-
-    // Order Information -------
-    // fetch("http://localhost:3000/users")
-    // .then(res => res.json())
-    // .then((response) => {
-    //   response.map((arrayOfObjects) =>{
-    //     this.setState({
-    //       orders: arrayOfObjects.orders
-    //     })
-    //   })
-    // })
-
-    
     if(localStorage.token){
-   
       fetch("http://localhost:3000/users/keep_logged_in", {
         method: "GET",
         headers: {
@@ -84,10 +52,9 @@ class App extends React.Component {
         }
       })
         .then(res => res.json())
-        // .then(this.helpHandleResponse)
         .then(this.helpHandleLogInResponse)
-
     }
+
   }
 
 
@@ -242,12 +209,12 @@ class App extends React.Component {
     let selectedRestaurant = this.state.restaurants.find((restaurantPojo) => {
       return restaurantPojo.id === parseInt(searchedRestaurant)
     })
-
     if (selectedRestaurant) {
       let productsFiltered = selectedRestaurant.products.filter(product => {
         if (this.state.selectedCategory != 'All') {
           return (product.category === this.state.selectedCategory)
-        } return (selectedRestaurant.products)})     
+        } return (selectedRestaurant.products)})   
+        
       return <SelectedRestaurant
                 restaurant = {selectedRestaurant}
                 productsFiltered = {productsFiltered}
@@ -270,7 +237,6 @@ class App extends React.Component {
       selectedCategory: chosenCategory
     })
   }
-
 
   //  ----- UPDATE STATE WHEN ADDING A NEW ORDER ----------
   addOrderToState = (newCreatedOrder) => {
@@ -307,24 +273,14 @@ class App extends React.Component {
     }
   
 
-
-  //  ----- UPDATE STATE WHEN ADDING A NEW REVIEW ----------
-    addReviewToState = (newlyReview) => {
-      let copyOfReviews = [...this.state.reviews, newlyReview]
-      this.setState({
-        reviews: copyOfReviews
-      })
-    }
-
-
-  //   renderReviews = () =>{
-  //     if (localStorage.token) {
-  //     let reviewsOnRestaurant = this.state.reviews
-  //     return <ReviewsOnRestaurant
-  //     reviews = {reviewsOnRestaurant} 
-  //     />
+  // //  ----- UPDATE STATE WHEN ADDING A NEW REVIEW ----------
+  //   addReviewToState = (newlyReview) => {
+  //     let copyOfReviews = [...this.state.reviews, newlyReview]
+  //     this.setState({
+  //       reviews: copyOfReviews
+  //     })
   //   }
-  // }
+
 
     // LOGIN / REGISTER FORM ------------------
 
@@ -348,8 +304,6 @@ class App extends React.Component {
     }
 
   render() {
-
-    // console.log(this.state.reviews)
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>
@@ -358,12 +312,10 @@ class App extends React.Component {
             <Switch>
               <Route path="/login" render={ this.renderForm } />
               <Route path="/register" render={ this.renderForm } />
-
               <Route path ='/' exact component={Home} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
-              {/* <Route path = '/orders' exact component={this.renderAllOrders} /> */}
               <Route path = '/mycart' exact render={this.myCart} />
 
             </Switch>

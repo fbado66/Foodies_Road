@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom'
+
 
 class ReviewForm extends Component {
 
@@ -25,11 +27,8 @@ class ReviewForm extends Component {
 
             .then(res => res.json())
             .then((createdReview) => {
-                // console.log(createdReview)
                 this.props.addReviewToState(createdReview)
             })
-        
-            
         } else {
             this.props.history.push("/login")
         }
@@ -74,4 +73,4 @@ class ReviewForm extends Component {
 
 }
 
-export default ReviewForm;
+export default withRouter(ReviewForm);

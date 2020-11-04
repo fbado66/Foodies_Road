@@ -5,9 +5,6 @@ import {withRouter} from 'react-router-dom'
 
 class OrderForm extends React.Component {
 
-    // state = {
-    //     orders: []      
-    // }
 
     handleClick = (evt) => {
         evt.preventDefault()

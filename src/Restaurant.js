@@ -1,5 +1,5 @@
 import React from 'react'
-import ReviewsOnRestaurant from './components/ReviewsOnRestaurant'
+// import ReviewsOnRestaurant from './components/ReviewsOnRestaurant'
 
 class Restaurant extends React.Component {
     render () {

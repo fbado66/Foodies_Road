@@ -1,22 +1,48 @@
 import React from 'react'
 import { withRouter} from 'react-router-dom'
-import CategoryNavBar from './CategoryNavBar'
+// import CategoryNavBar from './CategoryNavBar'
 import Product from './Product'
 import ReviewForm from './ReviewForm'
 import ReviewsOnRestaurant from './ReviewsOnRestaurant'
 
 
 class SelectedRestaurant extends React.Component {
-    
+
+    state = {
+        reviews: []
+    }
+
+    componentDidMount = () => {
+    fetch(`http://localhost:3000/restaurants/${this.props.restaurant.id}`)
+        .then(res => res.json())
+        .then((restaurantPojo) => {
+            // console.log(restaurantPojo.reviews)
+            this.setState({
+                reviews: restaurantPojo.reviews})
+            })
+    }  
+
+ //  ----- UPDATE STATE WHEN ADDING A NEW REVIEW ----------
+    addReviewToState = (newlyReview) => {
+        let copyOfReviews = [...this.state.reviews, newlyReview]
+        this.setState({
+        reviews: copyOfReviews
+        })
+    }
+
+
+
+
+
+
     handleClick = (evt) => {
         this.props.changeSelectedCategory(evt.target.value)
     }
 
     render () {
-        let allReviews = this.props.reviews.map(reviewPojo => {
+        let allReviews = this.state.reviews.map(reviewPojo => {
             return <ReviewsOnRestaurant key = {reviewPojo.id} review ={reviewPojo} />
         })
-   
         let arrayOfProducts = this.props.productsFiltered.map(productPojo => {
 
             return <div key = {productPojo.id}>            
@@ -26,11 +52,9 @@ class SelectedRestaurant extends React.Component {
                         addOrderToState = {this.props.addOrderToState} 
                         cart_id={this.props.cart_id}
                         token = {this.props.token} />  
-                        {/* <ReviewsOnRestaurant 
-                        review = {this.props.reviews} /> */}
                     </div>
         })
-        // console.log(this.props.reviews)
+
         return (
             <div>
                 <ul className ='category-subNav' value={this.selectedCategory} onClick = {this.handleClick} >
@@ -48,7 +72,7 @@ class SelectedRestaurant extends React.Component {
                 <ReviewForm 
                 restaurant = {this.props.restaurant}
                 token = {this.props.token} 
-                addReviewToState = {this.props.addReviewToState}/>
+                addReviewToState = {this.addReviewToState}/>
 
                 {allReviews}
             </div>
