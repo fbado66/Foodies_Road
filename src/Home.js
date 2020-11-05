@@ -1,10 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Search from './components/Search'
 
-function Home() {
+function Home(props) {
+  
+    
     return (
         <div>
             <h1 className ='text-header'>Best Food, Delivered</h1>
+            <Search location = {props.allLocations} />
+           
             <div className = 'hero-section'>
                 <div className ='hero-text'>
                     <h1> Let us bring you the options</h1>

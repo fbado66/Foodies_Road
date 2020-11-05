@@ -203,6 +203,19 @@ class App extends React.Component {
   }
 }
 
+// ---- RESTAURANT LOCATIONS ON LAT AND LNG --------------------------
+renderAllLocations = () =>{
+  let allLocations = this.state.restaurants.map(restaurantPojo => {
+    return (
+      <div 
+        latitude = {restaurantPojo.latitude}
+        longitude = {restaurantPojo.longitude}>
+      </div>
+    )
+  })
+  return <Home allLocations = {allLocations}/>
+}
+
 
   renderSpecificRestaurant = (routerProps) => {
     let searchedRestaurant = routerProps.match.params.id
@@ -298,7 +311,7 @@ class App extends React.Component {
     }
 
   render() {
-
+    
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>
@@ -307,11 +320,13 @@ class App extends React.Component {
             <Switch>
               <Route path="/login" render={ this.renderForm } />
               <Route path="/register" render={ this.renderForm } />
-              <Route path ='/' exact component={Home} />
+              <Route path ='/' exact render={this.renderAllLocations} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
-              <Route path = '/mycart' exact render={this.myCart} />
+              <Route path = '/mycart' 
+              // exact render={this.myCart} 
+              />
 
             </Switch>
           </main>
