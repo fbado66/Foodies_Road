@@ -1,8 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import FilterRestaurantByLocation from './components/FilterRestaurantByLocation'
 import Search from './components/Search'
 
 function Home(props) {
+   
   
     
     return (

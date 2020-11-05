@@ -6,7 +6,7 @@ const geolib = require('geolib');
 
 const API_KEY = "AIzaSyBXXPrWYS7iy13CexF32T0gFShhkO5zHQs"
 
-class Search extends React.Component {
+class FilterRestaurantByLocation extends React.Component {
 
     state = {
         place: '',
@@ -18,19 +18,17 @@ class Search extends React.Component {
 
         let locationsArray = []
 
-        this.props.location.map(locationPojo => {
-            locationsArray.push(locationPojo.props)
-            })
+        this.props.restaurantsArray.map(locationInfo => {
+            locationsArray.push({latitude: locationInfo.latitude, longitude: locationInfo.longitude})
+        })
+
       
         if (this.state.searchLatitude && this.state.searchLongitude) {
-            console.log({latitude: this.state.searchLatitude, longitude: this.state.searchLongitude})
             console.log(geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, locationsArray
-            // console.log(geolib.findNearest( {latitude: [40.721573], longitude: [-73.9956827]}, locationsArray
             ))
         }
 
-        console.log(locationsArray)
-
+        // console.log(locationsArray)
         return (
             <div>
                 <GoogleComponent
@@ -50,10 +48,10 @@ class Search extends React.Component {
                         }
                     }
                 />
-                <button> GO</button>
+                <button> SEARCH</button>
             </div>
         )
     }
 }
 
-export default Search
+export default FilterRestaurantByLocation

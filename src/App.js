@@ -15,6 +15,7 @@ import RegisterForm from "./RegisterForm"
 import CartForm from './components/CartForm';
 import CategoryNavBar from './components/CategoryNavBar';
 import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
+import FilterRestaurantByLocation from './components/FilterRestaurantByLocation';
 
 
 class App extends React.Component {
@@ -175,18 +176,22 @@ class App extends React.Component {
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
       return (
             <div className ='restaurant-card'
-                key={restaurantPojo.id}>
+                key={restaurantPojo.id}
+                >            
               <Link to={`/restaurants/${restaurantPojo.id}`}>
                 <img className ='restaurant-image' src ={restaurantPojo.image_url} alt={restaurantPojo.name} />
                 <h2 className= 'restaurant-title'> {restaurantPojo.name}</h2>
                 <p> {restaurantPojo.address}</p>
               </Link>
             </div>
+            
       ) 
     })
     return (
       <Restaurant 
         restaurants={arrayOfRestaurants}
+        allRestaurants = {this.state.restaurants}
+        
       />
     )
   }
@@ -206,14 +211,18 @@ class App extends React.Component {
 // ---- RESTAURANT LOCATIONS ON LAT AND LNG --------------------------
 renderAllLocations = () =>{
   let allLocations = this.state.restaurants.map(restaurantPojo => {
+    
     return (
       <div 
+        restaurantPojo = {restaurantPojo}
         latitude = {restaurantPojo.latitude}
         longitude = {restaurantPojo.longitude}>
       </div>
     )
   })
-  return <Home allLocations = {allLocations}/>
+  return <div>
+            <Home allLocations = {allLocations}/>
+            </div>
 }
 
 
