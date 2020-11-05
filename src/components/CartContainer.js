@@ -10,8 +10,6 @@ class CartContainer extends React.Component {
 // -----------Delete Functionality ------------------------
     deleteHandler = (evt) => {
             // evt.preventDefault()
-
-        // console.log(evt.target.id)
         fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
             method: "DELETE"
         })
@@ -24,9 +22,7 @@ class CartContainer extends React.Component {
     // Update Functionality -------------------------
 
     decreaseQuantityHandler = (evt) => {
-
         if (this.props.order.quantity > 1) {
-
             fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
                 method: 'PATCH',
                 headers: {
@@ -53,8 +49,6 @@ class CartContainer extends React.Component {
     }
 
     increaseQuantityHandler = (evt) => {
-        // console.log(this.props.order.quantity)
-
         fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
             method: 'PATCH',
             headers: {
@@ -72,9 +66,7 @@ class CartContainer extends React.Component {
 
     render () {
         let {id, product, quantity} = this.props.order
-        let {name, image_url, price} = product
-        
-                // console.log(this.props.order.product.price)
+        let {name, image_url, price} = product        
                 return <div className='order_in_cart'
                         key = {id}>
                         <img className ='product_cart_image' src={image_url} alt ={name} />
@@ -99,8 +91,7 @@ class CartContainer extends React.Component {
                             id = {id}
                             onClick = {this.deleteHandler}>
                                 <DeleteIcon />
-                        </div>
-                        
+                        </div>    
                     </div>
 
     }

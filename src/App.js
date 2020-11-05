@@ -23,7 +23,6 @@ class App extends React.Component {
     id: 0,
     restaurants: [],
     orders: [],
-    // reviews: [],
     token: '',
     name: '',
     cart_id: '',
@@ -64,7 +63,7 @@ class App extends React.Component {
       id: 0,
       name: "",
       orders: [],
-      token: ""
+      token: "",
     })
     localStorage.clear()
   }
@@ -164,6 +163,7 @@ class App extends React.Component {
         name: resp.user.name,
         orders: resp.user.orders,
         token: resp.token,
+        
 
       })
       // this.props.history.push("/profile")
@@ -211,7 +211,7 @@ class App extends React.Component {
     })
     if (selectedRestaurant) {
       let productsFiltered = selectedRestaurant.products.filter(product => {
-        if (this.state.selectedCategory != 'All') {
+        if (this.state.selectedCategory !== 'All') {
           return (product.category === this.state.selectedCategory)
         } return (selectedRestaurant.products)})   
         
@@ -224,6 +224,7 @@ class App extends React.Component {
                 token = {this.state.token}
                 addReviewToState = {this.addReviewToState}
                 reviews = {this.state.reviews}
+                user_id = {this.state.id}
               />         
     }else {
       return <NotFound />
@@ -273,13 +274,6 @@ class App extends React.Component {
     }
   
 
-  // //  ----- UPDATE STATE WHEN ADDING A NEW REVIEW ----------
-  //   addReviewToState = (newlyReview) => {
-  //     let copyOfReviews = [...this.state.reviews, newlyReview]
-  //     this.setState({
-  //       reviews: copyOfReviews
-  //     })
-  //   }
 
 
     // LOGIN / REGISTER FORM ------------------
@@ -290,20 +284,21 @@ class App extends React.Component {
       }
       if(routerProps.location.pathname === "/login"){
         return <LogInForm
-          formName="Login Form"
-          handleSubmit={this.handleLoginSubmit}
+                formName="Login Form"
+                handleSubmit={this.handleLoginSubmit}
               />
         
       } else if (routerProps.location.pathname === "/register") {
         return <RegisterForm
-          formName="Register Form"
-          handleSubmit={this.handleRegisterSubmit}
+                formName="Register Form"
+                handleSubmit={this.handleRegisterSubmit}
               />
       } 
   
     }
 
   render() {
+
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>

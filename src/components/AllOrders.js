@@ -7,7 +7,6 @@ class AllOrders extends React.Component {
 
     render () {
         let arrayOfOrders = this.props.allOrders.map(orderPojo => {
-            // console.log(orderPojo)
             return <div key = {orderPojo.id}>
                     <CartContainer 
                         order = {orderPojo} 
@@ -18,7 +17,6 @@ class AllOrders extends React.Component {
                     
                     </div>
         })
-        // console.log(this.props.allOrders)
         return (
             <div className ='cart-holder'>
                 <h2 className ='My_cart'> My Cart</h2>

@@ -24,14 +24,11 @@ class OrderForm extends React.Component {
 
         .then(res => res.json())
         .then((createdOrder) => {
-            // console.log(createdOrder)
             this.props.addOrderToState(createdOrder)
         })
-            
         } else {
             this.props.history.push("/login")
-        }
-        
+        } 
     }
 
     render () {
