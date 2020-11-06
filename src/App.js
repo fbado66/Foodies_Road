@@ -16,6 +16,9 @@ import CartForm from './components/CartForm';
 import CategoryNavBar from './components/CategoryNavBar';
 import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 import FilterRestaurantByLocation from './components/FilterRestaurantByLocation';
+require('dotenv').config()
+
+
 
 
 class App extends React.Component {
@@ -173,6 +176,31 @@ class App extends React.Component {
 
 
   renderRestaurants = () => {
+
+    //  let {id, image_url, name, address} = this.state.restaurants
+    //   return (
+    //         <div className ='restaurant-card'
+    //             key={id}
+    //             >            
+    //           <Link to={`/restaurants/${id}`}>
+    //             <img className ='restaurant-image' src ={image_url} alt={name} />
+    //             <h2 className= 'restaurant-title'> {name}</h2>
+    //             <p> {address}</p>
+    //           </Link>
+    //           <Restaurant
+    //           allRestaurants = {this.state.restaurants} />
+    //           {/* // sortRestaurants = {this.sortRestaurants} /> */}
+    //           {/* <Restaurant 
+    //     // restaurants={arrayOfRestaurants}
+    //     allRestaurants = {this.state.restaurants}
+    //     sortRestaurants = {this.sortRestaurants}
+        
+    //   /> */}
+    //         </div>
+            
+    //   ) 
+    // // })
+    
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
       return (
             <div className ='restaurant-card'
@@ -264,9 +292,9 @@ renderAllLocations = () =>{
 
    // RE-ORDER RESTAURANT RENDER BASED ON USER INPUT ON THE SEARCH BAR  --------
 
-   sortRestaurants = (sortedRestaurantArray) => {
+   sortRestaurants = (newArray) => {
     this.setState({
-      restaurants: sortedRestaurantArray
+      restaurants: newArray
     })
   }
 
@@ -345,6 +373,8 @@ renderAllLocations = () =>{
               <Route path = '/mycart' 
               // exact render={this.myCart} 
               />
+              <Route path = '/yolo' exact component={CartForm} />
+
 
             </Switch>
           </main>

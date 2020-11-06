@@ -1,10 +1,10 @@
 import React from 'react'
 import { GoogleComponent } from 'react-google-location' 
 import Restaurant from '../Restaurant'
-// import { orderByDistance } from 'geolib'
+import { orderByDistance } from 'geolib'
 const geolib = require('geolib');
 
-const API_KEY = "AIzaSyBXXPrWYS7iy13CexF32T0gFShhkO5zHQs"
+const API_KEY = "GOOGLE_KEY"
 
 class FilterRestaurantByLocation extends React.Component {
 
@@ -17,21 +17,23 @@ class FilterRestaurantByLocation extends React.Component {
 
     render() {
 
-        // let locationsArray = []
+        let locationsArray = []
 
         // this.props.restaurantsArray.map(locationInfo => {
         //     locationsArray.push({latitude: locationInfo.latitude, longitude: locationInfo.longitude})
         // })
         let sortArray = () => {
             if (this.state.searchLatitude && this.state.searchLongitude) {
-               return geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, [...this.props.restaurantsArray] ) 
+               locationsArray.push(geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, [...this.props.restaurantsArray] ))
                 
             }
         }
-        // if (sortArray()) {
-        // this.props.sortRestaurants(sortArray())
-        // }
-        console.log(sortArray())
+       
+        if (this.state.searchLatitude && this.state.searchLongitude) {
+        sortArray()
+        console.log(locationsArray)
+        }
+        // this.props.sortRestaurants(locationsArray)
 
         
         

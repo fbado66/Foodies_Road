@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 
 class CartForm extends Component {
 
+    render () {
+
+        console.log(this.props)
+    return (
+        <div>Yolo</div>
+
+    )
+    }
+
 //   state = {
 //     history: false,
 //     order_method: ''

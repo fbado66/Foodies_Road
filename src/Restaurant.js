@@ -3,14 +3,12 @@ import FilterRestaurantByLocation from './components/FilterRestaurantByLocation'
 import {Route, Switch, Link, withRouter} from 'react-router-dom'
 
 import { GoogleComponent } from 'react-google-location' 
-// import { orderByDistance } from 'geolib'
+import { orderByDistance } from 'geolib'
 const geolib = require('geolib');
 
-const API_KEY = "AIzaSyBXXPrWYS7iy13CexF32T0gFShhkO5zHQs"
+const API_KEY = process.env.REACT_APP_GOOGLE_KEY
 
 class Restaurant extends React.Component {
-
-
 
     state = {
         restaurants: this.props.restaurants,
@@ -20,17 +18,23 @@ class Restaurant extends React.Component {
     }
 
     render() {
-
+        let newArray = ''
+       
         let sortArray = () => {
             if (this.state.searchLatitude && this.state.searchLongitude) {
-               return geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, [...this.props.allRestaurants] ) 
+               newArray = (geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, [...this.props.allRestaurants] )) 
+               
             }
         }
-    
-        console.log(sortArray())
-        console.log(this.state.restaurants)
+        sortArray()
+        if (this.state.searchLatitude && this.state.searchLongitude) {
+            console.log(newArray)
+            // this.props.sortRestaurants(newArray)
+            }
+            
+        
+            // console.log(this.props.restaurants)
 
-       console.log(this.props.restaurants)
         return (
             <div>
                 <GoogleComponent
@@ -50,7 +54,6 @@ class Restaurant extends React.Component {
                         }
                     }
                 />
-
                     <h2 className ='all_restaurant_text'>All Restaurants</h2>
                     <div className='restaurants-holder'>{this.props.restaurants}</div>
 
@@ -59,6 +62,96 @@ class Restaurant extends React.Component {
         )
     }
 }
+
+export default Restaurant
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -93,7 +186,7 @@ class Restaurant extends React.Component {
     
     // }
     
-    export default withRouter(Restaurant)
+    // export default Restaurant
 
 
 

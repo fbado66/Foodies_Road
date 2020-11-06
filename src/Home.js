@@ -10,7 +10,7 @@ function Home(props) {
     return (
         <div>
             <h1 className ='text-header'>Best Food, Delivered</h1>
-            <Search location = {props.allLocations} />
+            {/* <Search location = {props.allLocations} /> */}
            
             <div className = 'hero-section'>
                 <div className ='hero-text'>
