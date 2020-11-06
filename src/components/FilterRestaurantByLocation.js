@@ -9,6 +9,7 @@ const API_KEY = "AIzaSyBXXPrWYS7iy13CexF32T0gFShhkO5zHQs"
 class FilterRestaurantByLocation extends React.Component {
 
     state = {
+        restaurants: this.props.restaurantsArray,
         place: '',
         searchLatitude: '',
         searchLongitude: '',
@@ -16,19 +17,29 @@ class FilterRestaurantByLocation extends React.Component {
 
     render() {
 
-        let locationsArray = []
+        // let locationsArray = []
 
-        this.props.restaurantsArray.map(locationInfo => {
-            locationsArray.push({latitude: locationInfo.latitude, longitude: locationInfo.longitude})
-        })
-
-      
-        if (this.state.searchLatitude && this.state.searchLongitude) {
-            console.log(geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, locationsArray
-            ))
+        // this.props.restaurantsArray.map(locationInfo => {
+        //     locationsArray.push({latitude: locationInfo.latitude, longitude: locationInfo.longitude})
+        // })
+        let sortArray = () => {
+            if (this.state.searchLatitude && this.state.searchLongitude) {
+               return geolib.orderByDistance( {latitude: this.state.searchLatitude, longitude: this.state.searchLongitude}, [...this.props.restaurantsArray] ) 
+                
+            }
         }
+        // if (sortArray()) {
+        // this.props.sortRestaurants(sortArray())
+        // }
+        console.log(sortArray())
 
-        // console.log(locationsArray)
+        
+        
+
+        // this.props.addOrderToState(createdOrder)
+        // sortRestaurants = {this.props.sortRestaurants}
+        console.log(this.state.restaurants)
+       
         return (
             <div>
                 <GoogleComponent

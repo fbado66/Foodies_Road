@@ -191,6 +191,7 @@ class App extends React.Component {
       <Restaurant 
         restaurants={arrayOfRestaurants}
         allRestaurants = {this.state.restaurants}
+        sortRestaurants = {this.sortRestaurants}
         
       />
     )
@@ -258,6 +259,14 @@ renderAllLocations = () =>{
   changeSelectedCategory = (chosenCategory) => {
     this.setState({
       selectedCategory: chosenCategory
+    })
+  }
+
+   // RE-ORDER RESTAURANT RENDER BASED ON USER INPUT ON THE SEARCH BAR  --------
+
+   sortRestaurants = (sortedRestaurantArray) => {
+    this.setState({
+      restaurants: sortedRestaurantArray
     })
   }
 
