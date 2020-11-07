@@ -68,7 +68,6 @@ class CartContainer extends React.Component {
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product        
                 return <div>
-                            <p>Get free Delivery with a purchase of $60.00 or more</p>
                             <div 
                                 className='order_in_cart'
                                 key = {id}>
