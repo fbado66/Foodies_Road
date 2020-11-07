@@ -19,6 +19,11 @@ class Restaurant extends React.Component {
             this.props.sortRestaurants(newArray)
         }
     }
+
+
+    handleClick = (evt) => {
+        this.props.changeSelectedCusine(evt.target.value)
+    }
     render() {
         return (
             <div>
@@ -39,10 +44,26 @@ class Restaurant extends React.Component {
                             }
                         }
                 />
-                    <h2 className ='all_restaurant_text'>All Restaurants</h2>
+                
+
+                <ul className ='' value={this.selectedCusine} onClick = {this.handleClick} >
+                    <option value='All'> All</option>
+                    <option value='American'> American</option>
+                    <option value='Italian'> Italian</option>
+                    <option value='Bar'> Bar Food</option>
+                    <option value='Asian'> Asian</option> 
+                    <option value='Japanese'>Japanese</option>
+                    <option value='Mexican'>Mexican</option>
+                    <option value='BBQ'>BBQ</option>
+                    <option value='French'>French</option>
+                    <option value='European'>European</option>
+                    <option value='Seafood'>Seafood</option>
+                    <option value='Bakery'>Bakery</option>
+                    <option value='Donuts'>Bagels</option>
+                </ul>
+
                     <div className='restaurants-holder'>{this.props.restaurants}</div>
 
-                <button> SEARCH</button>
             </div>
         )
     }

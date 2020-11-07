@@ -30,6 +30,7 @@ class App extends React.Component {
     cart_id: '',
     products: [],
     selectedCategory: 'All',
+    selectedCusine: 'All',
     restaurant_id: 1
   }
 
@@ -174,9 +175,13 @@ class App extends React.Component {
 
 
   renderRestaurants = () => {
-
-    
-    let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
+    let restaurants = this.state.restaurants
+    if (this.state.selectedCusine !== 'All'){
+        restaurants = this.state.restaurants.filter(restaurant => {
+        return restaurant.cuisines.includes(this.state.selectedCusine)
+        })
+    } 
+    let arrayOfRestaurants = restaurants.map((restaurantPojo) => {
       return (
             <div className ='restaurant-card'
                 key={restaurantPojo.id}
@@ -186,18 +191,18 @@ class App extends React.Component {
                 <h2 className= 'restaurant-title'> {restaurantPojo.name}</h2>
                 <p> {restaurantPojo.address}</p>
               </Link>
-            </div>
-            
+            </div>   
       ) 
     })
-    return (
+      return (
       <Restaurant 
         restaurants={arrayOfRestaurants}
         allRestaurants = {this.state.restaurants}
         sortRestaurants = {this.sortRestaurants}
-        
+        changeSelectedCusine = {this.changeSelectedCusine}
       />
     )
+  
   }
 
 
@@ -262,6 +267,17 @@ renderAllLocations = () =>{
   changeSelectedCategory = (chosenCategory) => {
     this.setState({
       selectedCategory: chosenCategory
+    })
+  }
+
+
+
+
+
+
+  changeSelectedCusine = (chosenCusine) => {
+    this.setState({
+      selectedCusine: chosenCusine
     })
   }
 
@@ -332,7 +348,11 @@ renderAllLocations = () =>{
     }
 
   render() {
-    
+
+    console.log(this.state.restaurants.filter(cusine => {
+      return cusine.cuisines === 'American'
+    }))
+  
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}/>
