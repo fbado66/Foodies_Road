@@ -4,6 +4,7 @@ import Test from './Test'
 
 class TotalOrder extends React.Component {
 
+
     handleClick2 = () => {
         console.log('hello')
     }
@@ -12,14 +13,13 @@ class TotalOrder extends React.Component {
             return agg + order.product.price * order.quantity
         }, 0)
 
+        
+
         return (
             <div>
             <p>Total: ${ totalSum }.00</p>
-            {/* <StripeComponent /> */}
-            <Test />
-
-            
-           
+                <StripeComponent />
+            {/* <Test /> */}
             </div>
         )
     }
