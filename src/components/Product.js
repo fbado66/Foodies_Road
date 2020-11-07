@@ -1,5 +1,5 @@
 import React from 'react'
-import CartContainer from './CartContainer'
+// import CartContainer from './CartContainer'
 import OrderForm from './OrderForm'
 
 class Product extends React.Component {

@@ -12,10 +12,8 @@ import {Route, Switch, Link, withRouter} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
-import CartForm from './components/CartForm';
 import CategoryNavBar from './components/CategoryNavBar';
 import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
-import FilterRestaurantByLocation from './components/FilterRestaurantByLocation';
 require('dotenv').config()
 
 
@@ -350,7 +348,6 @@ renderAllLocations = () =>{
               <Route path = '/mycart' 
               // exact render={this.myCart} 
               />
-              <Route path = '/yolo' exact component={CartForm} />
 
 
             </Switch>

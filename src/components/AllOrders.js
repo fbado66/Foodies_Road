@@ -1,6 +1,5 @@
 import React from 'react';
 import CartContainer from './CartContainer';
-// import OrderTotal from './OrderTotal';
 import TotalOrder from './TotalOrder'
 
 class AllOrders extends React.Component {

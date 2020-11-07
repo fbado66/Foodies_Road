@@ -1,14 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import FilterRestaurantByLocation from './components/FilterRestaurantByLocation'
 import Search from './components/Search'
-import Test from './components/Test'
 
 function Home() {
-   
-  let handleClick = () => {
-      console.log('This is the home button')
-  }
     
     return (
         <div>
@@ -25,8 +19,7 @@ function Home() {
             </div>  
             <p> Some text</p>
 
-            <Test />
-            <button onClick = {handleClick}>Click the Home Button</button>
+           
         </div>
     )
 }

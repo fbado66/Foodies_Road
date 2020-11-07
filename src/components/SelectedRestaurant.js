@@ -1,6 +1,5 @@
 import React from 'react'
 import { withRouter} from 'react-router-dom'
-// import CategoryNavBar from './CategoryNavBar'
 import Product from './Product'
 import ReviewForm from './ReviewForm'
 import ReviewsOnRestaurant from './ReviewsOnRestaurant'
