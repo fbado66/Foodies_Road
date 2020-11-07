@@ -2,10 +2,13 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import FilterRestaurantByLocation from './components/FilterRestaurantByLocation'
 import Search from './components/Search'
+import Test from './components/Test'
 
-function Home(props) {
+function Home() {
    
-  
+  let handleClick = () => {
+      console.log('This is the home button')
+  }
     
     return (
         <div>
@@ -21,6 +24,9 @@ function Home(props) {
                 <img className ='home-image'src="https://d2tp0uk1jt95hu.cloudfront.net/_next/static/images/landing_feature_dish-1f6bf47a195d4ddcef798ca6e06355b5.png" alt='' />
             </div>  
             <p> Some text</p>
+
+            <Test />
+            <button onClick = {handleClick}>Click the Home Button</button>
         </div>
     )
 }

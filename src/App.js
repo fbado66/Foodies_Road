@@ -177,29 +177,6 @@ class App extends React.Component {
 
   renderRestaurants = () => {
 
-    //  let {id, image_url, name, address} = this.state.restaurants
-    //   return (
-    //         <div className ='restaurant-card'
-    //             key={id}
-    //             >            
-    //           <Link to={`/restaurants/${id}`}>
-    //             <img className ='restaurant-image' src ={image_url} alt={name} />
-    //             <h2 className= 'restaurant-title'> {name}</h2>
-    //             <p> {address}</p>
-    //           </Link>
-    //           <Restaurant
-    //           allRestaurants = {this.state.restaurants} />
-    //           {/* // sortRestaurants = {this.sortRestaurants} /> */}
-    //           {/* <Restaurant 
-    //     // restaurants={arrayOfRestaurants}
-    //     allRestaurants = {this.state.restaurants}
-    //     sortRestaurants = {this.sortRestaurants}
-        
-    //   /> */}
-    //         </div>
-            
-    //   ) 
-    // // })
     
     let arrayOfRestaurants = this.state.restaurants.map((restaurantPojo) => {
       return (

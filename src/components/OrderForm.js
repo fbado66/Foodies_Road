@@ -7,6 +7,7 @@ class OrderForm extends React.Component {
 
 
     handleClick = (evt) => {
+        console.log(" I have added a new order")
         evt.preventDefault()
         if (this.props.token) {
             fetch('http://localhost:3000/orders', {

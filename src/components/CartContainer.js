@@ -67,27 +67,33 @@ class CartContainer extends React.Component {
     render () {
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product        
-                return <div className='order_in_cart'
+                return <div 
+                // className='order_in_cart'
                         key = {id}>
                         <img className ='product_cart_image' src={image_url} alt ={name} />
                         <div className = 'product_name_price'>
                             <p className='product_cart_name'>{name}</p>
                             <p className ='product_cart_price'>${price}.00</p>
                         </div>
-                        <div className ='product_cart_quantity'>quantity:
-                            <div className = 'arrowdown'
+                        <div 
+                        // className ='product_cart_quantity'
+                        >quantity:
+                            <div
+                            //  className = 'arrowdown'
                                 id = {id}
                                 onClick = {this.decreaseQuantityHandler}>
                                 <ArrowDropDownIcon /> 
                             </div>
                                 {quantity}
-                            <div className = 'arrowup'
+                            <div 
+                            // className = 'arrowup'
                                 id = {id}
                                 onClick = {this.increaseQuantityHandler}>
                                 <ArrowDropUpIcon /> 
                             </div>
                         </div>
-                        <div className ='delete'
+                        <div 
+                        // className ='delete'
                             id = {id}
                             onClick = {this.deleteHandler}>
                                 <DeleteIcon />

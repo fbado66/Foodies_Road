@@ -1,6 +1,7 @@
 import React from 'react';
 import CartContainer from './CartContainer';
-import OrderTotal from './OrderTotal';
+// import OrderTotal from './OrderTotal';
+import TotalOrder from './TotalOrder'
 
 class AllOrders extends React.Component {
     
@@ -18,10 +19,12 @@ class AllOrders extends React.Component {
                     </div>
         })
         return (
-            <div className ='cart-holder'>
+            <div 
+            // className ='cart-holder'
+            >
                 <h2 className ='My_cart'> My Cart</h2>
                 {arrayOfOrders}
-                <OrderTotal 
+                <TotalOrder 
                     orders = {this.props.allOrders}
                 />
                 
