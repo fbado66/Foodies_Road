@@ -8,12 +8,13 @@ import NotFound from './NotFound'
 import SelectedRestaurant from './components/SelectedRestaurant'
 import allOrders from './components/AllOrders'
 import CartContainer from './components/CartContainer'
-import {Route, Switch, Link, withRouter} from 'react-router-dom'
+import {Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
 import CategoryNavBar from './components/CategoryNavBar';
 import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
+import Profile from './components/Profile'
 require('dotenv').config()
 
 
@@ -218,21 +219,20 @@ class App extends React.Component {
 }
 
 // ---- RESTAURANT LOCATIONS ON LAT AND LNG --------------------------
-renderAllLocations = () =>{
-  let allLocations = this.state.restaurants.map(restaurantPojo => {
-    
-    return (
-      <div 
-        restaurantPojo = {restaurantPojo}
-        latitude = {restaurantPojo.latitude}
-        longitude = {restaurantPojo.longitude}>
-      </div>
-    )
-  })
-  return <div>
-            <Home allLocations = {allLocations}/>
-            </div>
-}
+// renderAllLocations = () =>{
+//   let allLocations = this.state.restaurants.map(restaurantPojo => {
+//     return (
+//       <div 
+//         restaurantPojo = {restaurantPojo}
+//         latitude = {restaurantPojo.latitude}
+//         longitude = {restaurantPojo.longitude}>
+//       </div>
+//     )
+//   })
+//   return <div>
+//             <Home allLocations = {allLocations}/>
+//             </div>
+// }
 
 
   renderSpecificRestaurant = (routerProps) => {
@@ -273,7 +273,7 @@ renderAllLocations = () =>{
 
 
 
-
+  // UPDATE STATE WHEN AN USER HAS SELECTED A SPECIFIC CUISINE OF RESTAURANTS TO RENDER ------
 
   changeSelectedCusine = (chosenCusine) => {
     this.setState({
@@ -330,7 +330,7 @@ renderAllLocations = () =>{
 
     renderForm = (routerProps) => {
       if(this.state.token){
-        return <button className='logout' onClick={this.handleLogOut}>Logged in as {this.state.name}</button>
+        return <button className='logout' onClick={this.handleLogOut}>LOG OUT {this.state.name}</button>
       }
       if(routerProps.location.pathname === "/login"){
         return <LogInForm
@@ -344,8 +344,31 @@ renderAllLocations = () =>{
                 handleSubmit={this.handleRegisterSubmit}
               />
       } 
-  
     }
+
+
+
+    // RENDER PROFILE COMPONENT -----------------------------------
+
+    renderProfile = (routerProps) => {
+      if(this.state.token){
+        return <div>
+                  <Profile
+                    name={this.state.name} 
+              
+                  />
+               </div> 
+      } else {
+        return <Redirect to="/login" />
+      }
+    
+    }
+
+
+
+
+
+
 
   render() {
 
@@ -355,16 +378,20 @@ renderAllLocations = () =>{
   
     return (
       <div className="App">
-        <Header orderNum = {this.state.orders.length}/>
+        <Header orderNum = {this.state.orders.length}
+                token = {this.state.token}
+        />
 
           <main>
             <Switch>
               <Route path="/login" render={ this.renderForm } />
               <Route path="/register" render={ this.renderForm } />
-              <Route path ='/' exact render={this.renderAllLocations} />
+              <Route path ='/' exact component={Home} />
+              {/* <Route path ='/' exact render={this.renderAllLocations} /> */}
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
+              <Route path = '/profile' render={this.renderProfile} />
               <Route path = '/mycart' 
               // exact render={this.myCart} 
               />
