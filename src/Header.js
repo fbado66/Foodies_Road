@@ -4,10 +4,12 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Header(props) {
 
-    let logged = 'log in'
+    let logged = 'lOG IN'
+    let profile = 'PROFILE'
 
     if (props.token){
-        logged = 'log out '
+        logged = 'LOG OUT'
+        profile = `Hi ${props.name}!`
     }
     
    
@@ -16,8 +18,8 @@ function Header(props) {
                 <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
                 <ul className=''>
                     <NavLink to='/login'>{logged}</NavLink>
-                    <NavLink to='/register'>Register</NavLink>
-                    <NavLink to='/profile'>Profile</NavLink>
+                    <NavLink to='/register'>REGISTER</NavLink>
+                    <NavLink to='/profile'>{profile}</NavLink>
                     <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
                 </ul>
             </div>
@@ -29,8 +31,8 @@ function Header(props) {
             <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
             <ul className=''>
                 <NavLink to='/login'>{logged}</NavLink>
-                <NavLink to='/profile'>Profile</NavLink>
-                <NavLink to='/register'>Register</NavLink>
+                <NavLink to='/profile'>{profile}</NavLink>
+                <NavLink to='/register'>REGISTER</NavLink>
                 <NavLink to='/cart'><ShoppingCartIcon /> <div className='count'>{props.orderNum} </div></NavLink>
             </ul>
         </div>

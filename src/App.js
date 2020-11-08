@@ -6,18 +6,17 @@ import Home from './Home'
 import Restaurant from './Restaurant'
 import NotFound from './NotFound'
 import SelectedRestaurant from './components/SelectedRestaurant'
-import allOrders from './components/AllOrders'
-import CartContainer from './components/CartContainer'
+// import allOrders from './components/AllOrders'
+// import CartContainer from './components/CartContainer'
 import {Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
-import CategoryNavBar from './components/CategoryNavBar';
-import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
+// import CategoryNavBar from './components/CategoryNavBar';
+// import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 import Profile from './components/Profile'
+// import { CollectionsBookmarkOutlined } from '@material-ui/icons';
 require('dotenv').config()
-
-
 
 
 class App extends React.Component {
@@ -32,7 +31,10 @@ class App extends React.Component {
     products: [],
     selectedCategory: 'All',
     selectedCusine: 'All',
-    restaurant_id: 1
+    restaurant_id: 1,
+    email: '',
+    phone_number: '',
+    address: ''
   }
 
   componentDidMount(){
@@ -60,14 +62,15 @@ class App extends React.Component {
 
   }
 
-
-
   handleLogOut = () => {
     this.setState({
       id: 0,
       name: "",
       orders: [],
       token: "",
+      phone_number: '',
+      address: '',
+      email: ''
     })
     localStorage.clear()
   }
@@ -124,6 +127,9 @@ class App extends React.Component {
         name: resp.user.name,
         orders: resp.user.orders,
         token: resp.token,
+        phone_number: resp.user.phone_number,
+        address: resp.user.address,
+        email: resp.user.email
       })
 
       fetch('http://localhost:3000/carts', {
@@ -131,7 +137,6 @@ class App extends React.Component {
       headers: {
         "Content-Type": "Application/json",
         "authorization": this.state.token
-
       },
       body: JSON.stringify({
         method_order: 'delivery',
@@ -144,7 +149,7 @@ class App extends React.Component {
         cart_id: cartPojo.id
       })
     })
-      // this.props.history.push("/profile")
+      this.props.history.push("/profile")
     }
   }
 
@@ -158,19 +163,17 @@ class App extends React.Component {
           cart_id: cartObject.id
         })
       })
-      // resp.user.carts.map( cart => {
-      //   console.log(cart.id)
-      // })
       localStorage.token = resp.token
       this.setState({
         id: resp.user.id,
         name: resp.user.name,
         orders: resp.user.orders,
         token: resp.token,
-        
-
+        email: resp.user.email,
+        address: resp.user.address,
+        phone_number: resp.user.phone_number
       })
-      // this.props.history.push("/profile")
+      this.props.history.push("/profile")
     }
   }
 
@@ -341,7 +344,7 @@ class App extends React.Component {
       } else if (routerProps.location.pathname === "/register") {
         return <RegisterForm
                 formName="Register Form"
-                handleSubmit={this.handleRegisterSubmit}
+                handleRegisterSubmit={this.handleRegisterSubmit}
               />
       } 
     }
@@ -355,6 +358,9 @@ class App extends React.Component {
         return <div>
                   <Profile
                     name={this.state.name} 
+                    email={this.state.email}
+                    phone_number={this.state.phone_number}
+                    address={this.state.address}
               
                   />
                </div> 
@@ -364,22 +370,13 @@ class App extends React.Component {
     
     }
 
-
-
-
-
-
-
   render() {
-
-    console.log(this.state.restaurants.filter(cusine => {
-      return cusine.cuisines === 'American'
-    }))
   
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}
                 token = {this.state.token}
+                name = {this.state.name}
         />
 
           <main>
