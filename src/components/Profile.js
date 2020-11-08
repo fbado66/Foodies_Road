@@ -1,18 +1,28 @@
 import React from 'react'
+import UpdateUserForm from './UpdateUserForm'
+import {withRouter, Redirect } from 'react-router-dom'
+import { ThreeSixtySharp } from '@material-ui/icons'
 
 class Profile extends React.Component {
+
+    handleClick = () => {
+   this.props.history.push('/profile/edit')
+
+    }
 
     render() {
         return (
             <div>
-                Welcome {this.props.name}
-                Email: {this.props.email}
-                Phone: {this.props.phone_number}
-                address: {this.props.address}
+                <h2>Welcome {this.props.name}</h2>
+                <p>Email: {this.props.email}</p>
+                <p>Phone: {this.props.phone_number}</p>
+                <p>address: {this.props.address}</p>
+
+                <button onClick={this.handleClick}>Update Information</button>
 
             </div>
         )
     }
 }
 
-export default Profile 
+export default withRouter(Profile)

@@ -15,6 +15,7 @@ import RegisterForm from "./RegisterForm"
 // import CategoryNavBar from './components/CategoryNavBar';
 // import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 import Profile from './components/Profile'
+import UpdateUserForm from './components/UpdateUserForm'
 // import { CollectionsBookmarkOutlined } from '@material-ui/icons';
 require('dotenv').config()
 
@@ -176,6 +177,43 @@ class App extends React.Component {
       this.props.history.push("/profile")
     }
   }
+
+  // HANDLE UPDATE REQUEST ON USER INFORMATION ------------------------
+
+
+  handleUpdateSubmit = (userInfo) => {
+    console.log("Update form has been submitted")
+
+    fetch(`http://localhost:3000/users/${this.state.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({
+        name: userInfo.name,
+        password: userInfo.password,
+        email: userInfo.email,
+        phone_number: userInfo.phone_number,
+        address: userInfo.address,
+        
+      })
+    })
+    .then(res => res.json())
+    .then((userInfo) => {
+      this.setState({
+        name: userInfo.name,
+        password: userInfo.password,
+        email: userInfo.email,
+        phone_number: userInfo.phone_number,
+        address: userInfo.address
+      })
+    })
+    this.props.history.push("/profile")
+
+
+  }
+
+
 
 
   renderRestaurants = () => {
@@ -370,6 +408,28 @@ class App extends React.Component {
     
     }
 
+
+
+    renderProfileUpdate = (routerProps) => {
+      if(this.state.token){
+        return <div>
+                  <UpdateUserForm
+                    name={this.state.name} 
+                    email={this.state.email}
+                    phone_number={this.state.phone_number}
+                    address={this.state.address}
+                    password={this.state.password}
+                    user_id ={this.state.id}
+                    handleUpdateSubmit={this.handleUpdateSubmit}
+              
+                  />
+               </div> 
+      } else {
+        return <Redirect to="/profile" />
+      }
+    
+    }
+
   render() {
   
     return (
@@ -388,10 +448,11 @@ class App extends React.Component {
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
-              <Route path = '/profile' render={this.renderProfile} />
+              <Route path = '/profile' exact render={this.renderProfile} />
               <Route path = '/mycart' 
               // exact render={this.myCart} 
               />
+              <Route path = '/profile/edit' exact render={this.renderProfileUpdate} />
 
 
             </Switch>
