@@ -27,7 +27,8 @@ class AllOrders extends React.Component {
                 <h2 className ='My_cart'> My Cart</h2>
                 <h3>{promotion}</h3>
                 {arrayOfOrders}
-                <TotalOrder orders = {this.props.allOrders}/>
+                <TotalOrder orders = {this.props.allOrders}
+                setTransactionInfoToState = {this.props.setTransactionInfoToState}/>
             </div>
         )
     }

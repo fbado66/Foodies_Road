@@ -15,6 +15,7 @@ import RegisterForm from "./RegisterForm"
 // import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 import Profile from './components/Profile'
 import UpdateUserForm from './components/UpdateUserForm'
+import CheckOut from './components/CheckOut'
 require('dotenv').config()
 
 
@@ -27,13 +28,15 @@ class App extends React.Component {
     token: '',
     name: '',
     cart_id: '',
+    cart: [],
     products: [],
     selectedCategory: 'All',
     selectedCusine: 'All',
     restaurant_id: 1,
     email: '',
     phone_number: '',
-    address: ''
+    address: '',
+    transaction: '',
   }
 
   componentDidMount(){
@@ -143,7 +146,8 @@ class App extends React.Component {
     .then(res => res.json())
     .then((cartPojo) => {
       this.setState({
-        cart_id: cartPojo.id
+        cart_id: cartPojo.id,
+        cart: cartPojo
       })
     })
       this.props.history.push("/profile")
@@ -247,9 +251,34 @@ class App extends React.Component {
     allOrders = {allOrders} 
     deleteOrderFromState = {this.deleteOrderFromState}
     updateOrderFromState = {this.updateOrderFromState} 
+    setTransactionInfoToState = {this.setTransactionInfoToState}
     />
   }
 }
+
+
+
+
+
+
+renderCheckout = () =>{
+  if (localStorage.token) {
+    return <CheckOut
+    transaction = {this.state.transaction}
+    />
+  }
+}
+
+setTransactionInfoToState = (transactionInfo) => {
+  this.setState({
+    transaction: transactionInfo
+  })
+}
+
+
+
+
+
 
   renderSpecificRestaurant = (routerProps) => {
     let searchedRestaurant = routerProps.match.params.id
@@ -407,6 +436,7 @@ class App extends React.Component {
     }
 
   render() {
+    console.log(this.state.cart)
 
     return (
       <div className="App">
@@ -423,7 +453,8 @@ class App extends React.Component {
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
               <Route path = '/profile' exact render={this.renderProfile} />
-              <Route path = '/mycart' />
+              <Route path = '/mycart' exact component={AllOrders}/>
+              <Route path = '/mycart/checkout' exact render={this.renderCheckout}/> 
               <Route path = '/profile/edit' exact render={this.renderProfileUpdate} />
             </Switch>
           </main>

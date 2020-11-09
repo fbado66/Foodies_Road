@@ -57,7 +57,8 @@ class TotalOrder extends React.Component {
                 <div onClick = {handleTip} value={tip15}>15%</div>
                 <div onClick = {handleTip} value={tip20}>20%</div>
                 <StripeComponent 
-                total = {total}/>
+                total = {total}
+                setTransactionInfoToState = {this.props.setTransactionInfoToState}/>
             </div>
         )
     }

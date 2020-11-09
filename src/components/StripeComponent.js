@@ -1,5 +1,9 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
+import CategoryNavBar from './CategoryNavBar'
+import {withRouter} from 'react-router-dom'
+import CheckOut from './CheckOut'
+
 
 class StripeComponent extends React.Component { 
 
@@ -14,7 +18,20 @@ class StripeComponent extends React.Component {
         postal_code: ''
     }
 
+    handleClick = () => {
+        this.props.history.push("/mycart/checkout")
+    }
+
+   
+
     render(){
+
+        let test = ''
+        if (this.state.street) {
+            test = this.state.street
+        }
+
+
         let onToken = (token) => {
             // save the token id to a variable to then use it in the body of the fetch.
             const charge = {
@@ -34,7 +51,7 @@ class StripeComponent extends React.Component {
             })
             .then(res => res.json())
             .then(data => {
-                this.setState({
+                this.props.setTransactionInfoToState({
                     amount: data.amount * 0.01,
                     receipt: data.created,
                     city: data.billing_details.address.city,
@@ -44,28 +61,35 @@ class StripeComponent extends React.Component {
                     last4: data.payment_method_details.card.last4,
                     exp_year: data.payment_method_details.card.exp_year
                 })
-            })  
+            })
         };
 
         console.log(this.state.amount, this.state.receipt)
         console.log(this.state.city, this.state.street, this.state.postal_code)
         console.log(this.state.card, this.state.last4, this.state.exp_year)
         
-
-        return (
-            <div>
-                <StripeCheckout
-                    token={ onToken }
-                    stripeKey={ process.env.REACT_APP_STRIPE_API_KEY }
-                    // provide input for billing address and shipping address.
-                    billingAddress
-                    shippingAddress
-                >
-                    <button>CHECKOUT PAY </button>
-                </StripeCheckout>
-            </div>
-        );
+            if (this.state.address) {
+                return <CheckOut 
+                address = {this.state.address}/>
+            } else { 
+                return (
+                <div>
+                    <StripeCheckout
+                        token={ onToken }
+                        stripeKey={ process.env.REACT_APP_STRIPE_API_KEY }
+                        // provide input for billing address and shipping address.
+                        billingAddress
+                        shippingAddress
+                    >
+                        <button onClick={this.handleClick}>CHECKOUT PAY </button>
+                    </StripeCheckout>
+                    
+    
+                </div>
+            ); 
+        }
     }
+    
 };
 
-export default StripeComponent
+export default withRouter(StripeComponent)
