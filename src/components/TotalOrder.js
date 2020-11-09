@@ -13,6 +13,8 @@ class TotalOrder extends React.Component {
             return agg + order.product.price * order.quantity
             }, 0)
 
+            
+
         let tip = (totalSum * 0.08875).toFixed(2)
 
         let delivery = 5
@@ -54,7 +56,8 @@ class TotalOrder extends React.Component {
                 <div onClick = {handleTip} value={tip10}>10%</div>
                 <div onClick = {handleTip} value={tip15}>15%</div>
                 <div onClick = {handleTip} value={tip20}>20%</div>
-                <StripeComponent />
+                <StripeComponent 
+                total = {total}/>
             </div>
         )
     }

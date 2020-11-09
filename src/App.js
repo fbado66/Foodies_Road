@@ -12,11 +12,9 @@ import {Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
-// import CategoryNavBar from './components/CategoryNavBar';
 // import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 import Profile from './components/Profile'
 import UpdateUserForm from './components/UpdateUserForm'
-// import { CollectionsBookmarkOutlined } from '@material-ui/icons';
 require('dotenv').config()
 
 
@@ -39,7 +37,6 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-
     // Restaurants information -------------
     fetch("http://localhost:3000/restaurants")
     .then(res => res.json())
@@ -48,8 +45,7 @@ class App extends React.Component {
         restaurants: arrayOfRestaurants,
       })
     })
-
-        
+ 
     if(localStorage.token){
       fetch("http://localhost:3000/users/keep_logged_in", {
         method: "GET",
@@ -179,8 +175,6 @@ class App extends React.Component {
   }
 
   // HANDLE UPDATE REQUEST ON USER INFORMATION ------------------------
-
-
   handleUpdateSubmit = (userInfo) => {
     console.log("Update form has been submitted")
 
@@ -194,8 +188,7 @@ class App extends React.Component {
         password: userInfo.password,
         email: userInfo.email,
         phone_number: userInfo.phone_number,
-        address: userInfo.address,
-        
+        address: userInfo.address
       })
     })
     .then(res => res.json())
@@ -209,7 +202,6 @@ class App extends React.Component {
       })
     })
     this.props.history.push("/profile")
-
 
   }
 
@@ -258,23 +250,6 @@ class App extends React.Component {
     />
   }
 }
-
-// ---- RESTAURANT LOCATIONS ON LAT AND LNG --------------------------
-// renderAllLocations = () =>{
-//   let allLocations = this.state.restaurants.map(restaurantPojo => {
-//     return (
-//       <div 
-//         restaurantPojo = {restaurantPojo}
-//         latitude = {restaurantPojo.latitude}
-//         longitude = {restaurantPojo.longitude}>
-//       </div>
-//     )
-//   })
-//   return <div>
-//             <Home allLocations = {allLocations}/>
-//             </div>
-// }
-
 
   renderSpecificRestaurant = (routerProps) => {
     let searchedRestaurant = routerProps.match.params.id
@@ -399,6 +374,7 @@ class App extends React.Component {
                     email={this.state.email}
                     phone_number={this.state.phone_number}
                     address={this.state.address}
+                    orders = {this.state.orders}
               
                   />
                </div> 
@@ -431,30 +407,24 @@ class App extends React.Component {
     }
 
   render() {
-  
+
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}
                 token = {this.state.token}
                 name = {this.state.name}
         />
-
           <main>
             <Switch>
               <Route path="/login" render={ this.renderForm } />
               <Route path="/register" render={ this.renderForm } />
               <Route path ='/' exact component={Home} />
-              {/* <Route path ='/' exact render={this.renderAllLocations} /> */}
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
               <Route path = '/profile' exact render={this.renderProfile} />
-              <Route path = '/mycart' 
-              // exact render={this.myCart} 
-              />
+              <Route path = '/mycart' />
               <Route path = '/profile/edit' exact render={this.renderProfileUpdate} />
-
-
             </Switch>
           </main>
         <Footer />

@@ -86,10 +86,12 @@ class SelectedRestaurant extends React.Component {
             <div>
                 <ul className ='category-subNav' value={this.selectedCategory} onClick = {this.handleClick} >
                     <option value='All'> All</option>
-                    <option value='Steak'> Steak</option>
-                    <option value='Chicken'> Chicken</option>
-                    <option value='Soup'> Soup</option>
-                    <option value='Salad'> Salad</option> 
+                    <option value='Specialties'> Specialties</option>
+                    <option value='Popular'> Popular</option>
+                    <option value='Roots'> Our Roots</option>
+                    <option value='Signature'> Signature Dishes</option> 
+                    <option value='Drinks'> Drinks</option> 
+
                 </ul>
                 <div className ='products_holder'>
                     {arrayOfProducts}
