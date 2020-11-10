@@ -228,8 +228,6 @@ class App extends React.Component {
   }
 
 
-
-
   renderRestaurants = () => {
     let restaurants = this.state.restaurants
     if (this.state.selectedCusine !== 'All'){
@@ -284,9 +282,6 @@ class App extends React.Component {
 
 
 
-
-
-
 renderCheckout = () =>{
   if (localStorage.token) {
     return <CheckOut
@@ -333,7 +328,7 @@ resetStateforOrderNum = (num) => {
                 productsFiltered = {productsFiltered}
                 changeSelectedCategory = {this.changeSelectedCategory}
                 addOrderToState = {this.addOrderToState} 
-                addOrderToCartState = {this.addOrderToCartState}
+                // addOrderToCartState = {this.addOrderToCartState}
                 cart_id={this.state.cart_id}
                 token = {this.state.token}
                 addReviewToState = {this.addReviewToState}
@@ -389,28 +384,28 @@ resetStateforOrderNum = (num) => {
 
 
     //  ----- UPDATE STATE WHEN DELETING AN ORDER ----------
-  // deleteOrderFromState = (deletedID) => {
-  //   let copyOfOrders = this.state.orders.filter(orderObj => {
-  //     return orderObj.id !== deletedID
-  //   })
-  //   this.setState({
-  //     orders: copyOfOrders
-  //   })
-  // }
-
   deleteOrderFromState = (deletedID) => {
-    let copyOfOrders = this.state.cart.filter(orderObj => {
+    let copyOfOrders = this.state.orders.filter(orderObj => {
       return orderObj.id !== deletedID
     })
     this.setState({
-      cart: copyOfOrders
+      orders: copyOfOrders
     })
   }
+
+  // deleteOrderFromState = (deletedID) => {
+  //   let copyOfOrders = this.state.cart.filter(orderObj => {
+  //     return orderObj.id !== deletedID
+  //   })
+  //   this.setState({
+  //     cart: copyOfOrders
+  //   })
+  // }
 
   
     //  ----- UPDATE STATE WHEN UPDATING AN ORDER ----------
     updateOrderFromState = (updatedObj) => {
-      let copyOfOrders = this.state.cart.map((order) => {
+      let copyOfOrders = this.state.orders.map((order) => {
         if(order.id === updatedObj.id){
           return updatedObj
         } else {
@@ -418,7 +413,7 @@ resetStateforOrderNum = (num) => {
         }
       })
       this.setState({
-        cart: copyOfOrders
+        orders: copyOfOrders
       })
     }
 

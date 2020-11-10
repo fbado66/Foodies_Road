@@ -25,7 +25,6 @@ class OrderForm extends React.Component {
         .then(res => res.json())
         .then((createdOrder) => {
             this.props.addOrderToState(createdOrder)
-            // this.props.addOrderToCartState(createdOrder)
         })
         } else {
             this.props.history.push("/login")
