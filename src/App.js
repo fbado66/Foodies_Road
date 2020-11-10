@@ -28,7 +28,7 @@ class App extends React.Component {
     token: '',
     name: '',
     cart_id: '',
-    cart: [],
+    cart: '',
     products: [],
     selectedCategory: 'All',
     selectedCusine: 'All',
@@ -48,6 +48,20 @@ class App extends React.Component {
         restaurants: arrayOfRestaurants,
       })
     })
+
+    fetch("http://localhost:3000/users")
+    .then(res => res.json())
+    .then((userArray) => {
+      userArray.find(singleUser => {
+          singleUser.carts.find(cartPOJO => {
+            if (this.state.cart_id === cartPOJO.id)
+              this.setState({
+                cart: cartPOJO
+              })
+          })
+        })
+    })
+
  
     if(localStorage.token){
       fetch("http://localhost:3000/users/keep_logged_in", {
@@ -58,8 +72,8 @@ class App extends React.Component {
       })
         .then(res => res.json())
         .then(this.helpHandleLogInResponse)
+    
     }
-
   }
 
   handleLogOut = () => {
@@ -70,7 +84,9 @@ class App extends React.Component {
       token: "",
       phone_number: '',
       address: '',
-      email: ''
+      email: '',
+      transaction: '',
+      cart_id: ''
     })
     localStorage.clear()
   }
@@ -129,7 +145,7 @@ class App extends React.Component {
         token: resp.token,
         phone_number: resp.user.phone_number,
         address: resp.user.address,
-        email: resp.user.email
+        email: resp.user.email,
       })
 
       fetch('http://localhost:3000/carts', {
@@ -169,10 +185,11 @@ class App extends React.Component {
         id: resp.user.id,
         name: resp.user.name,
         orders: resp.user.orders,
+        cart: resp.user.carts,
         token: resp.token,
         email: resp.user.email,
         address: resp.user.address,
-        phone_number: resp.user.phone_number
+        phone_number: resp.user.phone_number,
       })
       this.props.history.push("/profile")
     }
@@ -248,10 +265,14 @@ class App extends React.Component {
     if (localStorage.token) {
     let allOrders = this.state.orders
     return <AllOrders 
-    allOrders = {allOrders} 
+    allOrders = {allOrders}
     deleteOrderFromState = {this.deleteOrderFromState}
     updateOrderFromState = {this.updateOrderFromState} 
     setTransactionInfoToState = {this.setTransactionInfoToState}
+    cart = {this.state.cart}
+    user_token = {this.state.token}
+    setNewCartToState = {this.setNewCartToState}
+    resetStateforOrderNum = {this.resetStateforOrderNum}
     />
   }
 }
@@ -276,7 +297,18 @@ setTransactionInfoToState = (transactionInfo) => {
 }
 
 
+setNewCartToState = (cartPojo) => {
+  this.setState({
+    // cart: cartPojo,
+    cart_id: cartPojo.id
+  })
+}
 
+resetStateforOrderNum = (num) => {
+  this.setState({
+    orderNum: num
+  })
+}
 
 
 
@@ -404,6 +436,9 @@ setTransactionInfoToState = (transactionInfo) => {
                     phone_number={this.state.phone_number}
                     address={this.state.address}
                     orders = {this.state.orders}
+                    transaction = {this.state.transaction}
+                    user_id = {this.state.id}
+                    cart = {this.state.cart}
               
                   />
                </div> 
@@ -436,11 +471,14 @@ setTransactionInfoToState = (transactionInfo) => {
     }
 
   render() {
+
     console.log(this.state.cart)
 
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}
+                cart_id = {this.state.cart_id}
+                cart = {this.state.cart}
                 token = {this.state.token}
                 name = {this.state.name}
         />

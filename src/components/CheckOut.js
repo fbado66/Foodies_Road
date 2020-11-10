@@ -4,9 +4,6 @@ import React from 'react'
 class CheckOut extends React.Component {
 
 
-    state = {
-        orders: []
-    }
 
    
     
@@ -26,6 +23,8 @@ class CheckOut extends React.Component {
                 <p>Last 4 digits: {last4}</p>
                 <p>Exp. Year: {exp_year}</p>
                 <p> Your information: {street}, {city}, {postal_code}</p>
+
+                <button>Your order will arrive in 20 minutes</button>
 
             </div>
         )

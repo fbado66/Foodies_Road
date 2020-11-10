@@ -12,8 +12,8 @@ function Header(props) {
         profile = `Hi ${props.name}!`
     }
     
-   
-    if (props.orderNum === 0  ){
+    if (props.cart_id && props.cart.length > 0) {
+        if (props.orderNum === 0  ){
     return <div className='nav_header'>
                 <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
                 <ul className=''>
@@ -37,7 +37,20 @@ function Header(props) {
             </ul>
         </div>
     )
-}
+        }
+} else {
+    return <div className='nav_header'>
+                <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
+                <ul className=''>
+                    <NavLink to='/login'>{logged}</NavLink>
+                    <NavLink to='/register'>REGISTER</NavLink>
+                    <NavLink to='/profile'>{profile}</NavLink>
+                    <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
+                </ul>
+            </div>
+
+
+    }
 }
 
 export default Header

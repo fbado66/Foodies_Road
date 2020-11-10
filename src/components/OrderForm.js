@@ -13,7 +13,7 @@ class OrderForm extends React.Component {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json',
-                // "authorization": this.props.token
+                "authorization": this.props.token
             },
             body: JSON.stringify({
                 cart_id: this.props.cart_id,

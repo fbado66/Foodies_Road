@@ -10,8 +10,9 @@ class TotalOrder extends React.Component {
 
     render () {
         let totalSum = this.props.orders.reduce((agg, order) => {
-            return agg + order.product.price * order.quantity
-            }, 0)
+                return agg + order.product.price * order.quantity
+                }, 0)
+        
 
             
 
@@ -43,8 +44,12 @@ class TotalOrder extends React.Component {
                 tip: evt.target.attributes.value.textContent
             })
         }
-        if (totalSum === 0) { return 'Your cart is empty' }
+        if (totalSum === 0) { return 'Your cart is empty'  
 
+       
+
+        
+        }else {
         return (
             <div>
                 <p>Items Subtotal: ${ totalSum }.00</p>
@@ -58,9 +63,14 @@ class TotalOrder extends React.Component {
                 <div onClick = {handleTip} value={tip20}>20%</div>
                 <StripeComponent 
                 total = {total}
-                setTransactionInfoToState = {this.props.setTransactionInfoToState}/>
+                user_token = {this.props.user_token}
+                setNewCartToState = {this.props.setNewCartToState}
+                orders = {this.props.orders}
+                setTransactionInfoToState = {this.props.setTransactionInfoToState}
+                resetStateforOrderNum = {this.props.resetStateforOrderNum}/>
             </div>
         )
+        }
     }
 }
 
