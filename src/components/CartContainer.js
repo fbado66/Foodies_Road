@@ -65,6 +65,8 @@ class CartContainer extends React.Component {
     }
 
     render () {
+
+        console.log(this.props.order)
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product        
                 return <div>

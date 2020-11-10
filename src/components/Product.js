@@ -16,6 +16,7 @@ class Product extends React.Component {
                  
                 <OrderForm 
                     addOrderToState = {this.props.addOrderToState}
+                    addOrderToCartState = {this.props.addOrderToCartState}
                     product_id = {id}
                     cart_id = {this.props.cart_id}
                     token = {this.props.token} />

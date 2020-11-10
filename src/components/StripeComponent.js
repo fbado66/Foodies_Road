@@ -8,19 +8,21 @@ import CheckOut from './CheckOut'
 class StripeComponent extends React.Component { 
 
     // state = {
-    //     amount: '',
-    //     receipt: '',
-    //     card: '',
-    //     last4: '',
-    //     exp_year: '',
-    //     city: '',
-    //     street: '',
-    //     postal_code: ''
+    //     cart_id: '',
+    //     cart: []
     // }
 
+
+    // componentDidUpdate (prevprops, prevstate) {
+    //     if (!prevstate.this.state.cart_id) {
+    //         this.props.setNewCartToState({cart_id: this.state.cart_id, cart: this.state.cart})
+    //     }
+    // }
     
     handleClick = () => {
         this.props.history.push("/mycart/checkout")
+        
+
 
         fetch('http://localhost:3000/carts', {
             method: "POST",
@@ -35,14 +37,13 @@ class StripeComponent extends React.Component {
         })
     .then(res => res.json())
     .then((cartPojo) => {
-      this.props.setNewCartToState({
-        cart_id: cartPojo.id,
-        cart: cartPojo
+        this.props.setNewCartToState({
+        cart_id: cartPojo.id
+       
       })
     })
 
 
-        
 
         
     

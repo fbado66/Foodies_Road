@@ -28,7 +28,7 @@ class App extends React.Component {
     token: '',
     name: '',
     cart_id: '',
-    cart: '',
+    cart: [],
     products: [],
     selectedCategory: 'All',
     selectedCusine: 'All',
@@ -49,18 +49,18 @@ class App extends React.Component {
       })
     })
 
-    fetch("http://localhost:3000/users")
-    .then(res => res.json())
-    .then((userArray) => {
-      userArray.find(singleUser => {
-          singleUser.carts.find(cartPOJO => {
-            if (this.state.cart_id === cartPOJO.id)
-              this.setState({
-                cart: cartPOJO
-              })
-          })
-        })
-    })
+    // fetch("http://localhost:3000/users")
+    // .then(res => res.json())
+    // .then((userArray) => {
+    //   userArray.find(singleUser => {
+    //       singleUser.carts.find(cartPOJO => {
+    //         if (this.state.cart_id === cartPOJO.id)
+    //           this.setState({
+    //             cart: cartPOJO.orders
+    //           })
+    //       })
+    //     })
+    // })
 
  
     if(localStorage.token){
@@ -86,7 +86,8 @@ class App extends React.Component {
       address: '',
       email: '',
       transaction: '',
-      cart_id: ''
+      cart_id: '',
+      cart: []
     })
     localStorage.clear()
   }
@@ -263,7 +264,10 @@ class App extends React.Component {
 
   renderAllOrders = () =>{
     if (localStorage.token) {
-    let allOrders = this.state.orders
+    let allOrders = this.state.orders.filter(cartPojo => {
+      return cartPojo.cart_id === this.state.cart_id
+        
+    })
     return <AllOrders 
     allOrders = {allOrders}
     deleteOrderFromState = {this.deleteOrderFromState}
@@ -273,6 +277,7 @@ class App extends React.Component {
     user_token = {this.state.token}
     setNewCartToState = {this.setNewCartToState}
     resetStateforOrderNum = {this.resetStateforOrderNum}
+    cart_id = {this.state.cart_id}
     />
   }
 }
@@ -299,7 +304,7 @@ setTransactionInfoToState = (transactionInfo) => {
 
 setNewCartToState = (cartPojo) => {
   this.setState({
-    // cart: cartPojo,
+    cart: cartPojo,
     cart_id: cartPojo.id
   })
 }
@@ -328,6 +333,7 @@ resetStateforOrderNum = (num) => {
                 productsFiltered = {productsFiltered}
                 changeSelectedCategory = {this.changeSelectedCategory}
                 addOrderToState = {this.addOrderToState} 
+                addOrderToCartState = {this.addOrderToCartState}
                 cart_id={this.state.cart_id}
                 token = {this.state.token}
                 addReviewToState = {this.addReviewToState}
@@ -374,21 +380,37 @@ resetStateforOrderNum = (num) => {
     })
   }
 
+  // addOrderToCartState = (newCreatedOrder) => {
+  //   let copyOfCart = [...this.state.cart, newCreatedOrder]
+  //   this.setState( {
+  //     cart: copyOfCart
+  //   })
+  // }
+
 
     //  ----- UPDATE STATE WHEN DELETING AN ORDER ----------
+  // deleteOrderFromState = (deletedID) => {
+  //   let copyOfOrders = this.state.orders.filter(orderObj => {
+  //     return orderObj.id !== deletedID
+  //   })
+  //   this.setState({
+  //     orders: copyOfOrders
+  //   })
+  // }
+
   deleteOrderFromState = (deletedID) => {
-    let copyOfOrders = this.state.orders.filter(orderObj => {
+    let copyOfOrders = this.state.cart.filter(orderObj => {
       return orderObj.id !== deletedID
     })
     this.setState({
-      orders: copyOfOrders
+      cart: copyOfOrders
     })
   }
 
   
     //  ----- UPDATE STATE WHEN UPDATING AN ORDER ----------
     updateOrderFromState = (updatedObj) => {
-      let copyOfOrders = this.state.orders.map((order) => {
+      let copyOfOrders = this.state.cart.map((order) => {
         if(order.id === updatedObj.id){
           return updatedObj
         } else {
@@ -396,9 +418,22 @@ resetStateforOrderNum = (num) => {
         }
       })
       this.setState({
-        orders: copyOfOrders
+        cart: copyOfOrders
       })
     }
+
+    // updateOrderFromState = (updatedObj) => {
+    //   let copyOfOrders = this.state.orders.map((order) => {
+    //     if(order.id === updatedObj.id){
+    //       return updatedObj
+    //     } else {
+    //       return order
+    //     }
+    //   })
+    //   this.setState({
+    //     orders: copyOfOrders
+    //   })
+    // }
   
 
 
@@ -472,8 +507,9 @@ resetStateforOrderNum = (num) => {
 
   render() {
 
-    console.log(this.state.cart)
-
+    console.log(this.allOrders)
+    console.log(this.state.cart_id)
+    
     return (
       <div className="App">
         <Header orderNum = {this.state.orders.length}

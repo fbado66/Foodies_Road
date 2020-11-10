@@ -77,6 +77,7 @@ class SelectedRestaurant extends React.Component {
                         order = {productPojo}
                         // productsFiltered = {this.props.productsFiltered}
                         addOrderToState = {this.props.addOrderToState} 
+                        addOrderToCartState = {this.props.addOrderToCartState}
                         cart_id={this.props.cart_id}
                         token = {this.props.token} />  
                     </div>
