@@ -7,15 +7,11 @@ class TotalOrder extends React.Component {
         tip: 0
     }
 
-
     render () {
         let totalSum = this.props.orders.reduce((agg, order) => {
                 return agg + order.product.price * order.quantity
                 }, 0)
         
-
-            
-
         let tip = (totalSum * 0.08875).toFixed(2)
 
         let delivery = 5
@@ -44,32 +40,29 @@ class TotalOrder extends React.Component {
                 tip: evt.target.attributes.value.textContent
             })
         }
-        if (totalSum === 0) { return 'Your cart is empty'  
+        if (totalSum === 0) { return 'Your cart is empty champ'  
 
-       
-
-        
         }else {
-        return (
-            <div>
-                <p>Items Subtotal: ${ totalSum }.00</p>
-                <p> Sales Tax: ${tip}</p>
-                <p>Delivery fee: {finaldelivery}</p>
-                <p>TOTAL: ${total}</p>
-                <p>Add tip for the driver</p>
-                <div onClick = {handleTip} value={cashTip}>Cash</div>  
-                <div onClick = {handleTip} value={tip10}>10%</div>
-                <div onClick = {handleTip} value={tip15}>15%</div>
-                <div onClick = {handleTip} value={tip20}>20%</div>
-                <StripeComponent 
-                total = {total}
-                user_token = {this.props.user_token}
-                setNewCartToState = {this.props.setNewCartToState}
-                orders = {this.props.orders}
-                setTransactionInfoToState = {this.props.setTransactionInfoToState}
-                resetStateforOrderNum = {this.props.resetStateforOrderNum}/>
-            </div>
-        )
+            return (
+                <div>
+                    <p>Items Subtotal: ${ totalSum }.00</p>
+                    <p> Sales Tax: ${tip}</p>
+                    <p>Delivery fee: {finaldelivery}</p>
+                    <p>TOTAL: ${total}</p>
+                    <p>Add tip for the driver</p>
+                    <div onClick = {handleTip} value={cashTip}>Cash</div>  
+                    <div onClick = {handleTip} value={tip10}>10%</div>
+                    <div onClick = {handleTip} value={tip15}>15%</div>
+                    <div onClick = {handleTip} value={tip20}>20%</div>
+                    <StripeComponent 
+                        total = {total}
+                        user_token = {this.props.user_token}
+                        setNewCartToState = {this.props.setNewCartToState}
+                        orders = {this.props.orders}
+                        setTransactionInfoToState = {this.props.setTransactionInfoToState}
+                        resetStateforOrderNum = {this.props.resetStateforOrderNum}/>
+                </div>
+            )
         }
     }
 }

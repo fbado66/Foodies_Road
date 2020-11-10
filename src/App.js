@@ -6,13 +6,10 @@ import Home from './Home'
 import Restaurant from './Restaurant'
 import NotFound from './NotFound'
 import SelectedRestaurant from './components/SelectedRestaurant'
-// import allOrders from './components/AllOrders'
-// import CartContainer from './components/CartContainer'
 import {Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import AllOrders from './components/AllOrders';
 import LogInForm from './LogInForm'
 import RegisterForm from "./RegisterForm"
-// import ReviewsOnRestaurant from './components/ReviewsOnRestaurant';
 import Profile from './components/Profile'
 import UpdateUserForm from './components/UpdateUserForm'
 import CheckOut from './components/CheckOut'
@@ -267,20 +264,18 @@ class App extends React.Component {
         
     })
     return <AllOrders 
-    allOrders = {allOrders}
-    deleteOrderFromState = {this.deleteOrderFromState}
-    updateOrderFromState = {this.updateOrderFromState} 
-    setTransactionInfoToState = {this.setTransactionInfoToState}
-    cart = {this.state.cart}
-    user_token = {this.state.token}
-    setNewCartToState = {this.setNewCartToState}
-    resetStateforOrderNum = {this.resetStateforOrderNum}
-    cart_id = {this.state.cart_id}
-    />
+            allOrders = {allOrders}
+            deleteOrderFromState = {this.deleteOrderFromState}
+            updateOrderFromState = {this.updateOrderFromState} 
+            setTransactionInfoToState = {this.setTransactionInfoToState}
+            cart = {this.state.cart}
+            user_token = {this.state.token}
+            setNewCartToState = {this.setNewCartToState}
+            resetStateforOrderNum = {this.resetStateforOrderNum}
+            cart_id = {this.state.cart_id}
+          />
   }
 }
-
-
 
 renderCheckout = () =>{
   if (localStorage.token) {
@@ -296,7 +291,6 @@ setTransactionInfoToState = (transactionInfo) => {
   })
 }
 
-
 setNewCartToState = (cartPojo) => {
   this.setState({
     cart: cartPojo,
@@ -309,8 +303,6 @@ resetStateforOrderNum = (num) => {
     orderNum: num
   })
 }
-
-
 
   renderSpecificRestaurant = (routerProps) => {
     let searchedRestaurant = routerProps.match.params.id
@@ -328,7 +320,6 @@ resetStateforOrderNum = (num) => {
                 productsFiltered = {productsFiltered}
                 changeSelectedCategory = {this.changeSelectedCategory}
                 addOrderToState = {this.addOrderToState} 
-                // addOrderToCartState = {this.addOrderToCartState}
                 cart_id={this.state.cart_id}
                 token = {this.state.token}
                 addReviewToState = {this.addReviewToState}
@@ -341,7 +332,6 @@ resetStateforOrderNum = (num) => {
   }
 
   // RENDER PRODUCTS BASED ON CATEGORY FOR SELECTED RESTAURANT HELPER --------
-
   changeSelectedCategory = (chosenCategory) => {
     this.setState({
       selectedCategory: chosenCategory
@@ -349,10 +339,7 @@ resetStateforOrderNum = (num) => {
   }
 
 
-
-
   // UPDATE STATE WHEN AN USER HAS SELECTED A SPECIFIC CUISINE OF RESTAURANTS TO RENDER ------
-
   changeSelectedCusine = (chosenCusine) => {
     this.setState({
       selectedCusine: chosenCusine
@@ -360,7 +347,6 @@ resetStateforOrderNum = (num) => {
   }
 
    // RE-ORDER RESTAURANT RENDER BASED ON USER INPUT ON THE SEARCH BAR  --------
-
    sortRestaurants = (newArray) => {
     this.setState({
       restaurants: newArray
@@ -434,7 +420,6 @@ resetStateforOrderNum = (num) => {
 
 
     // LOGIN / REGISTER FORM ------------------
-
     renderForm = (routerProps) => {
       if(this.state.token){
         return <button className='logout' onClick={this.handleLogOut}>LOG OUT {this.state.name}</button>
@@ -456,7 +441,6 @@ resetStateforOrderNum = (num) => {
 
 
     // RENDER PROFILE COMPONENT -----------------------------------
-
     renderProfile = (routerProps) => {
       if(this.state.token){
         return <div>
@@ -469,7 +453,6 @@ resetStateforOrderNum = (num) => {
                     transaction = {this.state.transaction}
                     user_id = {this.state.id}
                     cart = {this.state.cart}
-              
                   />
                </div> 
       } else {
@@ -477,7 +460,6 @@ resetStateforOrderNum = (num) => {
       }
     
     }
-
 
 
     renderProfileUpdate = (routerProps) => {
@@ -491,7 +473,6 @@ resetStateforOrderNum = (num) => {
                     password={this.state.password}
                     user_id ={this.state.id}
                     handleUpdateSubmit={this.handleUpdateSubmit}
-              
                   />
                </div> 
       } else {
@@ -501,17 +482,19 @@ resetStateforOrderNum = (num) => {
     }
 
   render() {
-
-    console.log(this.allOrders)
-    console.log(this.state.cart_id)
     
     return (
       <div className="App">
-        <Header orderNum = {this.state.orders.length}
+        <Header 
                 cart_id = {this.state.cart_id}
                 cart = {this.state.cart}
                 token = {this.state.token}
                 name = {this.state.name}
+                orderNumber = {this.state.orders.filter(cartPojo => {
+                  return cartPojo.cart_id === this.state.cart_id
+                })
+              }
+                  
         />
           <main>
             <Switch>

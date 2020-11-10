@@ -20,7 +20,6 @@ class CartContainer extends React.Component {
     }
 
     // Update Functionality -------------------------
-
     decreaseQuantityHandler = (evt) => {
         if (this.props.order.quantity > 1) {
             fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
@@ -65,8 +64,6 @@ class CartContainer extends React.Component {
     }
 
     render () {
-
-        console.log(this.props.order)
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product        
                 return <div>

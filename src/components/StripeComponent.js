@@ -1,29 +1,16 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
-import CategoryNavBar from './CategoryNavBar'
+// import CategoryNavBar from './CategoryNavBar'
 import {withRouter} from 'react-router-dom'
-import CheckOut from './CheckOut'
+// import CheckOut from './CheckOut'
 
 
 class StripeComponent extends React.Component { 
 
-    // state = {
-    //     cart_id: '',
-    //     cart: []
-    // }
 
-
-    // componentDidUpdate (prevprops, prevstate) {
-    //     if (!prevstate.this.state.cart_id) {
-    //         this.props.setNewCartToState({cart_id: this.state.cart_id, cart: this.state.cart})
-    //     }
-    // }
-    
     handleClick = () => {
         this.props.history.push("/mycart/checkout")
         
-
-
         fetch('http://localhost:3000/carts', {
             method: "POST",
             headers: {
@@ -35,22 +22,15 @@ class StripeComponent extends React.Component {
             history: false
                 })
         })
-    .then(res => res.json())
-    .then((cartPojo) => {
-        this.props.setNewCartToState({
-        cart_id: cartPojo.id
-       
-      })
-    })
-
-
-
-        
-    
+        .then(res => res.json())
+        .then((cartPojo) => {
+            this.props.setNewCartToState({
+            cart_id: cartPojo.id
+            })
+        })
     }
 
     render(){
-
         let onToken = (token) => {
             // save the token id to a variable to then use it in the body of the fetch.
             const charge = {

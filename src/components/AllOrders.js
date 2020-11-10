@@ -26,8 +26,7 @@ class AllOrders extends React.Component {
                 promotion = ''
                 }
 
-                
-                
+
             return (
                 <div 
                 // className ='cart-holder'

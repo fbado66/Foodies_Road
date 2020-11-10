@@ -12,44 +12,40 @@ function Header(props) {
         profile = `Hi ${props.name}!`
     }
     
-    if (props.cart_id && props.cart.length > 0) {
-        if (props.orderNum === 0  ){
-    return <div className='nav_header'>
-                <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
-                <ul className=''>
-                    <NavLink to='/login'>{logged}</NavLink>
-                    <NavLink to='/register'>REGISTER</NavLink>
-                    <NavLink to='/profile'>{profile}</NavLink>
-                    <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
-                </ul>
-            </div>
- 
-    }else {
-        return(
-        
-        <div className='nav_header'>    
-            <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
-            <ul className=''>
-                <NavLink to='/login'>{logged}</NavLink>
-                <NavLink to='/profile'>{profile}</NavLink>
-                <NavLink to='/register'>REGISTER</NavLink>
-                <NavLink to='/cart'><ShoppingCartIcon /> <div className='count'>{props.orderNum} </div></NavLink>
-            </ul>
-        </div>
-    )
-        }
-} else {
-    return <div className='nav_header'>
-                <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
-                <ul className=''>
-                    <NavLink to='/login'>{logged}</NavLink>
-                    <NavLink to='/register'>REGISTER</NavLink>
-                    <NavLink to='/profile'>{profile}</NavLink>
-                    <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
-                </ul>
-            </div>
-
-
+    if (props.cart.length > 0) {
+        if (props.orderNumber.length === 0  ){
+            return <div className='nav_header'>
+                        <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
+                        <ul className=''>
+                            <NavLink to='/login'>{logged}</NavLink>
+                            <NavLink to='/register'>REGISTER</NavLink>
+                            <NavLink to='/profile'>{profile}</NavLink>
+                            <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
+                        </ul>
+                    </div>
+            }else {
+                return(
+                    <div className='nav_header'>    
+                        <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
+                        <ul className=''>
+                            <NavLink to='/login'>{logged}</NavLink>
+                            <NavLink to='/profile'>{profile}</NavLink>
+                            <NavLink to='/register'>REGISTER</NavLink>
+                            <NavLink to='/cart'><ShoppingCartIcon /> <div className='count'>{props.orderNumber.length} </div></NavLink>
+                        </ul>
+                    </div>
+                )
+            }
+        } else {
+            return <div className='nav_header'>
+                        <div className = 'logo '><NavLink to='/'>Foodies Road</NavLink></div>
+                        <ul className=''>
+                            <NavLink to='/login'>{logged}</NavLink>
+                            <NavLink to='/register'>REGISTER</NavLink>
+                            <NavLink to='/profile'>{profile}</NavLink>
+                            <NavLink to='/cart'><ShoppingCartIcon /> </NavLink>
+                        </ul>
+                    </div>
     }
 }
 
