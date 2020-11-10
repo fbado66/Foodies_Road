@@ -5,9 +5,10 @@ import OrderForm from './OrderForm'
 class Product extends React.Component {
 
     render() {
-        // console.log(this.props.order)
 
         let {id, name, image_url, price} = this.props.order
+
+        console.log(this.props.cart_id)
             return(
                 <div className='product-card'>
                    <img className = 'product-image' src = {image_url} alt ={name} />

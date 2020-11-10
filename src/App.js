@@ -293,7 +293,7 @@ setTransactionInfoToState = (transactionInfo) => {
 
 setNewCartToState = (cartPojo) => {
   this.setState({
-    cart: cartPojo,
+    // cart: cartPojo,
     cart_id: cartPojo.id
   })
 }
@@ -361,13 +361,6 @@ resetStateforOrderNum = (num) => {
     })
   }
 
-  // addOrderToCartState = (newCreatedOrder) => {
-  //   let copyOfCart = [...this.state.cart, newCreatedOrder]
-  //   this.setState( {
-  //     cart: copyOfCart
-  //   })
-  // }
-
 
     //  ----- UPDATE STATE WHEN DELETING AN ORDER ----------
   deleteOrderFromState = (deletedID) => {
@@ -378,16 +371,6 @@ resetStateforOrderNum = (num) => {
       orders: copyOfOrders
     })
   }
-
-  // deleteOrderFromState = (deletedID) => {
-  //   let copyOfOrders = this.state.cart.filter(orderObj => {
-  //     return orderObj.id !== deletedID
-  //   })
-  //   this.setState({
-  //     cart: copyOfOrders
-  //   })
-  // }
-
   
     //  ----- UPDATE STATE WHEN UPDATING AN ORDER ----------
     updateOrderFromState = (updatedObj) => {
@@ -402,22 +385,6 @@ resetStateforOrderNum = (num) => {
         orders: copyOfOrders
       })
     }
-
-    // updateOrderFromState = (updatedObj) => {
-    //   let copyOfOrders = this.state.orders.map((order) => {
-    //     if(order.id === updatedObj.id){
-    //       return updatedObj
-    //     } else {
-    //       return order
-    //     }
-    //   })
-    //   this.setState({
-    //     orders: copyOfOrders
-    //   })
-    // }
-  
-
-
 
     // LOGIN / REGISTER FORM ------------------
     renderForm = (routerProps) => {
@@ -438,8 +405,6 @@ resetStateforOrderNum = (num) => {
       } 
     }
 
-
-
     // RENDER PROFILE COMPONENT -----------------------------------
     renderProfile = (routerProps) => {
       if(this.state.token){
@@ -453,6 +418,7 @@ resetStateforOrderNum = (num) => {
                     transaction = {this.state.transaction}
                     user_id = {this.state.id}
                     cart = {this.state.cart}
+                    cart_id = {this.state.cart_id}
                   />
                </div> 
       } else {

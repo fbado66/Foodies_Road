@@ -19,17 +19,26 @@ class Profile extends React.Component {
     //     </div>
     // })
 
-    // passTransactions = this.props.cart.map(transactions => {
-    //     return transactions.orders.map(productPojo => {
-    //         return <div id={productPojo.product} >
-    //                     <p>name: {productPojo.product.name}</p>
-    //                 </div>
-    //     })
-    // })
+    cartIDs = this.props.cart.map(cartPojo => {
+        return cartPojo.id
+    })
+
+  
+    passTransactions = this.props.cart.map(transactions => {
+        return transactions.orders.map(productPojo => {
+            return <div>Transaction ID:{transactions.id}
+                        <div id={productPojo.product} >
+                            <p>name: {productPojo.product.name}</p>
+                        </div>
+                    </div>
+        })
+    })
 
     render() {
 
-        // console.log(this.props)
+        console.log(this.props.cart.map(cartPojo => {
+            console.log(cartPojo.id)
+        }))
         return (
             <div>
                 <h2>Welcome {this.props.name}</h2>
@@ -43,7 +52,7 @@ class Profile extends React.Component {
 
                 <div>
                     <p>previous Transactions</p>
-                    {/* {this.passTransactions} */}
+                    {this.passTransactions}
                     <p>{this.props.transaction.amount}</p>
                 </div>
 

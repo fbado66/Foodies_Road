@@ -24,9 +24,7 @@ class StripeComponent extends React.Component {
         })
         .then(res => res.json())
         .then((cartPojo) => {
-            this.props.setNewCartToState({
-            cart_id: cartPojo.id
-            })
+            this.props.setNewCartToState(cartPojo)
         })
     }
 
@@ -62,7 +60,6 @@ class StripeComponent extends React.Component {
                 })
             })
         };
-
         return (
             <div>
                 <StripeCheckout
