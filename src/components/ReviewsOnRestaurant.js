@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
+import StarRatingComponent from 'react-star-rating-component'
 
 
 class ReviewsOnRestaurant extends React.Component {
@@ -46,7 +47,11 @@ class ReviewsOnRestaurant extends React.Component {
     if (this.props.user_id === this.props.review.user_id) {
         return <div>
                     <p>content: {content}</p>
-                    <p>rating: {rating} </p>
+                    <StarRatingComponent 
+                        name="rating" 
+                        starCount={5}
+                        value={rating}
+                    />
                     <div onClick = {this.handleDelete}>
                         <DeleteIcon />
                     </div>
@@ -57,8 +62,13 @@ class ReviewsOnRestaurant extends React.Component {
     } else {
         return <div>
                     <p>content: {content}</p>
-                    <p>rating: {rating} </p>
+                    <StarRatingComponent 
+                        name="rating" 
+                        starCount={5}
+                        value={rating}
+                    />
                 </div>
+               
     }
 }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
-
+import StarRatingComponent from 'react-star-rating-component'
 
 class ReviewForm extends Component {
 
     state = {
         content: "",
-        rating: ''
+        rating: 0
     }
 
     handleReviewForm = (evt) => {
@@ -35,16 +35,20 @@ class ReviewForm extends Component {
 
         this.setState({
             content: '',
-            rating: ''
+            rating: 0
         })
         
     }
-
 
     handleChange = (e) => {
         let {name, value} = e.target
         this.setState({
             [name]: value
+        })
+    }
+
+    onStarClick = (nextValue) => {
+        this.setState({rating: nextValue
         })
     }
 
@@ -54,17 +58,16 @@ class ReviewForm extends Component {
         return (
             <div className =''>
                 <form onSubmit={this.handleReviewForm}>
-
                     <h4>Review</h4>
-
                     <label htmlFor="">content:</label>
                         <input type="text" autoComplete="off" name="content" 
                         value={this.state.content} onChange={this.handleChange}/>
-
-                    <label className = '' htmlFor="rating">rating:</label>
-                        <input type="number" autoComplete="off" name="rating" 
-                        value={this.state.rating} onChange={this.handleChange}/>
-            
+                    <StarRatingComponent 
+                        name="rating" 
+                        starCount={5}
+                        onStarClick={this.onStarClick} /* on icon click handler */
+                        value={this.state.rating} 
+                    />
                     <input className= 'createReview' type="submit" value="Share with us"/>
                 </form>
             </div>
