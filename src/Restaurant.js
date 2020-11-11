@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleComponent } from 'react-google-location' 
-import { orderByDistance } from 'geolib'
+// import { orderByDistance } from 'geolib'
 
 const geolib = require('geolib');
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY

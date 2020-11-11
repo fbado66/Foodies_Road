@@ -13,6 +13,7 @@ import RegisterForm from "./RegisterForm"
 import Profile from './components/Profile'
 import UpdateUserForm from './components/UpdateUserForm'
 import CheckOut from './components/CheckOut'
+import Orderhandler from './components/Orderhandler';
 require('dotenv').config()
 
 
@@ -263,7 +264,7 @@ class App extends React.Component {
       return cartPojo.cart_id === this.state.cart_id
         
     })
-    return <AllOrders 
+    return <div><AllOrders 
             allOrders = {allOrders}
             deleteOrderFromState = {this.deleteOrderFromState}
             updateOrderFromState = {this.updateOrderFromState} 
@@ -274,6 +275,7 @@ class App extends React.Component {
             resetStateforOrderNum = {this.resetStateforOrderNum}
             cart_id = {this.state.cart_id}
           />
+          </div>
   }
 }
 
@@ -417,9 +419,14 @@ resetStateforOrderNum = (num) => {
                     orders = {this.state.orders}
                     transaction = {this.state.transaction}
                     user_id = {this.state.id}
-                    cart = {this.state.cart}
+                    cart = {this.state.orders}
                     cart_id = {this.state.cart_id}
                   />
+                  <Orderhandler 
+                  orders ={this.state.orders}
+                  />
+                  
+                  
                </div> 
       } else {
         return <Redirect to="/login" />
@@ -440,6 +447,7 @@ resetStateforOrderNum = (num) => {
                     user_id ={this.state.id}
                     handleUpdateSubmit={this.handleUpdateSubmit}
                   />
+                  
                </div> 
       } else {
         return <Redirect to="/profile" />
@@ -448,7 +456,8 @@ resetStateforOrderNum = (num) => {
     }
 
   render() {
-    
+ 
+    console.log(this.state.orders.map(order => order.id))
     return (
       <div className="App">
         <Header 

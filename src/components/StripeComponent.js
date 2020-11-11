@@ -2,7 +2,7 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout'
 // import CategoryNavBar from './CategoryNavBar'
 import {withRouter} from 'react-router-dom'
-// import CheckOut from './CheckOut'
+import CheckOut from './CheckOut'
 
 
 class StripeComponent extends React.Component { 
