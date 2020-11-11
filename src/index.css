@@ -41,9 +41,8 @@ a {
 }
 
 .count {
-  background: red;
-  width: 15px;
-  height: 15px;
+  background:#e00051;
+  padding: 3px 6px;
   border-radius: 99px;
   font-weight: bold;
   color: white;
@@ -235,7 +234,53 @@ margin-bottom: 5%;
   
 }
 
-
+/* 
 .small_pic {
   width: 5%;
+} */
+
+
+.image_restaurant {
+  /* width: 350px; */
+  height: 250px;
+}
+
+#Grid-Container {
+  padding-left: 1%;
+  padding-right: 1%
+}
+
+.ui.card, .ui.cards>.card {
+  width: 365px!important;
+}
+
+#header_ui {
+/* border: 1px solid blue; */
+width: 100%
+}
+
+/* .ui.basic.red.button, .ui.basic.red.buttons .button {
+  width: 79px!important
+} */
+
+.ui.segment {
+  box-shadow: none!important;
+  border: none!important
+}
+
+.options_cuisines > option {
+  display: inline-block!important
+}
+
+
+option {
+  padding: 5px 30px;
+  border: 1px solid red;
+  font-weight: 700;
+  border-radius: 8px;
+  margin: 1%;
+}
+
+option:nth-child(even) {
+  border: 1px solid blue;
 }

@@ -2,3 +2,13 @@
   text-align: center;
 }
 
+#grid-column {
+  border: 2px solid blue;
+  /* width: 20%; */
+}
+
+/* #Grid-Container {
+  border: 2px solid red;
+  width: 20%;
+} */
+

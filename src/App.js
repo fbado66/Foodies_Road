@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from "./Header"
+import MainHeader from "./MainHeader"
 import Footer from './Footer'
 import Home from './Home'
 import Restaurant from './Restaurant'
@@ -14,6 +14,12 @@ import Profile from './components/Profile'
 import UpdateUserForm from './components/UpdateUserForm'
 import CheckOut from './components/CheckOut'
 import Orderhandler from './components/Orderhandler';
+import 'semantic-ui-css/semantic.min.css'
+
+
+
+import { Grid, Image, Card, Icon } from 'semantic-ui-react'
+
 require('dotenv').config()
 
 
@@ -225,6 +231,19 @@ class App extends React.Component {
 
   }
 
+// {/* <div className ='restaurant-card'
+//   key={restaurantPojo.id}
+//   >            
+// <Link to={`/restaurants/${restaurantPojo.id}`}>
+//   {/* <img className ='restaurant-image' src ={restaurantPojo.image_url} alt={restaurantPojo.name} />
+//   <h2 className= 'restaurant-title'> {restaurantPojo.name}</h2>
+//   <p> {restaurantPojo.address}</p> */}
+
+
+//   // GRID COLUMN GOES HERE
+
+// </Link>
+// </div>    */}
 
   renderRestaurants = () => {
     let restaurants = this.state.restaurants
@@ -235,15 +254,22 @@ class App extends React.Component {
     } 
     let arrayOfRestaurants = restaurants.map((restaurantPojo) => {
       return (
-            <div className ='restaurant-card'
-                key={restaurantPojo.id}
-                >            
-              <Link to={`/restaurants/${restaurantPojo.id}`}>
-                <img className ='restaurant-image' src ={restaurantPojo.image_url} alt={restaurantPojo.name} />
-                <h2 className= 'restaurant-title'> {restaurantPojo.name}</h2>
-                <p> {restaurantPojo.address}</p>
-              </Link>
-            </div>   
+          <Grid.Column >
+            <Card as={Link} to={`/restaurants/${restaurantPojo.id}`}>
+              <Image className = 'image_restaurant' src={restaurantPojo.image_url ? restaurantPojo.image_url : "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} alt={restaurantPojo.name} />
+                <Card.Content>
+                  <Card.Header>{restaurantPojo.name}</Card.Header>
+                  <Card.Meta>{restaurantPojo.cuisines}</Card.Meta>
+                  <Card.Description>{restaurantPojo.address}</Card.Description>
+                  <Card.Description>{restaurantPojo.phone_number}</Card.Description>
+
+                </Card.Content>
+                <Card.Content >
+                  <div>{restaurantPojo.user_rating_text} <Icon name='food' /> </div>
+                  {restaurantPojo.user_rating} <Icon name="star" /> ({restaurantPojo.reviews_count}+)
+                </Card.Content>
+            </Card>
+          </Grid.Column>
       ) 
     })
       return (
@@ -459,7 +485,7 @@ resetStateforOrderNum = (num) => {
  
     return (
       <div className="App">
-        <Header 
+        <MainHeader 
                 cart_id = {this.state.cart_id}
                 cart = {this.state.cart}
                 token = {this.state.token}

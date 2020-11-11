@@ -1,6 +1,8 @@
 import React from 'react'
 import { GoogleComponent } from 'react-google-location' 
 // import { orderByDistance } from 'geolib'
+import { Grid, Image, Label } from 'semantic-ui-react';
+
 
 const geolib = require('geolib');
 const API_KEY = process.env.REACT_APP_GOOGLE_KEY
@@ -46,7 +48,7 @@ class Restaurant extends React.Component {
                 />
                 
 
-                <ul className ='' value={this.selectedCusine} onClick = {this.handleClick} >
+                <div className ='options_cuisines' value={this.selectedCusine} onClick = {this.handleClick} >
                     <option value='All'> All</option>
                     <option value='American'> American</option>
                     <option value='Italian'> Italian</option>
@@ -60,9 +62,39 @@ class Restaurant extends React.Component {
                     <option value='Seafood'>Seafood</option>
                     <option value='Bakery'>Bakery</option>
                     <option value='Donuts'>Bagels</option>
-                </ul>
+                </div>
 
-                    <div className='restaurants-holder'>{this.props.restaurants}</div>
+                    <Grid doubling columns={4} id="Grid-Container">
+                        {this.props.restaurants}
+                    </Grid>
+
+
+
+
+
+
+
+
+
+                    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
         )
