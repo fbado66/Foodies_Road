@@ -8,7 +8,6 @@ class Product extends React.Component {
 
         let {id, name, image_url, price} = this.props.order
 
-        console.log(this.props.cart_id)
             return(
                 <div className='product-card'>
                    <img className = 'product-image' src = {image_url} alt ={name} />

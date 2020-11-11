@@ -10,22 +10,23 @@ class Profile extends React.Component {
     
     arrayOfallOrders = this.props.cart.reduce((acc, {cart_id, product}) => {
         if(!acc[cart_id]) acc[cart_id] = [<h2>{cart_id}</h2>];
-        acc[cart_id].push(<div key ={Math.floor(Math.random() * 1000) + 3 }>
+        acc[cart_id].push(<div key ={Math.floor((Math.random()*25)+65) }>
                             <h5>{product.name}</h5>
-                            <p>${product.price}.00</p>
                             <img className = 'small_pic' src= {product.image_url} />
+                            <p>${product.price}.00</p>
+                             
                           </div>)
         return acc
     }, {})
 
     
-    sortOrdersByCart = Object.values(this.arrayOfallOrders).map(groupedOrders => <div key ={Math.floor(Math.random() * 2000) + 1003 }>{groupedOrders}</div>)
+    sortOrdersByCart = Object.values(this.arrayOfallOrders).map(groupedOrders => <div key ={Math.floor(Math.random()*2000)+1003 }>{groupedOrders}</div>)
 
     render() {
         // console.log(this.test5)
         // console.log(this.test6)
         return (
-            <div>
+            <div >
                 <h2>Welcome {this.props.name}</h2>
                 <p>Email: {this.props.email}</p>
                 <p>Phone: {this.props.phone_number}</p>
@@ -34,10 +35,9 @@ class Profile extends React.Component {
                 <button onClick={this.handleClick}>Update Information</button>
 
                 <div>
-                    
                     <p>previous Transactions</p>
                     {this.sortOrdersByCart}
-                    <p>{this.props.transaction.amount}</p>
+                    {/* <p>{this.props.transaction.amount}</p> */}
                 </div>
 
             </div>

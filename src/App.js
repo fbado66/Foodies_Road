@@ -457,7 +457,6 @@ resetStateforOrderNum = (num) => {
 
   render() {
  
-    console.log(this.state.orders.map(order => order.id))
     return (
       <div className="App">
         <Header 

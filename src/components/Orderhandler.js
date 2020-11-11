@@ -22,7 +22,7 @@ class Orderhandler extends React.Component {
     //    console.log(this.test)
         return (
             <div>
-                Hello from order handler
+                {/* Hello from order handler */}
                 {/* {this.test} */}
             </div>
         )
