@@ -18,7 +18,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 
 
-import { Grid, Image, Card, Icon } from 'semantic-ui-react'
+import { Grid, Image, Card, Icon, Button } from 'semantic-ui-react'
 
 require('dotenv').config()
 
@@ -418,7 +418,10 @@ resetStateforOrderNum = (num) => {
     // LOGIN / REGISTER FORM ------------------
     renderForm = (routerProps) => {
       if(this.state.token){
-        return <button className='logout' onClick={this.handleLogOut}>LOG OUT {this.state.name}</button>
+        return <Button inverted color='red' onClick={this.handleLogOut}>
+        Are you sure {this.state.name}?
+      </Button>
+        // <button className='logout' onClick={this.handleLogOut}>Are you sure {this.state.name}?</button>
       }
       if(routerProps.location.pathname === "/login"){
         return <LogInForm

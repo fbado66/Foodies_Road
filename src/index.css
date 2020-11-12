@@ -476,24 +476,57 @@ option:nth-child(even) {
 
 #orderNumber {
   border: 1px solid blue;
+  background-color: #54c8ff;
+  color: #F5F5F5;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-weight: 700;
+  border-radius: 8px;
+  margin: 0 auto;
+  width: 150px;
 }
 
 #orderNumber:hover + #productsOnOrder:nth-child(n) {
-  border: 1px solid red
-  
+  opacity: 70%;
 }
 
 #productsOnOrder {
   height: 100%;
   margin-bottom: 15px;
-
-  /* border: 1px solid red */
- 
+  padding: 5%;
+  text-align: left;
+  display:flex; 
 }
 
 #allTransactions {
   padding-top: 140px;
-  width: 250px;
+  width: 300px;
   margin: 0 auto;
-  /* margin-right: 5%; */
+}
+
+.productNameOnCart {
+  margin-left: 4%;
+  text-align: center!important;
+  /* text-shadow: .1px .1px black; */
+  font-weight: bold;
+
+}
+
+#registerForm {
+  width: 50%;
+  margin: 0 auto;
+  padding: 2% 8%;
+}
+
+#registerForm > placeholder {
+  text-align: center
+}
+
+#form-input {
+  text-align: center;
+}
+
+#registerTitleForm {
+  margin-top: 30px;
+  text-shadow: .4px .3px black
 }
