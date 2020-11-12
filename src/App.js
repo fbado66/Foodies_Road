@@ -353,6 +353,7 @@ resetStateforOrderNum = (num) => {
                 addReviewToState = {this.addReviewToState}
                 reviews = {this.state.reviews}
                 user_id = {this.state.id}
+                name={this.state.name}
               />         
     }else {
       return <NotFound />

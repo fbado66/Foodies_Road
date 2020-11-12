@@ -68,6 +68,7 @@ class SelectedRestaurant extends React.Component {
                         review ={reviewPojo}
                         token = {this.props.token} 
                         user_id = {this.props.user_id}
+                        name={this.props.name}
                         deleteReviewFromState = {this.deleteReviewFromState}
                         updatedReviewFromState = {this.updatedReviewFromState}
                         />

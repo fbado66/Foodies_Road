@@ -68,7 +68,7 @@ class ReviewForm extends Component {
                         onStarClick={this.onStarClick} /* on icon click handler */
                         value={this.state.rating} 
                     />
-                    <input className= 'createReview' type="submit" value="Share with us"/>
+                    <input className= 'createReview' type="submit" value="Share"/>
                 </form>
 
 

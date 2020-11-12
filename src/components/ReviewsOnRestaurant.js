@@ -45,30 +45,23 @@ class ReviewsOnRestaurant extends React.Component {
     render() {
     let {content, rating} = this.props.review
     if (this.props.user_id === this.props.review.user_id) {
+
         return <div>
-                    <p>content: {content}</p>
-                    <StarRatingComponent 
-                        name="rating" 
-                        starCount={5}
-                        value={rating}
-                    />
-                    <div onClick = {this.handleDelete}>
-                        <DeleteIcon />
-                    </div>
-                    <button onClick = {this.handleUpdate}>
+                    <p>{this.props.name}</p>    
+                    <StarRatingComponent name="rating" starCount={5} value={rating} />
+                    <p>content: {content}</p>    
+                    <div onClick = {this.handleDelete}> <DeleteIcon /> </div>
+                    {/* <button onClick = {this.handleUpdate}>
                         update
-                    </button>
+                    </button> */}
                 </div>
     } else {
+
         return <div>
+                    <p>{this.props.name}</p>
                     <p>content: {content}</p>
-                    <StarRatingComponent 
-                        name="rating" 
-                        starCount={5}
-                        value={rating}
-                    />
+                    <StarRatingComponent name="rating" starCount={5} value={rating}/>
                 </div>
-               
     }
 }
 }
