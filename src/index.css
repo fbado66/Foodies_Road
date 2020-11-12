@@ -545,3 +545,34 @@ option:nth-child(even) {
   font-size: 18px;
   margin-bottom: 6%
 }
+
+
+.location-box-cover > input {
+  border: 1px solid orange;
+  width: 400px!important;
+  padding: .5%;
+  border-radius: 10px;
+  text-align: center!important;
+}
+
+.google-covert {
+  width: 400px!important;
+  margin: 0 auto;
+}
+
+.custom-style-list {
+  list-style: none!important;
+}
+
+.location-box-cover {
+  margin: 3% 0%;
+}
+
+
+#search_header {
+  margin-bottom: -35px;
+  margin-top: 20px;
+  font-weight: 700;
+  opacity: 80%;
+  color: #e00051
+}

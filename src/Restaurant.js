@@ -28,7 +28,8 @@ class Restaurant extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div id='locationSearch'>
+                <p id='search_header'>Search Restaurants closest to you</p>
                 <GoogleComponent
                     apiKey = {API_KEY}
                     language = {'en'}
