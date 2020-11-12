@@ -468,3 +468,32 @@ option:nth-child(even) {
 #promotion {
   margin: 25px 0;
 }
+
+.profile_product_img {
+  height: 45px;
+  width: 45px;
+}
+
+#orderNumber {
+  border: 1px solid blue;
+}
+
+#orderNumber:hover + #productsOnOrder:nth-child(n) {
+  border: 1px solid red
+  
+}
+
+#productsOnOrder {
+  height: 100%;
+  margin-bottom: 15px;
+
+  /* border: 1px solid red */
+ 
+}
+
+#allTransactions {
+  padding-top: 140px;
+  width: 250px;
+  margin: 0 auto;
+  /* margin-right: 5%; */
+}

@@ -1,7 +1,13 @@
 import React from 'react'
 import {withRouter } from 'react-router-dom'
+import { Accordion } from 'semantic-ui-react'
+
 
 class Profile extends React.Component {
+
+    state = {
+
+    }
 
     handleClick = () => {
    this.props.history.push('/profile/edit')
@@ -9,22 +15,37 @@ class Profile extends React.Component {
 
     
     arrayOfallOrders = this.props.cart.reduce((acc, {cart_id, product}) => {
-        if(!acc[cart_id]) acc[cart_id] = [<h2>{cart_id}</h2>];
-        acc[cart_id].push(<div key ={Math.floor((Math.random()*25)+65) }>
-                            <h5>{product.name}</h5>
-                            <img className = 'small_pic' src= {product.image_url} />
-                            <p>${product.price}.00</p>
-                             
+        if(!acc[cart_id]) 
+        acc[cart_id] = [<div id='orderNumber'>Order No. {cart_id}</div>];
+        acc[cart_id].push(<div id='productsOnOrder' key ={Math.floor((Math.random()*25)+65) }>
+                            <img className = 'profile_product_img' src= {product.image_url} />
+                            {product.name}
+                            ${product.price}.00
                           </div>)
+                         
         return acc
     }, {})
 
     
     sortOrdersByCart = Object.values(this.arrayOfallOrders).map(groupedOrders => <div key ={Math.floor(Math.random()*2000)+1003 }>{groupedOrders}</div>)
 
+    
+      
+      
+
     render() {
-        // console.log(this.test5)
-        // console.log(this.test6)
+
+
+
+
+       
+
+
+
+
+
+
+       
         return (
             <div >
                 <h2>Welcome {this.props.name}</h2>
@@ -36,9 +57,27 @@ class Profile extends React.Component {
 
                 <div>
                     <p>previous Transactions</p>
-                    {this.sortOrdersByCart}
+                    <div id='allTransactions'>
+                        {this.sortOrdersByCart}
+                    </div>
                     {/* <p>{this.props.transaction.amount}</p> */}
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+  
+
 
             </div>
         )
