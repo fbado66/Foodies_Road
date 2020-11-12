@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
     return(
-        <div>
+        <div id='footer'>
             <span>This is a demo, no rights reserved on this application</span>
             <ul>
                 <li>Learn more </li>

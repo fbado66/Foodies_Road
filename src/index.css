@@ -56,33 +56,37 @@ a {
   font-size: 40px;
 }
 
-.hero-section {
-  display: flex;
+.hero-text {
+  position: absolute;
+  top: 350px;
+  z-index: 999;
+  margin-left: 10px;
+  height: 200px;
+  min-width: 300px!important;
+  max-width: 300px!important
 }
 
-.hero-text {
-  position: relative;
-  top: 250px
+#buyNowBut {
+  margin-top: 4%;
+  color: white!important;
+  text-shadow: .2px .2px white;
+  font-size: 16px;
 }
-.order_now {
-  background: #fdd129;
-  width: 120px;
-  padding: 2% 1%;
-  left: 40%;
-  margin-top: 30px;
-  font-weight: 600;
-  text-shadow: 1px 1px white;
-  border-radius: 20px;
-  position: relative;
+
+#home-subTitle {
+  text-shadow: .3px .4px black;
 }
+
 
 .home-image {
   height: 700px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  width: 80%;
+  position: relative!important;
+  width: 70%;
+  float: right;
+  margin-bottom: 100px;
+
 }
 
 
@@ -575,4 +579,12 @@ option:nth-child(even) {
   font-weight: 700;
   opacity: 80%;
   color: #e00051
+}
+
+
+#footer {
+  position: relative;
+  bottom: 0;
+  margin-left: 50%;
+  /* margin-top: 300px; */
 }
