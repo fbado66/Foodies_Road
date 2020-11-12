@@ -31,6 +31,7 @@ class App extends React.Component {
     orders: [],
     token: '',
     name: '',
+    last_name: '',
     cart_id: '',
     cart: [],
     products: [],
@@ -84,6 +85,7 @@ class App extends React.Component {
     this.setState({
       id: 0,
       name: "",
+      last_name: '',
       orders: [],
       token: "",
       phone_number: '',
@@ -126,6 +128,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         name: userInfo.name,
+        last_name: userInfo.last_name,
         password: userInfo.password,
         email: userInfo.email,
         phone_number: userInfo.phone_number,
@@ -146,6 +149,7 @@ class App extends React.Component {
       this.setState({
         id: resp.user.id,
         name: resp.user.name,
+        last_name: resp.user.last_name,
         orders: resp.user.orders,
         token: resp.token,
         phone_number: resp.user.phone_number,
@@ -189,6 +193,7 @@ class App extends React.Component {
       this.setState({
         id: resp.user.id,
         name: resp.user.name,
+        last_name: resp.user.last_name,
         orders: resp.user.orders,
         cart: resp.user.carts,
         token: resp.token,
@@ -211,6 +216,7 @@ class App extends React.Component {
       },
       body: JSON.stringify({
         name: userInfo.name,
+        last_name: userInfo.last_name,
         password: userInfo.password,
         email: userInfo.email,
         phone_number: userInfo.phone_number,
@@ -221,6 +227,7 @@ class App extends React.Component {
     .then((userInfo) => {
       this.setState({
         name: userInfo.name,
+        last_name: userInfo.last_name,
         password: userInfo.password,
         email: userInfo.email,
         phone_number: userInfo.phone_number,
@@ -443,6 +450,7 @@ resetStateforOrderNum = (num) => {
         return <div>
                   <Profile
                     name={this.state.name} 
+                    last_name={this.state.last_name}
                     email={this.state.email}
                     phone_number={this.state.phone_number}
                     address={this.state.address}
@@ -470,6 +478,7 @@ resetStateforOrderNum = (num) => {
         return <div>
                   <UpdateUserForm
                     name={this.state.name} 
+                    last_name={this.state.last_name}
                     email={this.state.email}
                     phone_number={this.state.phone_number}
                     address={this.state.address}

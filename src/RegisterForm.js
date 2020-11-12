@@ -6,6 +6,7 @@ class RegisterForm extends Component {
 
   state = {
     name: "",
+    last_name: '',
     password: "",
     email: "",
     phone_number: "",
@@ -26,7 +27,7 @@ class RegisterForm extends Component {
 
   render() {
     let {formName} = this.props
-    let {name, password, email, phone_number, address} = this.state
+    let {name, last_name, password, email, phone_number, address} = this.state
 
     return (      
       <div>
@@ -48,6 +49,9 @@ class RegisterForm extends Component {
                 control={Input}
                 label='Last name'
                 placeholder='Last name'
+                name="last_name" 
+                value={last_name} 
+                onChange={this.handleChange}
               />
               <Form.Field
                 id='form-input'
