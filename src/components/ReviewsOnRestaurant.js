@@ -1,6 +1,8 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import StarRatingComponent from 'react-star-rating-component'
+import { List, Icon } from 'semantic-ui-react';
+
 
 
 class ReviewsOnRestaurant extends React.Component {
@@ -46,24 +48,52 @@ class ReviewsOnRestaurant extends React.Component {
     let {content, rating} = this.props.review
     if (this.props.user_id === this.props.review.user_id) {
 
-        return <div>
-                    <p>{this.props.name}</p>    
-                    <StarRatingComponent name="rating" starCount={5} value={rating} />
-                    <p>content: {content}</p>    
-                    <div onClick = {this.handleDelete}> <DeleteIcon /> </div>
+        return <List >
+                <List.Item >
+                    <List.Content className ='reviewOnDisplay'>
+                        <List.Header id='author'><Icon color='black' name='user' />{this.props.name} 
+                            <span id='starsOnReview'><StarRatingComponent name="rating" starCount={5} value={rating} /></span>
+                        </List.Header>
+                    </List.Content>
+                    <List.Description id='review-content'>
+                        {content} <span onClick = {this.handleDelete}> <DeleteIcon /> </span>
+                    </List.Description>
+                </List.Item>
+            </List>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     {/* <button onClick = {this.handleUpdate}>
                         update
                     </button> */}
-                </div>
-    } else {
-
+                
+        } else {
         return <div>
-                    <p>{this.props.name}</p>
-                    <p>content: {content}</p>
-                    <StarRatingComponent name="rating" starCount={5} value={rating}/>
+                    <List >
+                        <List.Item >
+                            <List.Content className ='reviewOnDisplay'>
+                                <List.Header id='author'><Icon color='black' name='user' />{this.props.name} 
+                                    <span id='starsOnReview'><StarRatingComponent name="rating" starCount={5} value={rating} /></span>
+                                </List.Header>
+                            </List.Content>
+                            <List.Description id='review-content'>{content} </List.Description>
+                        </List.Item>
+                    </List>
                 </div>
+        }
     }
-}
 }
 
 export default ReviewsOnRestaurant

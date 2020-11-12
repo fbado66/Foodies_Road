@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import StarRatingComponent from 'react-star-rating-component'
+import { Form, Icon } from 'semantic-ui-react';
+
 
 class ReviewForm extends Component {
 
@@ -54,58 +56,24 @@ class ReviewForm extends Component {
 
 
     render () {
-    
         return (
-            <div className =''>
+            <div className ='reviewForm'>
                 <form onSubmit={this.handleReviewForm}>
-                    <h4>Review</h4>
-                    <label htmlFor="">content:</label>
-                        <input type="text" autoComplete="off" name="content" 
-                        value={this.state.content} onChange={this.handleChange}/>
-                    <StarRatingComponent 
-                        name="rating" 
-                        starCount={5}
-                        onStarClick={this.onStarClick} /* on icon click handler */
-                        value={this.state.rating} 
-                    />
-                    <input className= 'createReview' type="submit" value="Share"/>
+                    <h4>Reviews</h4>
+                        <Form>
+                            <StarRatingComponent 
+                                name="rating" starCount={5}
+                                onStarClick={this.onStarClick} /* on icon click handler */
+                                value={this.state.rating} 
+                            />
+                            <Form.TextArea label='Share with us' 
+                            placeholder="Please provide a rating star, and Let us know about your experience... " 
+                            name="content" 
+                            id='leaveReviewForm'
+                            value={this.state.content} onChange={this.handleChange} />
+                        </Form>
+                    <input className= 'createReviewButton' type="submit" value="Share"/>
                 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
             </div>
         );
     }

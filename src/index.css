@@ -367,3 +367,42 @@ option:nth-child(even) {
 #add-to-cart {
   margin-top: 10px;
 }
+
+#author {
+  color: #54c8ff;
+}
+
+#starsOnReview {
+  position: relative;
+  bottom: -10px;
+  padding-left: 10px;
+}
+
+.allReviews {
+  text-align: left!important;
+  margin-left: 2%;
+}
+
+#review-content {
+  padding-left: 1%!important;
+}
+
+.reviewForm {
+  padding: 10% 10% 5% 10%;
+}
+
+#leaveReviewForm {
+  width: 50%;
+  height: 100px;
+}
+
+.createReviewButton {
+  background-color: #e00051;
+  color: #F5F5F5;
+  cursor: pointer; 
+  margin-top: 15px;
+  padding: 7px 40px;
+  border: 1px solid #e00051;
+  font-weight: 700;
+  border-radius: 8px;
+}

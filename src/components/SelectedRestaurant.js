@@ -112,7 +112,7 @@ class SelectedRestaurant extends React.Component {
                 restaurant = {this.props.restaurant}
                 token = {this.props.token} 
                 addReviewToState = {this.addReviewToState}/>
-                {allReviews}
+                <div className='allReviews'>{allReviews}</div>
             </div>
         )
     }
