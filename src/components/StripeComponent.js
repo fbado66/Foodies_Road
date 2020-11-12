@@ -3,6 +3,8 @@ import StripeCheckout from 'react-stripe-checkout'
 // import CategoryNavBar from './CategoryNavBar'
 import {withRouter} from 'react-router-dom'
 import CheckOut from './CheckOut'
+import { Button} from 'semantic-ui-react';
+
 
 
 class StripeComponent extends React.Component { 
@@ -65,11 +67,12 @@ class StripeComponent extends React.Component {
                 <StripeCheckout
                     token={ onToken }
                     stripeKey={ process.env.REACT_APP_STRIPE_API_KEY }
-                    // provide input for billing address and shipping address.
                     billingAddress
                     shippingAddress
                 >
-                    <button onClick={this.handleClick}>CHECKOUT PAY </button>
+                    <Button id='checkoutButton' inverted color='red' onClick = {this.handleClick}> Check Out</Button>
+
+                    {/* <button onClick={this.handleClick}>CHECKOUT </button> */}
                 </StripeCheckout>
             </div>
         ); 

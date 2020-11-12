@@ -1,5 +1,8 @@
 import React from 'react'
 import StripeComponent from './StripeComponent'
+import { Button } from 'semantic-ui-react';
+
+
 
 class TotalOrder extends React.Component {
 
@@ -45,15 +48,19 @@ class TotalOrder extends React.Component {
         }else {
             return (
                 <div>
-                    <p>Items Subtotal: ${ totalSum }.00</p>
-                    <p> Sales Tax: ${tip}</p>
-                    <p>Delivery fee: {finaldelivery}</p>
-                    <p>TOTAL: ${total}</p>
-                    <p>Add tip for the driver</p>
-                    <div onClick = {handleTip} value={cashTip}>Cash</div>  
-                    <div onClick = {handleTip} value={tip10}>10%</div>
-                    <div onClick = {handleTip} value={tip15}>15%</div>
-                    <div onClick = {handleTip} value={tip20}>20%</div>
+                    <div className='subtotalInfo'>
+                        <p>Items Subtotal: <span id='moneyCount'>${ totalSum }.00</span></p>
+                        <p> Sales Tax: <span id='moneyCount'>${tip}</span></p>
+                        <p>Delivery fee: <span id='moneyCount'>{finaldelivery}</span></p>
+                        <p>TOTAL: <span id='moneyCountTotal'>${total}</span></p>
+                        <p id='tipHandler'>Add tip for the driver</p>
+                    </div>
+
+                    <Button inverted color='yellow' onClick = {handleTip} value={cashTip}> Cash </Button>
+                    <Button inverted color='blue' onClick = {handleTip} value={tip10}> 10% </Button>
+                    <Button inverted color='blue' onClick = {handleTip} value={tip15}> 15% </Button>
+                    <Button inverted color='blue' onClick = {handleTip} value={tip20}> 20% </Button>
+                    
                     <StripeComponent 
                         total = {total}
                         user_token = {this.props.user_token}

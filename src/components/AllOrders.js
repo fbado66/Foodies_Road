@@ -34,7 +34,7 @@ class AllOrders extends React.Component {
                 // className ='cart-holder'
                 >
                     <h2 className ='My_cart'> My Cart</h2>
-                    <h3>{promotion}</h3>
+                    <h4 id='promotion'>{promotion}</h4>
 
                     
                         {arrayOfOrders}
