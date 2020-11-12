@@ -3,12 +3,7 @@ import { withRouter} from 'react-router-dom'
 import Product from './Product'
 import ReviewForm from './ReviewForm'
 import ReviewsOnRestaurant from './ReviewsOnRestaurant'
-
-
-
-
-
-
+import { Grid, Icon } from 'semantic-ui-react';
 
 
 
@@ -78,7 +73,7 @@ class SelectedRestaurant extends React.Component {
                         />
         })
         let arrayOfProducts = this.props.productsFiltered.map(productPojo => {
-            return <div key = {productPojo.id}>            
+            return <div key = {productPojo.id}>  
                         <Product
                         order = {productPojo}
                         // productsFiltered = {this.props.productsFiltered}
@@ -86,12 +81,23 @@ class SelectedRestaurant extends React.Component {
                         addOrderToCartState = {this.props.addOrderToCartState}
                         cart_id={this.props.cart_id}
                         token = {this.props.token} />  
-                    </div>
+                    </div> 
+                    
         })
+
+        let {name, address, timings, cuisines, phone_number, reviews_count, user_rating, user_rating_text} = this.props.restaurant
 
         return (
             <div>
-                <ul className ='category-subNav' value={this.selectedCategory} onClick = {this.handleClick} >
+              <div>
+                <h3>Welcome to <strong>{name}</strong></h3>
+                <p>This restauant is known for {cuisines}</p>
+                <p>{address}</p>
+                <p>{phone_number}</p>
+                <p>Hours of services <br/>{timings}</p>
+                <p>({reviews_count}+) people have commented in this restaurant with an average of {user_rating} <Icon name='star' /> and a grade of {user_rating_text} </p>
+              </div>
+                <div className ='options_cuisines' id='dishes_option' value={this.selectedCategory} onClick = {this.handleClick} >
                     <option value='All'> All</option>
                     <option value='Specialties'> Specialties</option>
                     <option value='Popular'> Popular</option>
@@ -99,10 +105,10 @@ class SelectedRestaurant extends React.Component {
                     <option value='Signature'> Signature Dishes</option> 
                     <option value='Drinks'> Drinks</option> 
 
-                </ul>
-                <div className ='products_holder'>
-                    {arrayOfProducts}
                 </div>
+                <Grid columns={2} id='newgrid'>
+                    {arrayOfProducts}
+                </Grid>
                 <ReviewForm 
                 restaurant = {this.props.restaurant}
                 token = {this.props.token} 

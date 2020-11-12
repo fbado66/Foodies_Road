@@ -258,13 +258,13 @@ class App extends React.Component {
             <Card as={Link} to={`/restaurants/${restaurantPojo.id}`}>
               <Image className = 'image_restaurant' src={restaurantPojo.image_url ? restaurantPojo.image_url : "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} alt={restaurantPojo.name} />
                 <Card.Content>
-                  <Card.Header>{restaurantPojo.name}</Card.Header>
+                  <Card.Header id='restaurant-name'>{restaurantPojo.name}</Card.Header>
                   <Card.Meta>{restaurantPojo.cuisines}</Card.Meta>
                   <Card.Description>{restaurantPojo.address}</Card.Description>
-                  <Card.Description>{restaurantPojo.phone_number}</Card.Description>
+                  <Card.Description id='restaurant-phone'>{restaurantPojo.phone_number}</Card.Description>
 
                 </Card.Content>
-                <Card.Content >
+                <Card.Content id='restaurant-feedback' >
                   <div>{restaurantPojo.user_rating_text} <Icon name='food' /> </div>
                   {restaurantPojo.user_rating} <Icon name="star" /> ({restaurantPojo.reviews_count}+)
                 </Card.Content>

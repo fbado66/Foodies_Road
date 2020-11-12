@@ -268,6 +268,19 @@ width: 100%
   border: none!important
 }
 
+/* ---------------- RESTAURANTS GRID ------------------------------- */
+#restaurant-name {
+  padding: 10px;
+}
+
+#restaurant-phone {
+  padding-bottom: 10px;
+}
+
+#restaurant-feedback {
+  padding: 10px!important
+}
+
 .options_cuisines > option {
   display: inline-block!important
 }
@@ -283,4 +296,57 @@ option {
 
 option:nth-child(even) {
   border: 1px solid blue;
+}
+
+#dishes_option {
+  padding-top: 65px;
+}
+
+.grid-column-product {
+  width: 100%!important;
+  margin-left: 10%!important;
+}
+
+.food_image {
+  height: 180px;
+  width: 180px;
+  border-radius: 5px!important;
+  position: absolute!important;
+  right: 2px;
+  bottom: 2px
+}
+
+.card_product {
+  margin: 25px 0!important;
+  height: 184px;
+}
+
+.column > .grid-column-product {
+  border: none!important
+}
+
+.card-content {
+  display: flex!important
+}
+
+.product_info_holder {
+  padding-top: 30px;
+  width: 170px;
+}
+
+#newgrid {
+  width: 100%
+}
+
+#product-name {
+  /* font-weight: 700;  */
+  text-shadow: .5px .3px black;
+}
+
+.ui.card>.content, .ui.cards>.card>.content >.card_product {
+  padding: 0!important
+}
+
+#add-to-cart {
+  margin-top: 10px;
 }

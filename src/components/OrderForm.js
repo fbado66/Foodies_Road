@@ -1,5 +1,8 @@
+// import { Button } from '@material-ui/core';
 import React from 'react';
 import {withRouter} from 'react-router-dom'
+import { Button } from 'semantic-ui-react';
+
 
 
 
@@ -34,9 +37,9 @@ class OrderForm extends React.Component {
     render () {
         return (
             <div>
-                <button className='add_to_cart'
-                    onClick = {this.handleClick}>
-                    Add to Cart</button>
+                <Button basic color='blue' id='add-to-cart' onClick = {this.handleClick} >
+                    <Button.Content visible>Add to Cart </Button.Content>
+                </Button>
             </div>
         )
     }

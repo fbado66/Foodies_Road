@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoogleComponent } from 'react-google-location' 
 // import { orderByDistance } from 'geolib'
-import { Grid, Image, Label } from 'semantic-ui-react';
+import { Grid} from 'semantic-ui-react';
 
 
 const geolib = require('geolib');
@@ -67,35 +67,6 @@ class Restaurant extends React.Component {
                     <Grid doubling columns={4} id="Grid-Container">
                         {this.props.restaurants}
                     </Grid>
-
-
-
-
-
-
-
-
-
-                    
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         )
     }
