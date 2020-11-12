@@ -37,7 +37,7 @@ class OrderForm extends React.Component {
     render () {
         return (
             <div>
-                <Button basic color='blue' id='add-to-cart' onClick = {this.handleClick} >
+                <Button inverted color='blue' id='add-to-cart' onClick = {this.handleClick} >
                     <Button.Content visible>Add to Cart </Button.Content>
                 </Button>
             </div>

@@ -73,16 +73,14 @@ class SelectedRestaurant extends React.Component {
                         />
         })
         let arrayOfProducts = this.props.productsFiltered.map(productPojo => {
-            return <div key = {productPojo.id}>  
-                        <Product
-                        order = {productPojo}
-                        // productsFiltered = {this.props.productsFiltered}
-                        addOrderToState = {this.props.addOrderToState} 
-                        addOrderToCartState = {this.props.addOrderToCartState}
-                        cart_id={this.props.cart_id}
-                        token = {this.props.token} />  
-                    </div> 
-                    
+                return  <Product
+                          key = {productPojo.id}
+                          order = {productPojo}
+                          // productsFiltered = {this.props.productsFiltered}
+                          addOrderToState = {this.props.addOrderToState} 
+                          addOrderToCartState = {this.props.addOrderToCartState}
+                          cart_id={this.props.cart_id}
+                          token = {this.props.token} />         
         })
 
         let {name, address, timings, cuisines, phone_number, reviews_count, user_rating, user_rating_text} = this.props.restaurant
@@ -106,7 +104,7 @@ class SelectedRestaurant extends React.Component {
                     <option value='Drinks'> Drinks</option> 
 
                 </div>
-                <Grid columns={2} id='newgrid'>
+                <Grid doubling columns={3} id='NewGrid'>
                     {arrayOfProducts}
                 </Grid>
                 <ReviewForm 

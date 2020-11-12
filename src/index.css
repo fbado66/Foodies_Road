@@ -246,6 +246,7 @@ margin-bottom: 5%;
 }
 
 #Grid-Container {
+  margin-top: 50px;
   padding-left: 1%;
   padding-right: 1%
 }
@@ -282,48 +283,68 @@ width: 100%
 }
 
 .options_cuisines > option {
-  display: inline-block!important
+  display: inline-block!important;
+  margin-bottom: 15px;
+
 }
 
 
 option {
   padding: 5px 30px;
-  border: 1px solid red;
+  border: 1px solid #e00051;
   font-weight: 700;
   border-radius: 8px;
   margin: 1%;
 }
 
+option:hover {
+  background-color: #e00051;
+  color: #F5F5F5;
+  cursor: pointer;
+
+}
+
+option:nth-child(even):hover {
+  background-color: #54c8ff;
+  color: #F5F5F5;
+  cursor: pointer;
+  
+}
+
 option:nth-child(even) {
-  border: 1px solid blue;
+  border: 1px solid #54c8ff
 }
 
 #dishes_option {
   padding-top: 65px;
 }
 
-.grid-column-product {
-  width: 100%!important;
-  margin-left: 10%!important;
+/* #NewGrid .grid-column-product {
+   width: 50%; 
+   margin-left: 10%; 
+  border: 2px solid blue!important;
+} */
+
+#NewGrid {
+  margin-top: 60px;
 }
 
 .food_image {
   height: 180px;
-  width: 180px;
+  width: 45%;
   border-radius: 5px!important;
   position: absolute!important;
   right: 2px;
   bottom: 2px
 }
 
-.card_product {
-  margin: 25px 0!important;
+#NewGrid .card_product { 
+  width: 75%!important;
+  margin: 0 auto;
   height: 184px;
+  /* border: 2px solid purple; */
 }
 
-.column > .grid-column-product {
-  border: none!important
-}
 
 .card-content {
   display: flex!important
@@ -331,11 +352,7 @@ option:nth-child(even) {
 
 .product_info_holder {
   padding-top: 30px;
-  width: 170px;
-}
-
-#newgrid {
-  width: 100%
+  width: 45%;
 }
 
 #product-name {
