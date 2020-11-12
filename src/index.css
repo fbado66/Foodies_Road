@@ -530,3 +530,18 @@ option:nth-child(even) {
   margin-top: 30px;
   text-shadow: .4px .3px black
 }
+
+#userAvatar {
+  font-size: 5em;
+  margin-bottom: 30px;
+}
+
+.userInformation {
+  text-shadow: .2px .3px black;
+}
+
+#historyOrders {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 6%
+}

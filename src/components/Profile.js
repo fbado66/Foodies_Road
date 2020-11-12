@@ -1,19 +1,14 @@
 import React from 'react'
 import {withRouter } from 'react-router-dom'
-import { Accordion } from 'semantic-ui-react'
+import { Icon, Button } from 'semantic-ui-react'
 
 
 class Profile extends React.Component {
 
-    state = {
-
-    }
-
     handleClick = () => {
-   this.props.history.push('/profile/edit')
+        this.props.history.push('/profile/edit')
     }
 
-    
     arrayOfallOrders = this.props.cart.reduce((acc, {cart_id, product}) => {
         if(!acc[cart_id]) 
         acc[cart_id] = [<div id='orderNumber'>Order No. {cart_id}</div>];
@@ -26,38 +21,29 @@ class Profile extends React.Component {
         return acc
     }, {})
 
-    
-    sortOrdersByCart = Object.values(this.arrayOfallOrders).map(groupedOrders => <div key ={Math.floor(Math.random()*2000)+1003 }>{groupedOrders}</div>)
-
-    
-      
-      
+    sortOrdersByCart = Object.values(this.arrayOfallOrders).map(groupedOrders =>
+        <div key ={Math.floor(Math.random()*2000)+1003 }>
+            {groupedOrders}
+        </div>
+    )
 
     render() {
-
-
-
-
-       
-
-
-
-
-
-
-       
         return (
             <div >
-                <h2>Welcome {this.props.name}</h2>
-                <p>Email: {this.props.email}</p>
-                <p>Phone: {this.props.phone_number}</p>
-                <p>address: {this.props.address}</p>
-
-                <button onClick={this.handleClick}>Update Information</button>
+                <h3>Welcome </h3>
+                <div className='userInformation'>
+                <Icon name='user circle' inverted color='blue' id='userAvatar'/> 
+                    <p> {this.props.name} {this.props.last_name}</p>
+                    <p><strong>Email: </strong>{this.props.email}</p>
+                    <p><strong>Phone Number: </strong>{this.props.phone_number}</p>
+                    <p><strong>Address:</strong> {this.props.address}</p>
+                    <Icon name='settings' basic color='red' /><Button inverted color='red' onClick={this.handleClick}>Update Information</Button>
+                </div>
 
                 <div>
-                    <p>previous Transactions</p>
+                    
                     <div id='allTransactions'>
+                    <div id='historyOrders'>History Transactions</div>
                         {this.sortOrdersByCart}
                     </div>
                     {/* <p>{this.props.transaction.amount}</p> */}
