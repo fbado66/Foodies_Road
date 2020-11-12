@@ -1,8 +1,8 @@
 import React from 'react'
 // import OrderForm from './OrderForm';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { Grid, Image, Icon } from 'semantic-ui-react';
+
 
 
 class CartContainer extends React.Component {
@@ -66,41 +66,16 @@ class CartContainer extends React.Component {
     render () {
         let {id, product, quantity} = this.props.order
         let {name, image_url, price} = product        
-                return <div>
-                            <div 
-                                className='order_in_cart'
-                                key = {id}>
-                                <img className ='product_cart_image' src={image_url} alt ={name} />
-                                <div className = 'product_name_price'>
-                                    <p className='product_cart_name'>{name}</p>
-                                    <p className ='product_cart_price'>${price}.00</p>
-                                </div>
-                                <div 
-                                // className ='product_cart_quantity'
-                                >quantity:
-                                    <div
-                                    //  className = 'arrowdown'
-                                        id = {id}
-                                        onClick = {this.decreaseQuantityHandler}>
-                                        <ArrowDropDownIcon /> 
-                                    </div>
-                                        {quantity}
-                                    <div 
-                                    // className = 'arrowup'
-                                        id = {id}
-                                        onClick = {this.increaseQuantityHandler}>
-                                        <ArrowDropUpIcon /> 
-                                    </div>
-                                </div>
-                                <div 
-                                // className ='delete'
-                                    id = {id}
-                                    onClick = {this.deleteHandler}>
-                                        <DeleteIcon />
-                                </div>    
-                            </div>
-                        </div>
-
+            return  <Grid key = {id}>
+                        <Grid.Column width={4} id='product_image_cart'>
+                            <Image src={image_url} alt ={name} />
+                        </Grid.Column>
+                        <Grid.Column width={5} id='product_cart_details'><strong>{name}</strong><br/><span id='product_price_cart'>${price}.00</span></Grid.Column>
+                        <Grid.Column width={1} ><span id={id} onClick={this.decreaseQuantityHandler}><Icon id='update_order' name='chevron down'/></span> </Grid.Column>
+                        <Grid.Column width={1} id='update_order_number'>{quantity}</Grid.Column> 
+                        <Grid.Column width={1} ><span id={id} onClick={this.increaseQuantityHandler}><Icon id='update_order' name='chevron up'/> </span> </Grid.Column>
+                        <Grid.Column width={2}><span id={id} onClick={this.deleteHandler}><Icon id='update_order' name='trash' /></span></Grid.Column>
+                    </Grid>
     }
 }
 

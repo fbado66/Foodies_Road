@@ -1,6 +1,8 @@
 import React from 'react';
 import CartContainer from './CartContainer';
 import TotalOrder from './TotalOrder'
+import { Grid} from 'semantic-ui-react';
+
 
 class AllOrders extends React.Component {
     
@@ -33,7 +35,10 @@ class AllOrders extends React.Component {
                 >
                     <h2 className ='My_cart'> My Cart</h2>
                     <h3>{promotion}</h3>
-                    {arrayOfOrders}
+
+                    
+                        {arrayOfOrders}
+                  
                     <TotalOrder orders = {this.props.allOrders}
                     user_token = {this.props.user_token}
                     setNewCartToState = {this.props.setNewCartToState}
