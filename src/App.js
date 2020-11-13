@@ -19,6 +19,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 
 import { Grid, Image, Card, Icon, Button } from 'semantic-ui-react'
+import MapContainer from './components/MapContainer';
 
 require('dotenv').config()
 
@@ -459,6 +460,14 @@ resetStateforOrderNum = (num) => {
     }
 
 
+    renderRestaurantLatLong = (routerProps) => {
+      return  <div>
+                <MapContainer 
+                restaurants = {this.state.restaurants}
+                />
+              </div>
+    }
+
     renderProfileUpdate = (routerProps) => {
       if(this.state.token){
         return <div>
@@ -501,6 +510,7 @@ resetStateforOrderNum = (num) => {
               <Route path="/register" render={ this.renderForm } />
               <Route path ='/' exact component={Home} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
+              <Route path ='/locations' exact render={this.renderRestaurantLatLong} />
               <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
               <Route path = '/profile' exact render={this.renderProfile} />
