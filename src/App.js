@@ -501,7 +501,7 @@ resetStateforOrderNum = (num) => {
               <Route path="/register" render={ this.renderForm } />
               <Route path ='/' exact component={Home} />
               <Route path ='/restaurants' exact render = {this.renderRestaurants} />
-              <Route path ='/restaurants/:id' exact render = {this.renderSpecificRestaurant} /> 
+              <Route path ='/restaurants/:id' exact render ={this.renderSpecificRestaurant} /> 
               <Route path = '/cart' exact render={this.renderAllOrders} />
               <Route path = '/profile' exact render={this.renderProfile} />
               <Route path = '/mycart' exact component={AllOrders}/>
