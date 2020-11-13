@@ -582,9 +582,54 @@ option:nth-child(even) {
 }
 
 
-#footer {
-  position: relative;
+
+main {
+  position: relative!important;
+  min-height: 100vh!important;
+}
+
+
+#footerTable {
+  width: 100%!important;
+  position: relative!important;
+  margin-top: 100px;
   bottom: 0;
-  margin-left: 50%;
-  /* margin-top: 300px; */
+  background-color: #f3f3f3;
+  border: none!important
+}
+
+.table td, .table th {
+  border: none!important;
+  padding: 2%
+}
+
+.ui.table {
+  text-align: center!important;
+  padding: 2%
+}
+
+#demoNote {
+  margin: 0 auto!important;
+}
+
+#footerTable .ui.label {
+  color: black!important;
+  background: #fbe5ed!important
+}
+
+#receipt {
+  /* border: 1px solid red; */
+  width: 25%;
+  margin: 0 auto!important;
+  padding: 7% 2%;
+  font-weight: 500;
+  box-shadow: 1px 1px 4px 1px #dcdcdc
+}
+
+#checkoutRouterButton {
+  margin-top: 5%;
+}
+
+.receiptProps {
+  opacity: 70%
 }

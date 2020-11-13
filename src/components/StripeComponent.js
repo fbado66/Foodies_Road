@@ -72,7 +72,6 @@ class StripeComponent extends React.Component {
                 >
                     <Button id='checkoutButton' inverted color='red' onClick = {this.handleClick}> Check Out</Button>
 
-                    {/* <button onClick={this.handleClick}>CHECKOUT </button> */}
                 </StripeCheckout>
             </div>
         ); 

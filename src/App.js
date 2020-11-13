@@ -238,20 +238,6 @@ class App extends React.Component {
 
   }
 
-// {/* <div className ='restaurant-card'
-//   key={restaurantPojo.id}
-//   >            
-// <Link to={`/restaurants/${restaurantPojo.id}`}>
-//   {/* <img className ='restaurant-image' src ={restaurantPojo.image_url} alt={restaurantPojo.name} />
-//   <h2 className= 'restaurant-title'> {restaurantPojo.name}</h2>
-//   <p> {restaurantPojo.address}</p> */}
-
-
-//   // GRID COLUMN GOES HERE
-
-// </Link>
-// </div>    */}
-
   renderRestaurants = () => {
     let restaurants = this.state.restaurants
     if (this.state.selectedCusine !== 'All'){
@@ -316,6 +302,7 @@ renderCheckout = () =>{
   if (localStorage.token) {
     return <CheckOut
     transaction = {this.state.transaction}
+    name = {this.state.name}
     />
   }
 }
@@ -425,10 +412,9 @@ resetStateforOrderNum = (num) => {
     // LOGIN / REGISTER FORM ------------------
     renderForm = (routerProps) => {
       if(this.state.token){
-        return <Button inverted color='red' onClick={this.handleLogOut}>
+        return <Button id='logOutButton' inverted color='red' onClick={this.handleLogOut}>
         Are you sure {this.state.name}?
       </Button>
-        // <button className='logout' onClick={this.handleLogOut}>Are you sure {this.state.name}?</button>
       }
       if(routerProps.location.pathname === "/login"){
         return <LogInForm

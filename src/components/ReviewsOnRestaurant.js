@@ -44,14 +44,17 @@ class ReviewsOnRestaurant extends React.Component {
                 })
         }
 
+        
+
     render() {
-    let {content, rating} = this.props.review
+
+    let {content, rating, user_name} = this.props.review
     if (this.props.user_id === this.props.review.user_id) {
 
         return <List >
                 <List.Item >
                     <List.Content className ='reviewOnDisplay'>
-                        <List.Header id='author'><Icon color='black' name='user' />{this.props.name} 
+                        <List.Header id='author'><Icon color='black' name='user' />{user_name} 
                             <span id='starsOnReview'><StarRatingComponent name="rating" starCount={5} value={rating} /></span>
                         </List.Header>
                     </List.Content>
@@ -61,30 +64,13 @@ class ReviewsOnRestaurant extends React.Component {
                 </List.Item>
             </List>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    {/* <button onClick = {this.handleUpdate}>
-                        update
-                    </button> */}
                 
         } else {
         return <div>
                     <List >
                         <List.Item >
                             <List.Content className ='reviewOnDisplay'>
-                                <List.Header id='author'><Icon color='black' name='user' />{this.props.name} 
+                                <List.Header id='author'><Icon color='black' name='user' />{user_name} 
                                     <span id='starsOnReview'><StarRatingComponent name="rating" starCount={5} value={rating} /></span>
                                 </List.Header>
                             </List.Content>
