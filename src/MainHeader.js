@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink, Link} from 'react-router-dom'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Header, Segment, Button, Icon } from 'semantic-ui-react'
+import { Header, Segment, Button, Icon, Label } from 'semantic-ui-react'
 
 
 function MainHeader(props) {
@@ -35,7 +35,7 @@ function MainHeader(props) {
                                 </Button>  
                             </Header>
                             <Header floated='left'>
-                                <NavLink to='/'>Foodies Road</NavLink> 
+                                <Label ribbon as={Link} to='/' id='logoIcon'>Foodies Road</Label>
                             </Header>
                         </Segment>
                     </div>
@@ -58,7 +58,7 @@ function MainHeader(props) {
                                 </Button>  
                             </Header>
                             <Header floated='left'>
-                                <NavLink to='/'>Foodies Road</NavLink> 
+                                <Label ribbon as={Link} to='/' id='logoIcon'>Foodies Road</Label>
                             </Header>
                         </Segment>
                 )
@@ -80,14 +80,9 @@ function MainHeader(props) {
                                 <Button basic color ='red' as={Link} to={'/profile'}>
                                     <Button.Content visible>{profile}</Button.Content>
                                 </Button>
-
-                                {/* <Button basic color='red' animated='vertical' as={Link} to={'/cart'}>
-                                    <Button.Content hidden>My Cart</Button.Content>
-                                    <Button.Content visible><Icon name='shop' /></Button.Content>
-                                </Button>   */}
                             </Header>
                             <Header floated='left'>
-                                <NavLink to='/'>Foodies Road</NavLink> 
+                                <Label ribbon as={Link} to='/' id='logoIcon'>Foodies Road</Label>
                             </Header>
                         </Segment>
                    </div>

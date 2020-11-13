@@ -633,3 +633,11 @@ main {
 .receiptProps {
   opacity: 70%
 }
+
+#logoIcon {
+background-color: #e00051!important;
+color: white!important;
+font-size: 1em;
+margin-left: 22%;
+margin-top: 1%;
+}
