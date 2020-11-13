@@ -38,7 +38,6 @@ function MainHeader(props) {
                         </Segment>
                    </div>
     }
-    
     // if (props.cart.length > 0) {
         if (props.orderNumber.length === 0  ){
             return <div >
