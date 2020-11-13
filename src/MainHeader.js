@@ -38,8 +38,7 @@ function MainHeader(props) {
                         </Segment>
                    </div>
     }
-    
-    // if (props.cart.length > 0) {
+
         if (props.orderNumber.length === 0  ){
             return <div >
                         <Segment clearing id='header_ui'>
@@ -88,31 +87,7 @@ function MainHeader(props) {
                         </Segment>
                 )
             }
-        // } 
-        // if (!props.token) {
-        //     return <div>
-        //                 <Segment clearing id='header_ui'>
-        //                     <Header floated='right'>
-        //                         <Button basic color='red' animated as={Link} to={'/login'}>
-        //                             <Button.Content visible>{logged}</Button.Content>
-        //                             <Button.Content hidden><Icon name='arrow right' /></Button.Content>
-        //                         </Button>
-
-        //                         <Button animated negative as={Link} to={'/register'}>
-        //                             <Button.Content visible>Sign Up</Button.Content>
-        //                             <Button.Content hidden><Icon name='universal access' /></Button.Content>
-        //                         </Button>
-
-        //                         <Button basic color ='red' as={Link} to={'/profile'}>
-        //                             <Button.Content visible>{profile}</Button.Content>
-        //                         </Button>
-        //                     </Header>
-        //                     <Header floated='left'>
-        //                         <Label ribbon as={Link} to='/' id='logoIcon'>Foodies Road</Label>
-        //                     </Header>
-        //                 </Segment>
-        //            </div>
-    // }
+        
 }
 
 export default MainHeader
