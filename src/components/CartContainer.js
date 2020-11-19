@@ -10,7 +10,7 @@ class CartContainer extends React.Component {
 // -----------Delete Functionality ------------------------
     deleteHandler = (evt) => {
             // evt.preventDefault()
-        fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
+        fetch(`https://frozen-sands-83347.herokuapp.com/orders/${this.props.order.id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -22,7 +22,7 @@ class CartContainer extends React.Component {
     // Update Functionality -------------------------
     decreaseQuantityHandler = (evt) => {
         if (this.props.order.quantity > 1) {
-            fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
+            fetch(`https://frozen-sands-83347.herokuapp.com/orders/${this.props.order.id}`, {
                 method: 'PATCH',
                 headers: {
                     "content-type": "Application/json"
@@ -37,7 +37,7 @@ class CartContainer extends React.Component {
             })
 
             } else {
-                fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
+                fetch(`https://frozen-sands-83347.herokuapp.com/orders/${this.props.order.id}`, {
                     method: "DELETE"
                 })
                 .then(res => res.json())
@@ -48,7 +48,7 @@ class CartContainer extends React.Component {
     }
 
     increaseQuantityHandler = (evt) => {
-        fetch(`http://localhost:3000/orders/${this.props.order.id}`, {
+        fetch(`https://frozen-sands-83347.herokuapp.com/orders/${this.props.order.id}`, {
             method: 'PATCH',
             headers: {
                 "content-type": "Application/json"

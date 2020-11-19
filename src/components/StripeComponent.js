@@ -37,7 +37,7 @@ class StripeComponent extends React.Component {
                 token: token.id
             };
             // fetch to the charge controller which handles the Stripe API transaction.
-            fetch('http://localhost:3000/charges', {
+            fetch('https://frozen-sands-83347.herokuapp.com/charges', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

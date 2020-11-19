@@ -15,7 +15,7 @@ class SelectedRestaurant extends React.Component {
     }
 
     componentDidMount = () => {
-    fetch(`http://localhost:3000/restaurants/${this.props.restaurant.id}`)
+    fetch(`https://frozen-sands-83347.herokuapp.com/restaurants/${this.props.restaurant.id}`)
         .then(res => res.json())
         .then((restaurantPojo) => {
             this.setState({

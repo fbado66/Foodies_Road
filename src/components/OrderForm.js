@@ -12,7 +12,7 @@ class OrderForm extends React.Component {
     handleClick = (evt) => {
         evt.preventDefault()
         if (this.props.token) {
-            fetch('http://localhost:3000/orders', {
+            fetch('https://frozen-sands-83347.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json',
