@@ -14,7 +14,7 @@ class ReviewForm extends Component {
     handleReviewForm = (evt) => {
         evt.preventDefault()
         if (this.props.token) {
-            fetch('http://localhost:3000/reviews', {
+            fetch('https://frozen-sands-83347.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json',

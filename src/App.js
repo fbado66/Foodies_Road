@@ -15,9 +15,6 @@ import UpdateUserForm from './components/UpdateUserForm'
 import CheckOut from './components/CheckOut'
 import Orderhandler from './components/Orderhandler';
 import 'semantic-ui-css/semantic.min.css'
-
-
-
 import { Grid, Image, Card, Icon, Button } from 'semantic-ui-react'
 import MapContainer from './components/MapContainer';
 
@@ -47,7 +44,7 @@ class App extends React.Component {
 
   componentDidMount(){
     // Restaurants information -------------
-    fetch("http://localhost:3000/restaurants")
+    fetch("https://frozen-sands-83347.herokuapp.com/restaurants")
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
       this.setState({
@@ -55,22 +52,9 @@ class App extends React.Component {
       })
     })
 
-    // fetch("http://localhost:3000/users")
-    // .then(res => res.json())
-    // .then((userArray) => {
-    //   userArray.find(singleUser => {
-    //       singleUser.carts.find(cartPOJO => {
-    //         if (this.state.cart_id === cartPOJO.id)
-    //           this.setState({
-    //             cart: cartPOJO.orders
-    //           })
-    //       })
-    //     })
-    // })
-
  
     if(localStorage.token){
-      fetch("http://localhost:3000/users/keep_logged_in", {
+      fetch("https://frozen-sands-83347.herokuapp.com/users/keep_logged_in", {
         method: "GET",
         headers: {
           "Authorization": localStorage.token
@@ -103,7 +87,7 @@ class App extends React.Component {
   handleLoginSubmit = (userInfo) => {
     console.log("Login form has been submitted")
 
-    fetch("http://localhost:3000/users/login", {
+    fetch("https://frozen-sands-83347.herokuapp.com/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "Application/json"
@@ -122,7 +106,7 @@ class App extends React.Component {
   handleRegisterSubmit = (userInfo) => {
     console.log("Register form has been submitted")
 
-    fetch("http://localhost:3000/users", {
+    fetch("https://frozen-sands-83347.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "Application/json"
@@ -158,7 +142,7 @@ class App extends React.Component {
         email: resp.user.email,
       })
 
-      fetch('http://localhost:3000/carts', {
+      fetch('https://frozen-sands-83347.herokuapp.com/carts', {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
@@ -210,7 +194,7 @@ class App extends React.Component {
   handleUpdateSubmit = (userInfo) => {
     console.log("Update form has been submitted")
 
-    fetch(`http://localhost:3000/users/${this.state.id}`, {
+    fetch(`https://frozen-sands-83347.herokuapp.com/users/${this.state.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "Application/json"
@@ -316,7 +300,6 @@ setTransactionInfoToState = (transactionInfo) => {
 
 setNewCartToState = (cartPojo) => {
   this.setState({
-    // cart: cartPojo,
     cart_id: cartPojo.id
   })
 }
