@@ -109,7 +109,9 @@ Search closes locations based on the provided address.
 
 ## Active Record Associations
 There are 6 models that have the following associations has_many, belongs_to and has_many, through:
-Domain Model
+
+### Domain Model
+<img src='/public/domain_model.png'>
 
 
 Wireframe
