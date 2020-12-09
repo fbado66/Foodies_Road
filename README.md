@@ -9,20 +9,21 @@ Users can navigate the application without having to log in, they can browse thr
 Once the user is logged in, they will have more access to do more things such as leave a review, place orders, and update their account. 
 
 ## Features
-Serializers
-Building linear direction on the relationships and model association in the backend
-CRUD operations along models
+<p>Serializers</p>
+<p>Building linear direction on the relationships and model association in the backend</p>
+<p>CRUD operations along models</p> <br>
 
-Users can:
-Log into the application
-Create an update accounts.
-Browse all the products as and filter them by cuisines, by drinks, root dishes, specialities, etc.
-Create and delete reviews
-Add products to their cart
-Update their cart by removing items
-Log out
-Make use of the google map
-Search closes locations based on the provided address.
+<ul>Users can:
+<ol>Log into the application</ol>
+<ol>Create an update accounts.</ol>
+<ol>Browse all the products as and filter them by cuisines, by drinks, root dishes, specialities, etc.</ol>
+<ol>Create and delete reviews</ol>
+<ol>Add products to their cart</ol>
+<ol>Update their cart by removing items</ol>
+<ol>Log out</ol>
+<ol>Make use of the google map</ol>
+<ol>Search closes locations based on the provided address</ol>
+</ul>
 
 
 ## Active Record Associations
@@ -43,28 +44,29 @@ There are 6 models that have the following associations has_many, belongs_to and
 
 
 ## Tech Stack
-Ruby on Rails
-Rails as an API
-JSON Web Tokens and localStorage
-Zomato API
-Google API
-GeoLocation API
-Stripe API
-PostgreSQL
-Customed CSS
-Active Record
-Semantics-UI
-rack-cors
-active_model_serializers
+<ol>Ruby on Rails</ol>
+<ol>Rails as an API</ol>
+<ol>JSON Web Tokens and localStorage</ol>
+<ol>Zomato API</ol>
+<ol>Google API</ol>
+<ol>GeoLocation API</ol>
+<ol>Stripe API</ol>
+<ol>PostgreSQL</ol>
+<ol>Customed CSS</ol>
+<ol>Active Record</ol>
+<ol>Semantics-UI</ol>
+<ol>Rack-cors</ol>
+<ol>JWT gem</ol>
+<ol>active_model_serializers</ol>
 
 ### Build Status
-Deployed
-Futute features will come soon
+<ol>Deployed</ol>
+<ol>Futute features will come soon</ol>
 
 ### Next Steps
-Update user information
-Allow users to upload a profile picture
-Incorporate validations
+<p>Update user information</p>
+<p>Allow users to upload a profile picture</p>
+<p>Incorporate validations</p>
 
 
 ## Visit a deploy version here 
@@ -72,9 +74,9 @@ Incorporate validations
 
 
 ### Acknowledgements
-I  would like to thank:
-Eric Kim
-Sylwia Vargas
-Annie Zheng
-Isabel K. Lee
-the Code Bender Cohort
+I  would like to thank: <br/>
+<ol>Eric Kim</ol>
+<ol>Sylwia Vargas</ol>
+<ol>Annie Zheng</ol>
+<ol>Isabel K. Lee</ol>
+<ol>The Code Bender Cohort</ol>
