@@ -3,7 +3,7 @@
 
 Foodies Road is a web application for food services created with React.Js in the frontend and Ruby on Rails as API in the backend that allows users to order food online.
 
-<a href='https://evening-taiga-01396.herokuapp.com/' ><img src='/public/homegage.png'/></a>
+<a href='https://evening-taiga-01396.herokuapp.com/' ><img src='/public/homepage.png'/></a>
 
 Users can navigate the application without having to log in, they can browse through the differents restaurants, choose restaurants based on the ones closes to the location provided in the search bar, or make use of the google map to search restaurants based on their locations. 
 Once the user is logged in, they will have more access to do more things such as leave a review, place orders, and update their account. 
@@ -68,7 +68,7 @@ Incorporate validations
 
 
 ## Visit a deploy version here 
-Foodies Road 
+<a href='https://evening-taiga-01396.herokuapp.com/' >Foodies Road</a>
 
 
 ### Acknowledgements
