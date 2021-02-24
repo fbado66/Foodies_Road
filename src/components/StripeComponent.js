@@ -13,7 +13,7 @@ class StripeComponent extends React.Component {
     handleClick = () => {
         this.props.history.push("/mycart/checkout")
         
-        fetch('http://localhost:3000/carts', {
+        fetch('https://frozen-sands-83347.herokuapp.com/carts', {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json",

@@ -21,7 +21,7 @@ import 'semantic-ui-css/semantic.min.css'
 import { Grid, Image, Card, Icon, Button } from 'semantic-ui-react'
 import MapContainer from './components/MapContainer';
 
-require('dotenv').config()
+// require('dotenv').config()
 
 
 class App extends React.Component {
@@ -47,7 +47,7 @@ class App extends React.Component {
 
   componentDidMount(){
     // Restaurants information -------------
-    fetch("https://frozen-sands-83347.herokuapp.com/restaurants")
+    fetch("http://localhost:8080/https://frozen-sands-83347.herokuapp.com/restaurants")
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
       this.setState({
