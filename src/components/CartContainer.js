@@ -1,8 +1,5 @@
 import React from 'react'
-// import OrderForm from './OrderForm';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { Grid, Image, Icon } from 'semantic-ui-react';
-
 
 
 class CartContainer extends React.Component {

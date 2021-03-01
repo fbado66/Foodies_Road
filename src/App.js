@@ -47,7 +47,7 @@ class App extends React.Component {
 
   componentDidMount(){
     // Restaurants information -------------
-    fetch("http://localhost:8080/https://frozen-sands-83347.herokuapp.com/restaurants")
+    fetch("https://frozen-sands-83347.herokuapp.com/restaurants")
     .then(res => res.json())
     .then((arrayOfRestaurants) => {
       this.setState({
@@ -173,7 +173,7 @@ class App extends React.Component {
     if(resp.error){
       console.error(resp.error)
     } else {
-      resp.user.carts.map( cartObject => {
+      resp.user.carts.map(cartObject => {
         this.setState({
           cart_id: cartObject.id
         })
@@ -236,7 +236,7 @@ class App extends React.Component {
     } 
     let arrayOfRestaurants = restaurants.map((restaurantPojo) => {
       return (
-          <Grid.Column >
+          <Grid.Column key={restaurantPojo.id}>
             <Card as={Link} to={`/restaurants/${restaurantPojo.id}`}>
               <Image className = 'image_restaurant' src={restaurantPojo.image_url ? restaurantPojo.image_url : "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} alt={restaurantPojo.name} />
                 <Card.Content>
@@ -304,7 +304,6 @@ setTransactionInfoToState = (transactionInfo) => {
 
 setNewCartToState = (cartPojo) => {
   this.setState({
-    // cart: cartPojo,
     cart_id: cartPojo.id
   })
 }

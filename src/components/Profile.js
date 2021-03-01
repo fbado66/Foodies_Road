@@ -13,7 +13,7 @@ class Profile extends React.Component {
         if(!acc[cart_id]) 
         acc[cart_id] = [<div id='orderNumber'>Order No. {cart_id}</div>];
         acc[cart_id].push(<div id='productsOnOrder' key ={Math.floor((Math.random()*25)+65) }>
-                            <img className = 'profile_product_img' src= {product.image_url} />
+                            <img className = 'profile_product_img' src= {product.image_url} alt={product.title}/>
                             <p className='productNameOnCart'>{product.name} <br/>
                             ${product.price}.00</p>
                           </div>)

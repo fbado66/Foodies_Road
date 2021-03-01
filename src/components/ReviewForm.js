@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom'
 import StarRatingComponent from 'react-star-rating-component'
-import { Form, Icon } from 'semantic-ui-react';
+import { Form} from 'semantic-ui-react';
 
 
 class ReviewForm extends Component {

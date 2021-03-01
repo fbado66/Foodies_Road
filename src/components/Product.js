@@ -1,8 +1,6 @@
 import React from 'react'
-// import CartContainer from './CartContainer'
 import OrderForm from './OrderForm'
-import { Grid, Image, Card, Icon, GridColumn } from 'semantic-ui-react'
-import CartContainer from './CartContainer'
+import { Grid, Image, Card} from 'semantic-ui-react'
 
 
 class Product extends React.Component {

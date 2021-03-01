@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoogleComponent } from 'react-google-location' 
-// import { orderByDistance } from 'geolib'
+// import { getDistance } from 'geolib'
 import { Grid} from 'semantic-ui-react';
 
 
@@ -27,16 +27,19 @@ class Restaurant extends React.Component {
         this.props.changeSelectedCusine(evt.target.value)
     }
     render() {
+
         return (
             <div id='locationSearch'>
                 <p id='search_header'>Search Restaurants closest to you</p>
                 <GoogleComponent
                     apiKey = {API_KEY}
+
                     language = {'en'}
                     country = {'country:us'}
                     coordinates = {true}
                     locationBoxStyle = {'custom-style'}
                     locationListStyle = {'custom-style-list'}
+                    
                     onChange = {
                         (place) => {
                             this.setState({
@@ -47,6 +50,7 @@ class Restaurant extends React.Component {
                             }
                         }
                 />
+               
                 
 
                 <div className ='options_cuisines' value={this.selectedCusine} onClick = {this.handleClick} >

@@ -1,7 +1,6 @@
 import React from 'react';
 import CartContainer from './CartContainer';
 import TotalOrder from './TotalOrder'
-import { Grid} from 'semantic-ui-react';
 
 
 class AllOrders extends React.Component {
@@ -36,7 +35,6 @@ class AllOrders extends React.Component {
                     <h2 className ='My_cart'> My Cart</h2>
                     <h4 id='promotion'>{promotion}</h4>
 
-                    
                         {arrayOfOrders}
                   
                     <TotalOrder orders = {this.props.allOrders}

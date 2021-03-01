@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, TextArea, Button } from 'semantic-ui-react'
+import { Form, Input, Button } from 'semantic-ui-react'
 
 
 class LogInForm extends Component {

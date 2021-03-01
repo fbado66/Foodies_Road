@@ -1,19 +1,11 @@
 import React from 'react'
-import { Icon, Label, Menu, Table } from 'semantic-ui-react'
+import { Label, Table } from 'semantic-ui-react'
 
 
 function Footer() {
     return(
         
-
-
-
-
-
-
-            <Table id='footerTable'>
-   
-
+    <Table id='footerTable'>
     <Table.Body id='footerTableBody'>
       <Table.Row>
         <Table.Cell>
@@ -35,7 +27,6 @@ function Footer() {
         <Table.Cell>Flatiron cohort 071320</Table.Cell>
         <Table.Cell>Repo Links </Table.Cell>
       </Table.Row>
-      
     </Table.Body>
     
 

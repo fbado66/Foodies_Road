@@ -1,6 +1,5 @@
 import React from 'react'
-import {NavLink, Link} from 'react-router-dom'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {Link} from 'react-router-dom'
 import { Header, Segment, Button, Icon, Label } from 'semantic-ui-react'
 
 
